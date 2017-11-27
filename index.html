@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+}
+/*@font-face{
+  font-family: Avnegers;
+  src: url('F:\\INFO_anul3\\CLIW\\avengeance\\AVENGEANCE HEROIC AVENGER.ttf');
+}*/
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+   /* border:1px solid black;*/
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+html {
+    font-family: "Arial, Helvetica Neue", sans-serif;
+}
+.header {
+    background-color: #ffffff;
+    color: #89cff0;
+    padding: 5px;
+    font-style: italic;
+    text-align: right;
+    font-weight: normal;
+    text-shadow: 1px 3px rgba(241,241,241,0.3), 1px 2px rgba(241,241,241,0.5);
+}
+.body
+{
+  background-color: #f1f1f1;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: #89cff0;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition-property: all /*width, height, background-color*/;    
+    transition-duration: 1s;
+    transition-timing-function: ease-in;
+    transition-delay: 0.1s;
+}
+.menu li:hover{
+    background-color: #0099cc;
+    /*width: 200px;
+    height: 50px;*/
+}
+</style>
+</head>
+<body bgcolor="#f1f1f1">
+
+<div class="header">
+  <h1>FII Invaders</h1> <!-- aici voi vrea sa pun sigla fii si dupa sa urmeze textul Invaders -->
+</div>
+
+<div class="row">
+
+<div class="col-3 menu">
+  <br/><br/><br/>
+  <ul>
+    <li>Descripition</li>
+    <li>Scores</li>
+    <li>Facts</li>
+    <li>Alte nebunii</li>
+  </ul>
+</div>
+
+<div class="col-9">
+  <h1 align="center"> *INSERT GAME HERE*</h1>
+  <canvas>
+    
+  </canvas>
+</div>
+
+</div>
+
+</body>
+</html>
