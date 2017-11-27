@@ -2,19 +2,27 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="login.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="login.js"></script>
+        <script src="js/login.js"></script>
     </head>
     <body>
         <div class="navbar"> Fii Invaders</div>
         <div class="col-1"> 
+            <div class="aliens">
+                <img class="alien1" src="images/alien1.png" onmouseover="alien1hover();" onmouseout="alien1unhover();">
+                <!--<div class="rocket">-->
+                <img class="rocket1" src="images/rocket1.png">
+                    <!--<img class="rocket2" src="images/rocket2.png">
+                </div>-->
+                <img class="alien2" src="images/alien1.png" onmouseover="alien2hover();" onmouseout="alien2unhover();">
+            </div>
             <div class="container">
                 <div class="login">Login</div>
                 <ul class="logins">
                     <li><a class="guest" href="#">Login as Guest</a></li>
-                    <li><a class="facebook" href="#" onmouseover="hover();" onmouseout="unhover();">Login with Facebook <img class="fb2" src="fb2.svg"></a></li>
+                    <li><a class="facebook" href="#" onmouseover="fbhover();" onmouseout="fbunhover();">Login with Facebook <img class="fb2" src="images/fb2.svg"></a></li>
                 </ul>
             </div>
         </div>
