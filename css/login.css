@@ -1,0 +1,149 @@
+body{
+    background-color:#e6e6e6;
+    margin: 0px;
+}
+
+.navbar{
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: left;
+    color:#538cc6;
+    border-bottom:1px solid #cccccc;
+    padding: 17px 4%;
+    position: fixed;
+    background-color: #ffffff;
+}
+
+.container{
+    width: 30%;
+    height: 100%;
+    position:relative;
+    background-color: #ffffff;
+    display: block;
+    margin: auto;
+    border:1px solid #cccccc;
+}
+
+.col-1{
+    width: 100%;
+    height:100%;
+    padding-top:15%;
+}
+
+@media screen and (max-width: 1600px) {
+    .col-1{
+        padding-top: 20%;
+    }
+    .container{
+        width: 40%;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .col-1{
+        padding-top: 25%;
+    }
+    .container{
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .col-1{
+        padding-top: 40%;
+    }
+    .container{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .col-1{
+        padding-top: 55%;
+    }
+    .container{
+        width: 90%;
+    }
+    .guest{
+        font-size: 15px;
+    }
+    .facebook{
+        font-size: 15px;
+    }
+}
+
+.login{
+    position: relative;
+    color: #538cc6;
+    border-bottom: 1px solid #cccccc;
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    padding: 15px 5%;
+}
+
+.logins{
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: 87%;
+    padding: 5% 3% 20%;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    list-style-type: none;
+}
+
+.li{
+    display: inline-block;
+}
+
+.guest{
+    position: relative;
+    text-decoration: none;
+    border: 1px solid #cccccc;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    width: 100%;
+    padding: 4%;
+    margin: auto;
+    background-color: #538cc6;
+    transition: 0.5s;
+}
+
+.guest:hover{
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #538cc6;
+    transition: 0.5s;
+}
+
+.facebook{
+    position: relative;
+    text-decoration: none;
+    border: 1px solid #cccccc;
+    padding: 4%;
+    width: 100%;
+    margin: auto;
+    top: 50px;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    background-color: #538cc6;
+    transition: 0.6s;
+}
+
+.facebook:hover{
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #538cc6;
+    transition: 0.6s;
+}
+
+.fb2{
+    position: relative;
+    width: 8%;
+    top: 10px;
+}
+
+
