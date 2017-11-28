@@ -383,6 +383,7 @@ li.highscores:hover:before{
   max-height: 30%;
   overflow: auto;
   text-align:left;
+  line-height:20px;
   font-size:10px;
   color: rgb( 255, 255, 255);
   font-family: 'Press Start 2P'
