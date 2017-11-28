@@ -90,7 +90,6 @@ html,body{
     font-size: 0.8em;
     font-family: 'Press Start 2P', cursive;
     color: rgb(83, 140, 198);
-    border: 0px 0px solid #cccccc;
     background-color:white;
     display: block;
     border: 0px solid #cccccc; 
@@ -116,19 +115,19 @@ html,body{
 #controls {
 
     font-family: 'Press Start 2P', cursive;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
-    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
     opacity:0;
  }
  #rules {
     
         font-family: 'Press Start 2P', cursive;
-        -webkit-transition: opacity 0.5s;
-        -moz-transition: opacity 0.5s;
-        -o-transition: opacity 0.5s;
-        transition: opacity 0.5s;
+        -webkit-transition: opacity 0.3s;
+        -moz-transition: opacity 0.3s;
+        -o-transition: opacity 0.3s;
+        transition: opacity 0.3s;
         opacity:0;
 
      }
@@ -173,7 +172,8 @@ li:before {
  }
 
  li.rules:before{
-    background-image: url('../images/invader1_blue.png');    
+    background-image: url('../images/invader1_blue.png'); 
+    margin-left:1px;   
 }
 
  li.rules:hover::before{
@@ -192,16 +192,17 @@ li.controls:before{
 }
 
 li.controls:hover::before{
-    background-image: url("../images/invader2_white.png");     
+    background-image: url("../images/invader2_white.png"); 
+
 }
 
 li.desc:before{
     background-image: url("../images/invader3_blue.png");
-    background-size: 38px 30px;
+    background-size: 29px 30px;
     display: inline-block;
-    width: 38px; 
+    width: 29px; 
     height: 30px;
-    margin-left:-6px;
+    margin-left:4px;
 } 
 
 li.desc:hover::before{
@@ -211,6 +212,7 @@ li.desc:hover::before{
 
 li.highscores:before{
     background-image: url('../images/invader4_blue.png');
+    margin-left:2px;
 }
 li.highscores:hover:before{
     background-image: url('../images/invader4_white.png');
@@ -316,10 +318,10 @@ li.highscores:hover:before{
     
   
     li.desc:before{
-        background-size: 48px 40px;
-        width: 48px; 
+        background-size: 37px 40px;
+        width: 37px; 
         height: 40px;
-        margin-left:-6px;
+        margin-left:4px;
     } 
     
     .col1{
