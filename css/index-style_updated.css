@@ -8,18 +8,14 @@ html,body{
 
 .navbar{
     width: 100%;
+    font-size: 16px;
     font-family: 'Press Start 2P', cursive;
-    padding:1% 0%;
-    color:rgb( 83, 140, 198);
-    border-bottom:1px solid rgb(216, 216, 216);
-    position:fixed;
-    background-color: white;
-}
-
-.fii-invaders{
-    font-size: 0.8em;
-    margin-right:3%;
-    text-align:right;
+    text-align: left;
+    color:#538cc6;
+    border-bottom:1px solid #cccccc;
+    padding: 17px 4%;
+    position: fixed;
+    background-color: #ffffff;
 }
 
 .container{
@@ -27,15 +23,15 @@ html,body{
     height:100%;
     padding-top:1%;
     overflow: hidden;
-    background-color:rgb(240, 240, 240);
+    background-color:#e6e6e6;;
    
     
     
 }
 .col1{ 
     width:100%;
-    border-right:0px solid rgb(216, 216, 216);
-    background-color:rgb(240, 240, 240);
+    border-right:0px solid #cccccc;
+    background-color:#e6e6e6;;
     min-width:300px;
     
     
@@ -55,7 +51,7 @@ html,body{
     margin-top: 150px;
     height:20%;
     position:relative;
-    border-bottom: 0px solid rgb(216, 216, 216);
+    border-bottom: 0px solid #cccccc;
     background-color: white;
     max-width:200px;
    
@@ -70,7 +66,7 @@ html,body{
     margin-top:-1px;
     width:5vw; /* 20% of the viewport width */
     height: 5vw;
-    border: 0px rgb(216, 216, 216);
+    border: 0px #cccccc;
     border-style:double;
     margin-left:-1px;
     margin-bottom:-4px;
@@ -94,10 +90,10 @@ html,body{
     font-size: 0.8em;
     font-family: 'Press Start 2P', cursive;
     color: rgb(83, 140, 198);
-    border: 0px 0px solid rgb(216, 216, 216);
+    border: 0px 0px solid #cccccc;
     background-color:white;
     display: block;
-    border: 0px solid rgb(216, 216, 216); 
+    border: 0px solid #cccccc; 
     padding: 4%;
     margin:-1px;
     text-decoration: none;
@@ -150,7 +146,7 @@ html,body{
 
 canvas{
     margin-top:250px;
-    border: 1px solid rgb(216, 216, 216);
+    border: 1px solid #cccccc;
     width: 100%;
     background-color: #ffb6c1;
 }
