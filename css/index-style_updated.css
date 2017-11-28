@@ -55,9 +55,10 @@ html,body{
     margin-top: 150px;
     height:20%;
     position:relative;
-    border: 0px solid rgb(216, 216, 216);
+    border-bottom: 0px solid rgb(216, 216, 216);
     background-color: white;
     max-width:200px;
+   
 
   
     
@@ -110,14 +111,30 @@ html,body{
     transition: 0.7s;
 }
 
-
-#rules,#controls{
-   height:0px;
-   transition: height 0.3s;
-   margin-top:0px;
-   overflow: hidden;
-   text-align:center;
+#controls,#rules{
+    margin-top:5%;
+    color:rgb(83, 140, 198);
+    background-color:white;
+    padding:5%;
 }
+#controls {
+
+    
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    opacity:0;
+ }
+ #rules {
+    
+        
+        -webkit-transition: opacity 0.5s;
+        -moz-transition: opacity 0.5s;
+        -o-transition: opacity 0.5s;
+        transition: opacity 0.5s;
+        opacity:0;
+     }
 
 .canvasContainer {
     display:block;
