@@ -14,7 +14,7 @@ function showElement(button,id1,id2) {
 			div1.style.opacity='0';
 			setTimeout(function() {
 			div1.style.opacity='1';
-			}, 1);
+			}, 100);
 			
 			
 		}, 1000);
