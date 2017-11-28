@@ -1,4 +1,6 @@
-
+::-webkit-scrollbar{
+        display: none;
+}
     
 html,body{
     background-color:white;
@@ -16,6 +18,8 @@ html,body{
     padding: 17px 4%;
     position: fixed;
     background-color: #ffffff;
+    box-shadow: 1px 2px 5px #9494b8;
+    text-shadow: 1px 2px 5px #9494b8;
 }
 
 .container{
@@ -23,7 +27,8 @@ html,body{
     height:100%;
     padding-top:1%;
     overflow: hidden;
-    background-color:#e6e6e6;;
+    background-color:#e6e6e6;
+    text-shadow: 1px 2px 5px #9494b8;
    
     
     
@@ -54,11 +59,8 @@ html,body{
     border-bottom: 0px solid #cccccc;
     background-color: white;
     max-width:200px;
-   
-
-  
+    /*box-shadow: 2px 2px 5px #9494b8;*/
     
-
 }
 
 .title{
@@ -96,6 +98,7 @@ html,body{
     padding: 4%;
     margin:-1px;
     text-decoration: none;
+    box-shadow: 1px 2px 5px #9494b8;
 }
 
 
@@ -111,6 +114,7 @@ html,body{
     color:rgb(83, 140, 198);
     background-color:white;
     padding:5%;
+    box-shadow: 1px 2px 5px #9494b8;
 }
 #controls {
 
