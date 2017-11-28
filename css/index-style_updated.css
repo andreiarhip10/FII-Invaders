@@ -157,7 +157,11 @@ canvas{
 li{
     list-style-type: none;
     margin: 0;
-    
+    color:rgb( 83, 140, 198);
+}
+li:hover
+{
+	color:#fff;
 }
 li:before { 
     font-family: "Material Icons"; 
