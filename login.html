@@ -6,6 +6,19 @@
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="js/login.js"></script>
+        <script type="text/javascript">
+            var myVar = setInterval(myTimer, 300);
+            function myTimer() {
+                setTimeout(function(){
+                    document.getElementById('r2').className = 'rocket2';
+                    document.getElementById('r1').className = 'rocket1';
+                    setTimeout(function(){
+                        document.getElementById('r2').className = 'rocket1';
+                        document.getElementById('r1').className = 'rocket2';
+                    },150);
+                },150);
+            } 
+        </script>
     </head>
     <body>
         <div class="navbar"> Fii Invaders</div>
@@ -13,7 +26,8 @@
             <div class="aliens">
                 <img class="alien1" src="images/alien1.png" onmouseover="alien1hover();" onmouseout="alien1unhover();">
                 <!--<div class="rocket">-->
-                <img class="rocket1" src="images/rocket1.png">
+                <img class="rocket1" id="r1" src="images/rocket1.png">
+                <img class="rocket1" id="r2" src="images/rocket2.png">
                     <!--<img class="rocket2" src="images/rocket2.png">
                 </div>-->
                 <img class="alien2" src="images/alien1.png" onmouseover="alien2hover();" onmouseout="alien2unhover();">
