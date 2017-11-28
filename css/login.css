@@ -151,6 +151,7 @@ body{
     top: 800px;
     width: 170px;
     height: 80px;
+    /*border: 1px solid black;*/
     animation-name: move;
     animation-duration: 10s;
     animation-iteration-count: infinite;
