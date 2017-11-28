@@ -6,6 +6,7 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet">
 
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script>
                     function showElement(button,id1,id2) {
                         var div1 = document.getElementById(id1);
@@ -18,7 +19,7 @@
                             div1.style.marginTop='15px';
                             button.value = 'hide';
 
-                            if(height2=='50px'){
+                            if(height2==='50px'){
                                 div2.style.height='0px';
                                 div2.style.marginTop='0px';
                                 button.value='show';
@@ -37,40 +38,46 @@
     </head>
 
     <body>
-        <div class="navbar"> Fii Invaders</div>
+        <div class="navbar">
+        <div class="fii-invaders"> Fii Invaders</div>
+    </div>
         <div class="container">
         <div class="col1">
             <div class="sidebar">
+                   
+                     <img class="title" src="http://moziru.com/images/space-invaders-clipart-4.png">
                     <ul class="sidebar-links">
-
+                            
                             <a class="sidebar-link" href="/" onclick="showElement(this, 'rules','controls')" value="show">
-                                <li class="bug">Rules</li>
+                                <li class="rules hvr-bob">Rules</li>
                             </a>
-                            <div id="rules">
-                                blablabla
-                                okey
-                                <br>
-                                yes
-                            </div>
+                            
+                            
                             
                             <a class="sidebar-link" href="/" onclick="showElement(this, 'controls','rules')" value="show">
-                                <li>Controls</li>
+                                <li class="controls hvr-bob">Controls</li>
                             </a>
+                        
+                            
+                            <a class="sidebar-link" href="/"><li class="desc hvr-bob">Description</li></a>
+                            <a class="sidebar-link" href="/"><li class="highscores hvr-bob">Highscores</li></a> 
+                            <div id="rules">
+                                    Some rules
+                                    <br>
+                                    Some other rules
+                                </div> 
                             <div id="controls">
                                     Key1
                                     <br>
-                                    yes
-                            </div>
-                            
-                            <a class="sidebar-link" href="/"><li class="bug">Description</li></a>
-                            <a class="sidebar-link" href="/"><li>Highscores</li></a> 
-                            <a class="sidebar-link" href="/"><li class="bug">Link</li></a>               
+                                    Key2
+                            </div>  
+                                       
                     </ul>
             </div>
  </div>
 
         <div class="col2">
-            <canvas></canvas>
+            <div class="canvasContainer"><canvas></canvas></div>
         </div>
     </div>
     </body>
