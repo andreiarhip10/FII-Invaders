@@ -148,9 +148,9 @@ body{
 
 .ship{
     position: absolute;
-    top: 800px;
+    top: 650px;
     width: 170px;
-    height: 80px;
+    height: 200px;
     /*border: 1px solid black;*/
     animation-name: move;
     animation-duration: 10s;
@@ -165,14 +165,14 @@ body{
 
 .shape1{
     width: 6%;
-    height: 10%;
+    height: 4%;
     margin-left: 46.5%;
     background-color: #538cc6;
 }
 
 .shape2{
     width: 15%;
-    height: 20%;
+    height: 8%;
     margin-left: 42%;
     background-color: #538cc6;
     
@@ -180,22 +180,32 @@ body{
 
 .shape3{
     width: 80%;
-    height: 20%;
+    height: 8%;
     margin-left: 10%;
     background-color: #538cc6;
 }
 
 .shape4{
     width: 100%;
-    height: 50%;
+    height: 20%;
     background-color: #538cc6;
 }
 
 .shape5{
+    margin-top: 60%;
     width: 3%;
     height: 10%;
     margin-left: 48%;
     background-color: #538cc6;
+    animation-name: fire;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes fire {
+    0% {margin-top: 60%; margin-bottom: 0%}
+    100% {margin-top: 0%; margin-bottom: 60%; opacity: 0}
 }
 
 @media screen and (max-width: 1600px) {
@@ -212,6 +222,7 @@ body{
         left: 40%;
     }
     .ship{
+        top: 680px;
         animation-duration: 8s;
     }
 
@@ -247,6 +258,7 @@ body{
         height: auto;
     }
     .ship{
+        top: 700px;
         animation-duration: 5s;
     }
     @keyframes move {
@@ -289,8 +301,8 @@ body{
         margin-right: 3%;
     }
     .ship{
-        width: 150px;
-        height: 60px;
+        width: 175px;
+        height: 210px;
         animation-duration: 3s; 
     }
     @keyframes move {
@@ -356,5 +368,13 @@ body{
             width: 160px;
             height: auto;
         }
+    .ship{
+        top: 570px;
+    }
+    @keyframes move {
+        0% {left: 5%}
+        50% {left: 57%}
+        100% {left: 5%}
+    }
 }
 
