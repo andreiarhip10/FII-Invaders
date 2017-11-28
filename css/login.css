@@ -378,3 +378,12 @@ body{
     }
 }
 
+@media screen and (max-width: 420px) {
+    .rocket1{
+        width: 110px;
+        left: 23%;
+        margin-left: 13%;
+        top: -8%;
+    }
+}
+
