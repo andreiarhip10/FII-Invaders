@@ -54,31 +54,33 @@ html,body{
     margin:auto;
     min-width:230px;
     margin-top: 150px;
-    height:20%;
+    height:50%;
     position:relative;
     border-bottom: 0px solid #cccccc;
-    background-color: white;
+    background-color: #e6e6e6;
     max-width:200px;
     /*box-shadow: 2px 2px 5px #9494b8;*/
     
 }
-
+.menu{
+    background-color:white;
+    box-shadow: 1px 2px 5px #9494b8;
+}
 .title{
     
-    margin-top:-1px;
+    margin-top:1px;
     width:5vw; /* 20% of the viewport width */
     height: 5vw;
-    border: 0px #cccccc;
-    border-style:double;
     margin-left:-1px;
     margin-bottom:-4px;
     background-color:white;
     min-width:60px;
     min-height:60px;
+    border-right: 1px solid #e6e5e5;
 }
 .sidebar-links {
     list-style-type: none;
-    width:100%;
+    width:99.5%;
     padding-left:0px;
     margin-top:-1px;
     margin-bottom:-1px;
@@ -99,6 +101,7 @@ html,body{
     margin:-1px;
     text-decoration: none;
     box-shadow: 1px 2px 5px #9494b8;
+    
 }
 
 
@@ -206,7 +209,7 @@ li.desc:before{
     display: inline-block;
     width: 29px; 
     height: 30px;
-    margin-left:4px;
+    margin-left:2px;
 } 
 
 li.desc:hover::before{
@@ -274,6 +277,7 @@ li.highscores:hover:before{
 
     .sidebar{
         margin-top:200px;
+        height:50%;
     }
     canvas{
         margin-top:200px;
@@ -304,6 +308,7 @@ li.highscores:hover:before{
 
     .sidebar{
         min-width:350px;
+        height:50%;
     }
     li:before { 
         margin-right:15px;
