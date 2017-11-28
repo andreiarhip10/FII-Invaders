@@ -60,7 +60,8 @@
                         
                             
                             <a class="sidebar-link" href="/"><li class="desc hvr-bob">Description</li></a>
-                            <a class="sidebar-link" href="/"><li class="highscores hvr-bob">Highscores</li></a> 
+                            <a class="sidebar-link" href="#popup1">
+                            <li class="highscores hvr-bob">Highscores</li></a>                            
                             <div id="rules">
                                     Some rules
                                     <br>
@@ -71,13 +72,42 @@
                                     <br>
                                     Key2
                             </div>  
-                                       
+                            <div id="popup1" class="overlay col1">
+                            <div class="popup">
+                            <h2>HighScores</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">                               
+                               1. First Player -- infinite<br/>
+                               2. Second Player -- below infinite<br/>
+                               3. Third Player --- 99999999<br/>
+                            </div>
+                            </div>
+                            </div>                                  
                     </ul>
             </div>
  </div>
 
         <div class="col2">
-            <div class="canvasContainer"><canvas></canvas></div>
+            <div class="canvasContainer"><canvas id="my-canvas">
+            </canvas>
+            <script>            
+            var canvas = document.getElementById("my-canvas");
+            var ctx = canvas.getContext('2d');
+            function make_bug()
+            {
+              bug = new Image();
+              bug.src = "images/invader1_white.png";
+              bug.onload = function(){
+                ctx.drawImage(bug, 30, 80);
+              }
+            }
+            ctx.font = "16px 'Press Start 2P'";
+            ctx.fillStyle = "white";
+            ctx.shadowBlur=20;
+            ctx.shadowColor="#538CC6";            
+            ctx.fillText("*INSERT GAME HERE*",8,75);        
+            </script>
+            </div>
         </div>
     </div>
     </body>

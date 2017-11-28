@@ -34,7 +34,7 @@ html,body{
 }
 .col1{ 
     width:100%;
-    border-right:1px solid rgb(216, 216, 216);
+    border-right:0px solid rgb(216, 216, 216);
     background-color:rgb(240, 240, 240);
     min-width:300px;
     
@@ -55,7 +55,7 @@ html,body{
     margin-top: 150px;
     height:20%;
     position:relative;
-    border: 1px solid rgb(216, 216, 216);
+    border: 0px solid rgb(216, 216, 216);
     background-color: white;
     max-width:200px;
 
@@ -69,7 +69,7 @@ html,body{
     margin-top:-1px;
     width:5vw; /* 20% of the viewport width */
     height: 5vw;
-    border: 1px rgb(216, 216, 216);
+    border: 0px rgb(216, 216, 216);
     border-style:double;
     margin-left:-1px;
     margin-bottom:-4px;
@@ -93,10 +93,10 @@ html,body{
     font-size: 0.8em;
     font-family: 'Press Start 2P', cursive;
     color: rgb(83, 140, 198);
-    border: 1px 0px solid rgb(216, 216, 216);
+    border: 0px 0px solid rgb(216, 216, 216);
     background-color:white;
     display: block;
-    border:1px solid rgb(216, 216, 216); 
+    border: 0px solid rgb(216, 216, 216); 
     padding: 4%;
     margin:-1px;
     text-decoration: none;
@@ -132,8 +132,9 @@ html,body{
 
 canvas{
     margin-top:250px;
-    border:1px solid rgb(216, 216, 216);
+    border: 1px solid rgb(216, 216, 216);
     width: 100%;
+    background-color: #ffb6c1;
 }
 
 li{
@@ -312,5 +313,68 @@ li.highscores:hover:before{
         width: 69%;
         float:right;
         height:100%;
+    }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(83, 140, 198, 0.5);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin-left: 70px auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  /*position: relative;*/
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #fff;
+  font-family: 'Press Start 2P';
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb( 83, 140, 198);
+}
+.popup .close:hover {
+  color: #f1f1f1;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  text-align:left;
+  font-size:10px;
+  color: rgb( 255, 255, 255);
+  font-family: 'Press Start 2P'
+}
+
+@media screen and (max-width: 700px){
+    .box{
+        width: 70%;
+    }
+    .popup{
+        width: 70%;
+    }
+    .popupall{
+        width:70%;
     }
 }
