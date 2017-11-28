@@ -154,16 +154,16 @@ li:before {
  }
 
  li.rules:before{
-    background-image: url('invader1_blue.png');    
+    background-image: url('../images/invader1_blue.png');    
 }
 
  li.rules:hover::before{
-    background-image: url('invader1_white.png');
+    background-image: url('../images/invader1_white.png');
     
 }
 
 li.controls:before{
-    background-image: url("invader2_blue.png");
+    background-image: url("../images/invader2_blue.png");
     background-size: 24px 28px;
     display: inline-block;
     width: 24px; 
@@ -173,11 +173,11 @@ li.controls:before{
 }
 
 li.controls:hover::before{
-    background-image: url("invader2_white.png");     
+    background-image: url("../images/invader2_white.png");     
 }
 
 li.desc:before{
-    background-image: url("invader3_blue.png");
+    background-image: url("../images/invader3_blue.png");
     background-size: 38px 30px;
     display: inline-block;
     width: 38px; 
@@ -186,15 +186,15 @@ li.desc:before{
 } 
 
 li.desc:hover::before{
-    background-image: url("invader3_white.png");
+    background-image: url("../images/invader3_white.png");
 }
 
 
 li.highscores:before{
-    background-image: url('invader4_blue.png');
+    background-image: url('../images/invader4_blue.png');
 }
 li.highscores:hover:before{
-    background-image: url('invader4_white.png');
+    background-image: url('../images/invader4_white.png');
 }
 
 
@@ -277,6 +277,9 @@ li.highscores:hover:before{
         font-size:1em;
     }
 
+    .sidebar{
+        min-width:350px;
+    }
     li:before { 
         margin-right:15px;
         background-size: 40px 40px;
