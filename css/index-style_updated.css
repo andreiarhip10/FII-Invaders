@@ -119,7 +119,7 @@ html,body{
 }
 #controls {
 
-    
+    font-family: 'Press Start 2P', cursive;
     -webkit-transition: opacity 0.5s;
     -moz-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
@@ -128,12 +128,13 @@ html,body{
  }
  #rules {
     
-        
+        font-family: 'Press Start 2P', cursive;
         -webkit-transition: opacity 0.5s;
         -moz-transition: opacity 0.5s;
         -o-transition: opacity 0.5s;
         transition: opacity 0.5s;
         opacity:0;
+
      }
 
 .canvasContainer {
