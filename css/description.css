@@ -172,12 +172,12 @@ h1{text-align:center;}
   width:100%;
   height:100%;
   background-color: rgb(83,140,198);
-  transition: opacity 500ms;
+  /*transition: opacity 500ms;*/
   visibility: hidden;
   overflow: hidden;
   float: center;
   border: 0px solid rgba(0,0,0,0.4);  
-  position: relative;
+  position: absolute;
   text-align: center;
   cursor: default;
   display: block;
@@ -186,7 +186,7 @@ h1{text-align:center;}
 .overlay:target {
   visibility: visible;
   opacity: 1;
-  position:absolute;
+  position:relative;
 }
 
 .popup {
@@ -194,8 +194,7 @@ h1{text-align:center;}
   padding: 20px;
   border-radius: 5px;
   width: 100%;
-  /*position: relative;*/
-  transition: all 5s ease-in-out;
+  /*transition: all 5s ease-in-out;*/
 }
 
 .popup h2 {
