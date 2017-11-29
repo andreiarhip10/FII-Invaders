@@ -13,16 +13,17 @@ function move(id1,id2) {
 		elem.style.transition='1s';
 		elem.style.opacity='0';
 		pos=0;
+		clearInterval(id);
 		setTimeout(function() {
 			elem.style.transition='1s';
 			elem.style.opacity='1';
-			clearInterval(id);
-			}, 100);
+			
+			}, 2000);
 	 	  
      
     }
 	 else {
-      pos++; 
+	  pos+=4;
       elem.style.left = pos + 'px'; 
     }
   }
