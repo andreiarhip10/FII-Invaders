@@ -9,23 +9,24 @@ html,body{
 }
 
 .navbar{
-  width: 100%;
-  font-size: 1em;
-  font-family: 'Press Start 2P', cursive;
-  text-align: left;
-  color:#538cc6;
-  border-bottom:1px solid #cccccc;
-  padding: 17px 4%;
-  position: fixed;
-  background-color: #ffffff;
-  box-shadow: 1px 2px 5px #9494b8;
-  text-shadow: 1px 3px 2px #a9a9d1;
-  z-index:999;
-  
+    width: 100%;
+    font-family: 'Press Start 2P', cursive;
+    padding:5px;
+    color:rgb( 83, 140, 198);
+    border-bottom:1px solid rgb(216, 216, 216);
+    /*position:fixed;*/
+    background-color: white;
+    text-align: center;
 }
 
-
-
+.fii-invaders{
+    font-size: 100%;
+    margin-right:3%;
+}
+.fii-invaders img{
+    vertical-align: bottom;
+    width:2%;
+}
 
 
 img{
@@ -87,7 +88,6 @@ h1{text-align:center;}
   background: #fff;
   display: block;
   border-radius: 4px;
-  margin-top:200px;
 }
 
 
@@ -123,7 +123,6 @@ h1{text-align:center;}
 
 .show-box p{
   font-size: 28px; 
-  
 }
 
 .show-box .mask {
