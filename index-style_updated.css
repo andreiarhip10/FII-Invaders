@@ -8,9 +8,11 @@ html,body{
     margin:0px;
 }
 
+
+
 .navbar{
     width: 100%;
-    font-size: 16px;
+    font-size: 0.8em;
     font-family: 'Press Start 2P', cursive;
     text-align: left;
     color:#538cc6;
@@ -20,6 +22,17 @@ html,body{
     background-color: #ffffff;
     box-shadow: 1px 2px 5px #9494b8;
     text-shadow: 1px 2px 5px #9494b8;
+    
+}
+
+#alien{
+    display:inline-block;
+    position:relative;
+    width:26px;
+    height:16px;
+    overflow:hidden;
+    
+    
 }
 
 .container{
@@ -28,7 +41,7 @@ html,body{
     padding-top:1%;
     overflow: hidden;
     background-color:#e6e6e6;
-    text-shadow: 1px 2px 5px #9494b8;
+    
    
     
     
@@ -41,7 +54,6 @@ html,body{
     
     
 }
-
 .col2{
     float:none;
     width:100%;
@@ -53,7 +65,7 @@ html,body{
     width: 60%;
     display:block;
     margin:auto;
-    min-width:220px;
+    min-width:230px;
     margin-top: 150px;
     height:50%;
     position:relative;
@@ -61,6 +73,7 @@ html,body{
     background-color: #e6e6e6;
     max-width:200px;
     /*box-shadow: 2px 2px 5px #9494b8;*/
+    
     
 }
 .menu{
@@ -85,7 +98,6 @@ html,body{
     margin-top:-1px;
     margin-bottom:-1px;
     margin-left:0px;
-    
     position:absolute;
 
 }
@@ -101,6 +113,8 @@ html,body{
     margin:0px;
     text-decoration: none;
     box-shadow: 1px 2px 5px #9494b8;
+    /*text-shadow: 1px 2px 5px #9494b8;*/
+    text-shadow: 1px 3px 2px #a9a9d1;
     
 }
 
@@ -113,7 +127,7 @@ html,body{
 }
 
 #controls,#rules{
-    margin-top:5%;
+    margin-top:7%;
     color:rgb(83, 140, 198);
     background-color:white;
     padding:5%;
@@ -275,15 +289,19 @@ li.highscores:hover:before{
 
   @media only screen and (min-width: 1000px){
 
+    #alien{
+        width:30px;
+        height:17px;
+    }
     .sidebar{
-        margin-top:200px;
+        margin-top:170px;
         height:50%;
     }
     canvas{
-        margin-top:200px;
+        margin-top:170px;
     }
 
-    .sidebar-link,.fii-invaders{
+    .sidebar-link,.fii-invaders,.navbar{
         font-size:0.9em;
     }
     .sidebar{
@@ -302,7 +320,7 @@ li.highscores:hover:before{
 }
 
 @media screen and (min-width: 1800px) {
-    .sidebar-link,.fii-invaders{
+    .sidebar-link,.fii-invaders,.navbar{
         font-size:1em;
     }
 
@@ -370,7 +388,7 @@ li.highscores:hover:before{
 }
 
 .popup h2 {
-  margin-top: 0;
+  margin-top: 50px;
   color: #fff;
   font-family: 'Press Start 2P';
 }
@@ -390,9 +408,10 @@ li.highscores:hover:before{
 .popup .content {
   max-height: 30%;
   overflow: auto;
+  margin-top:50px;
   text-align:left;
-  line-height:20px;
-  font-size:10px;
+  line-height:30px;
+  font-size:14px;
   color: rgb( 255, 255, 255);
   font-family: 'Press Start 2P'
 }

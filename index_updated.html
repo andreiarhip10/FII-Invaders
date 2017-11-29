@@ -6,15 +6,17 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet">
             <script src="js/dropdown.js"></script>
-
+            <script src="js/move_alien.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
-        <div class="navbar">Fii Invaders</div>
+        <div class="navbar">Fii Invaders
+            <img id="alien" src="images/for_navbar.png" onclick="move('alien','navbar')"></div>
+        
         <div class="container">
         <div class="col1">
-            <img class="invader1" src="images/invader1_blue">
+                
             <div class="sidebar">
                    
                 <div class="menu"><img class="title" src="http://moziru.com/images/space-invaders-clipart-4.png"></div>
@@ -44,7 +46,7 @@
                             <div id="controls">
                                     ◄ - move left
                                     <br>
-                                    ► - move right
+                                    &#8658 - move right
                                     <br>
                                     SPACE - fire
                                     <br>
@@ -62,10 +64,12 @@
                             </div>
                             </div>                                  
                     </ul>
+                    
             </div>
  </div>
 
         <div class="col2">
+                
             <div class="canvasContainer"><canvas id="my-canvas">
             </canvas>
             <script>            
