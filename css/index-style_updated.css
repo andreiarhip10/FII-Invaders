@@ -421,10 +421,10 @@ i {
 }
 .overlay {
   position: fixed;
-  top: 0;
+  top: 50px;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left:0px;
+  width:500px;
   background: rgba(83, 140, 198, 0.5);
   transition: opacity 500ms;
   visibility: hidden;
@@ -441,7 +441,7 @@ i {
   border-radius: 5px;
   width: 90%;
   /*position: relative;*/
-  transition: all 5s ease-in-out;
+  transition: all 0s ease-in-out;
   /*z-index:999;*/
 }
 
@@ -452,10 +452,11 @@ i {
 }
 .popup .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
+  top: 0px;
+  left:0px;
+  transition: all 100ms;
   font-size: 30px;
+  padding:1000px;
   font-weight: bold;
   text-decoration: none;
   color: rgb( 83, 140, 198);
@@ -474,20 +475,8 @@ i {
   font-family: 'Press Start 2P'
 }
 
-@media screen and (max-width: 700px){
-    .box{
-        width: 70%;
-    }
-    .popup{
-        width: 70%;
-    }
-    .popupall{
-        width:70%;
-    }
-   
-      
-}
-@media screen and (max-width: 1000px){
+
+@media screen and (max-width: 1500px){
 i {
     border: solid #538cc6;
     border-width: 0 2px 2px 0;
@@ -498,4 +487,26 @@ i {
   .sidebar-link {
       margin:0px;
   }
+  .overlay{
+    width:350px;
+    font-size:12px;
+}
+.popup .content{
+    font-size:12px;
+}
+
+
+}
+
+@media screen and (max-width: 500px){
+    .overlay{
+        width:100px;
+        font-size:12px;
+    }
+    .popup .content{
+        font-size:12px;
+    }
+   
+   
+      
 }
