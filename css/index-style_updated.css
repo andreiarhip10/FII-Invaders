@@ -1,6 +1,18 @@
 ::-webkit-scrollbar{
         display: none;
 }
+
+
+  .right {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+  }
+  
     
 html,body{
     background-color:white;
@@ -22,7 +34,7 @@ html,body{
     background-color: #ffffff;
     box-shadow: 1px 2px 5px #9494b8;
     text-shadow: 1px 3px 2px #a9a9d1;
-    /*z-index:998;*/
+    z-index:998;
     
 }
 
@@ -109,11 +121,12 @@ html,body{
     margin-top:1px;
     width:5vw; /* 20% of the viewport width */
     height: 5vw;
-    margin-bottom:-4px;
+    margin-bottom:-1.5px;
     background-color:white;
     min-width:60px;
     min-height:60px;
     border-right: 1px solid #e6e5e5;
+    overflow: hidden;
 }
 .sidebar-links {
     list-style-type: none;
@@ -122,7 +135,7 @@ html,body{
     margin-top:-1px;
     margin-bottom:-1px;
     margin-left:0px;
-    position:absolute;
+    
 
 }
 
@@ -133,7 +146,7 @@ html,body{
     background-color:white;
     display: block;
     border: 0px solid #cccccc; 
-    padding: 4%;
+    padding: 0;
     margin:0px;
     text-decoration: none;
     box-shadow: 1px 2px 5px #9494b8;
@@ -148,6 +161,7 @@ html,body{
     color:white;
     text-decoration: none;
     transition: 0.7s;
+    margin:0px;
 }
 
 #controls,#rules{
@@ -167,6 +181,8 @@ html,body{
     transition: opacity 0.3s;
     opacity:0;
  }
+ 
+
  #rules {
     
         font-family: 'Press Start 2P', cursive;
@@ -179,7 +195,7 @@ html,body{
      }
 
 .canvasContainer {
-    display:block;
+    
     margin:auto;
     position: relative;
     width: 80%;
@@ -198,11 +214,14 @@ canvas{
 
 li{
     list-style-type: none;
-    margin: 0;
+    padding: 10px;
+  
     color:rgb( 83, 140, 198);
 }
 li:hover
 {
+    display:block;
+    
 	color:#fff;
 }
 li:before { 
@@ -210,7 +229,8 @@ li:before {
     margin-right:15px;
     font-size:1.5em;
     background-size: 30px 30px;
-    display: inline-block;
+    display: block;
+    
     width: 30px; 
     height: 30px;
     content:"";
@@ -314,7 +334,7 @@ li.highscores:hover:before{
 
   @media only screen and (min-width: 1000px){
     #controls,#rules{
-        font-size:14px;
+        font-size:12px;
     }
     .container{
         height:100%;
@@ -348,8 +368,15 @@ li.highscores:hover:before{
         height:100%;
     }
 }
-
+i {
+    border: solid #538cc6;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-right:3.5px;
+  }
 @media screen and (min-width: 1800px) {
+   
     .sidebar-link,.fii-invaders,.navbar{
         font-size:1em;
     }
@@ -457,4 +484,18 @@ li.highscores:hover:before{
     .popupall{
         width:70%;
     }
+   
+      
+}
+@media screen and (max-width: 1000px){
+i {
+    border: solid #538cc6;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-right:2.5px;
+  }
+  .sidebar-link {
+      margin:0px;
+  }
 }
