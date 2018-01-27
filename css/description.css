@@ -1,255 +1,219 @@
-    * {
-    box-sizing: border-box;
-}
-html,body{
-    background-color:#f1f1f1;
-    height:100%;
-    width:100%;
-    margin:0px;
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.navbar{
-  width: 100%;
-  font-size: 1em;
-  font-family: 'Press Start 2P', cursive;
-  text-align: left;
-  color:#538cc6;
-  border-bottom:1px solid #cccccc;
-  padding: 17px 4%;
-  position: fixed;
-  background-color: #ffffff;
-  box-shadow: 1px 2px 5px #9494b8;
-  text-shadow: 1px 3px 2px #a9a9d1;
-  z-index: 999;
-  
+html, body {
+  height: 100vh;
 }
 
-
-
-
-
-img{
-  max-width: 100%;
-  height: auto;
-  
-}
-
-h1, h2, h3, h4, h5, h6 { 
-  letter-spacing: 0.05em; 
-  font-weight: 400; 
-  font-family:'Press Start 2P';
-}
-
-h1{text-align:center;}
-
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-.row{
-
-}
-
-.more:link, .more:visited {
-  transition-duration: 0.2s;    
-  transition-timing-function: ease-out;
-}
-
-[class*='col-']{
-  float:left;
-  padding:15px; 
-  border:0px solid black;  
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-.show{
-  width: 100%;
-  height: 100%;
-  float: center;
-  border: 0px solid rgba(0,0,0,0.4);
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  cursor: default;
-  background: #fff;
-  display: block;
-  border-radius: 4px;
-  margin-top:200px;
-}
-
-
-
-.show .mask{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-}
-
-/* box */
-
-.show-box a.more {
-  display: inline-block;
-  text-decoration: none;
-  padding: 7px 14px;
-  color: #fff;
-  text-transform: uppercase;
-  box-shadow: rgba(0,0,0,20);
-  position: relative;
-  font-family: 'Press Start 2P';
-}
-
-.show-box a.more:hover {
-  box-shadow: 0 0 5px #fff;
-  background-color: rgb(255, 255, 255);
-  color: rgb(83, 140, 198);
-  font-family: 'Press Start 2P';
-}
-
-.show-box p{
-  font-size: 28px; 
-  
-}
-
-.show-box .mask {
-  opacity: 0;
-  background-color: rgba(83, 140, 198, 0.5);
-  transition: all 0.4s ease-in-out;
-}
-
-.show-box h2 {
+body {
+  font: 14px/1 'Roboto';
   color: #000;
-  margin-top: 10%;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-  color:rgb( 83, 140, 198);
+  background: #F1F1F1;
+}
+.navbar{
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'Press Start 2P', cursive;
+    text-align: left;
+    color:#538cc6;
+    border-bottom:1px solid #cccccc;
+    padding: 17px 4%;
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 1px 2px 5px #9494b8;
+    text-shadow: 1px 3px 2px #a9a9d1;
+    z-index:998;
+    
 }
 
-.show-box p {
-  opacity: 0;
-  transition: all 0.2s linear;
+#alien{
+    display:inline-block;
+    position:relative;
+    width:26px;
+    height:16px;
+    overflow:hidden;
+    
+    
 }
 
-.show-box a.info{
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-}
-
-.show-box img{
-  transition: all 0.2s ease-in-out;
-}
-
-.show-box:hover .mask {
-  opacity: 1;
-}
-.show-box:hover h2,
-.show-box:hover p,
-.show-box:hover a.info {
-  opacity: 1;
-}
-.show-box:hover p {
-  transition-delay: 0.1s;
-}
-.show-box:hover a.info {
-  transition-delay: 0.2s;
-}
-
-.overlay {
-  width:100%;
-  height:95%;
-  background-color: rgb(83,140,198);
-  /*transition: opacity 500ms;*/
-  visibility: hidden;
-  overflow: hidden;
-  float: center;
-  border: 0px solid rgba(0,0,0,0.4);  
-  position: absolute;
+h1 {
+  padding: 50px 0;
+  font-weight: 400;
   text-align: center;
-  cursor: default;
-  display: block;
+  font-family:'Press Start 2P';
+  color: rgb(83,140,198);
+}
+h2 {
+  padding: 20px 0;
+  font-weight: 300;
+  text-align: center;
+  font-family:Roboto;
+  color:#BBB;
+}
+
+p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+main {
+  min-width: 320px;
+  max-width: 800px;
+  padding: 50px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  display: none;
+}
+span
+{
+  color:rgb(83,140,198);
+  font-weight:bold;
+}
+a
+{
+  text-decoration:none;
+}
+table
+{
+  width:100%;
+  border:0px;
+  border-collapse: collapse;
+}
+td
+{
+  vertical-align: center;  
+}
+th
+{
+  color:#fff;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+.row-1
+{
+  text-align:center;
+  background-color: rgba(83,140,198,0.7);
+  height:25px;
+}
+.row-2
+{
+  text-align:center;
+  background-color: rgba(83,140,198,0.3);
+  height:25px;
+}
+
+div.polaroid
+{  
+  width: 86%; 
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.button {  
   border-radius: 4px;
-  /*margin-top: 200px;*/
-  /*margin-left: -17.5%;*/
-}
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
-  position:relative;
-}
-
-.popup {
-  margin-left: 70px auto;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
   padding: 20px;
-  border-radius: 5px;
-  width: 100%;
-  /*transition: all 5s ease-in-out;*/
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
 
-.popup h2 {
-  margin-top: 50px;
-  color: #fff;
+.button:hover span {
+  padding-right: 25px;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
   font-family: 'Press Start 2P';
-}
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-}
-.popup .close:hover {
-  color: #f1f1f1;
-}
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
-  margin-top:50px;
-  text-align:left;
-  line-height:30px;
-  color: rgb( 255, 255, 255);
-  font-family: 'Press Start 2P'
+  font-size:12px;
 }
 
-@media screen and (max-width: 700px){
-    .box{
-        width: 70%;
-    }
-    .popup{
-        width: 70%;
-    }
-    .popupall{
-        width:70%;
-    }
+label:before {   
+  margin-right: 10px;
+  vertical-align: center;
 }
 
-@media only screen and (max-width: 767px) { 
-  
-  .col4{
-    width: 50%; 
-    padding: 10px;
-    overflow: hidden;
-    clear: right;
+label[for*='1']:before { content: url(../images/invader1_blue_small.png); }
+label[for*='2']:before { content: url(../images/alien1_small.png); }
+label[for*='3']:before { content: url(../images/rocket1_small.png);}
+
+label:hover {
+  color: rgb(83,140,198);
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid rgb(83,140,198);
+  border-bottom: 1px solid #fff;  
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0;
   }
-  
-  .mobile-clear{
-    clear:both;}
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+  table, td, th
+  {
+    display: block;
+  }
+  td
+  {
+    border:none;    
+    position:relative;    
+  }
+}
 
+@media screen and (max-width: 400px) {
+  label {
+    padding: 15px;
+  }
+  table, td, th
+  {
+    display: block;
+  }
+  td
+  {
+    border:none;    
+    position:relative;    
+  }
 }

@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    	<link rel="stylesheet" type="text/css" href="css/description.css"/>
-    	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet">
-
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-    	<div class="navbar">
-        <div class="fii-invaders">FII Invaders</div>
-        </div>
-        <div class="row">
-        <div class="col-2">
-        	<!-- <h1>P<br/>I<br/>C<br/>K<br/></h1> -->
-        </div>
-          <div class="col-4">
-            <div class="show show-box">
-              <img src="images/alien1.png" />
-              
-              <div class="mask">
-                <h2>History</h2>
-                <a href="#popup1" class="more">More info</a>                                
-              </div>                                                          
-            </div> 
-            <div id="popup1" class="overlay">
-            <div class="popup">
-            <h2>History</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">                               
-               <p>Space Invaders is a Japanese shooting video game released in 1978 by Taito. It was developed by Tomohiro Nishikado, who was inspired by other media: Breakout, The War of the Worlds, and Star Wars. The games was one of the forerunners of modern video gaming and helped expand the video game industry from a novelty to a global industry.</p>
-               <p>The game Space Invaders became an immediate hit when it was released in 1978. In the original planning for the game, they had planned to have the aliens be human soldiers. Taito figured that they did not want to send the message that shooting humans was ok, so they changed it to aliens.</p>
-            </div>
-            </div>
-            </div>                                           
-          </div>
-          
-          <div class="col-4">
-            <div class="show show-box">
-              <img src="images/alien2.png" />
-              
-              <div class="mask">
-                <h2>Presentation</h2>
-                <a href="#popup2" class="more">More info</a>
-              </div>
-            
-            </div>
-          <div id="popup2" class="overlay">
-            <div class="popup">
-            <h2>Presentation</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">                               
-               <p> This website is part of a project that aims to bring the wonderful game of Space Invaders to the "Alexandru Ioan Cuza" University. </p>
-    <p> This project was created by Vl&abreve;du&tcedil; Cojocariu, Sabina S&abreve;vescu and Andrei Arhip,
-        under the guidance of their professor Cosmin Varlan. </p>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/test.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <script src="js/move_alien.js"></script> 
+</head>
+<body>
+<div class="navbar">
+  <a href="index_updated.html"><img src="images/back.png"/ width="14" valign="center"></a>&nbsp;FII Invaders
+    <img id="alien" src="images/for_navbar.png" onclick="move('alien','navbar')">
+</div>
+<br/><br/>
+<h1>Welcome to FII Invaders</h1>
+<h2>Find more about the wonderful adventure by checking our amazing contents.</h2>
+<main>  
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1" src="">History</label>
+    
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">Presentation</label>
+    
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">Miscellanous</label>  
+  
+    
+  <section id="content1">
+        <table>
+          <tr>
+            <td>
+              <a href="index_updated.html"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0f/Space_Invaders_flyer%2C_1978.jpg/220px-Space_Invaders_flyer%2C_1978.jpg"/></a>
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+            <p><a href="index_updated.html"><span>Space Invaders</span></a> is a Japanese shooting video game released in 1978 by Taito. It was developed by Tomohiro Nishikado, who was inspired by other media: Breakout, The War of the Worlds, and Star Wars. The games was one of the forerunners of modern video gaming and helped expand the video game industry from a novelty to a global industry.</p>
+            <p>The game Space Invaders became an immediate hit when it was released in 1978. In the original planning for the game, they had planned to have the aliens be human soldiers. Taito figured that they did not want to send the message that shooting humans was ok, so they changed it to aliens.</p>
+            <p>Shortly after being released, Space Invaders grew in popularity. In 1980, it was licensed for use in the United States. It was released in coin-operated arcades, the Atari 2600, and the Nintendo Entertainment System. Throughout its lifetime it has generated more than 500 million dollars in revenue. </p>
+            <p>For those who do not know what the game is like, it is a 2D shooter where a human must protect the earth from aliens. There are 48 aliens in each stage that are evenly spaced apart into 6 columns. The aliens move back and forth across the screen in a set pattern, slowly advancing toward earth. It is the job of the human player to shoot all of the aliens before they reach the earth. The aliens also fire randomly, so the human player must avoid getting shot by the aliens. If the human player is able to destroy all 48 of the aliens, then he or she advances to the next stage where they have a new set of 48 aliens to destroy. Another aspect of the game is the set of shields provided to the human player. In the game there are 3 shields which the human player can hide behind to prevent getting shot by the aliens. As these shields receive damage, they shots are allowed to penetrate through them. </p>
+            </td>
+          </tr>
+          <tr>         
+            <td colspan="5" align="center">
+              <table>
+              <h2>ARCADE GAMES</h2>
+              <tr class="row-1"><th>YEAR</th><th>TITLE/SEQUAL</th></tr>
+              <tr class="row-2"><td>1978</td><td>Space Invaders</td></tr>
+              <tr class="row-1"><td>1979</td><td>Space Invaders Part II</td></tr>
+              <tr class="row-2"><td>1980</td><td>Space Invaders II</td></tr>
+              <tr class="row-1"><td>1985</td><td>Return of the Invaders</td></tr>
+              <tr class="row-2"><td>1990</td><td>Minivader</td></tr>
+              <tr class="row-1"><td>1991</td><td>Super Space Invaders '91</td></tr>
+              <tr class="row-2"><td>1994</td><td>Space Invaders DX</td></tr>
+              <tr class="row-1"><td>1995</td><td>Space Invaders '95'</td></tr>
+              <tr class="row-2"><td>2008</td><td>Space Invaders The Beat Attacker</td></tr>
+              <tr class="row-1"><td>2018</td><td>FII Invaders</td></tr>
+              </table> 
+            </td>         
+          </tr>
+        </table>
+  </section>
+    
+  <section id="content2">
+    <table>
+      <tr>
+        <p> This website is part of a project that aims to bring the wonderful game of Space Invaders to the "Alexandru Ioan Cuza" University. </p>
+        <p> This project was created by Vl&abreve;du&tcedil; Cojocariu, Sabina S&abreve;vescu and Andrei Arhip, under the guidance of their professor Cosmin Varlan. </p>
         <p> This project aims to recreate the legendary game of Space Invaders, but with a twist: the levels are inspired by the computer science building layout, the users will be able to connect using various social accounts, the bosses are professors and a whole lot more. </p>
-            </div>
-            </div>
-            </div>
-          </div>
-          
-          <div class="mobile-clear"></div>
-            <div class="col-2">
-            </div>
-        </div>
-    </body>
+      </tr>
+      <tr>
+        <td><div class="polaroid"><img src="images/vladut.jpg" alt="Vladut"><div class="container"><span>Vl&abreve;du&tcedil;</span></div></div></td>
+        <td><div class="polaroid"><img src="images/sabina.jpg" alt="Sabina"><div class="container"><span>Sabina</span></div></div></td>
+        <td><div class="polaroid"><img src="images/andrei.jpg" alt="Andrei"><div class="container"><span>Andrei</span></div></div></td>
+      </tr>
+    </table>
+  </section>
+    
+  <section id="content3">
+    <p>
+      Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+    </p>
+    <p>
+      Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+    </p>
+  </section>
+    
+</main>
+</body>
 </html>

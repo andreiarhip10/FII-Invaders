@@ -425,7 +425,7 @@ i {
   bottom: 0;
   left:0px;
   width:500px;
-  background: rgba(83, 140, 198, 0.5);
+  background: rgba(83, 140, 198, 0.8);
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
@@ -459,10 +459,10 @@ i {
   padding:1000px;
   font-weight: bold;
   text-decoration: none;
-  color: rgb( 83, 140, 198);
+  color: rgb( 255,255,255);
 }
 .popup .close:hover {
-  color: #f1f1f1;
+  color: #ffffff;
 }
 .popup .content {
   max-height: 30%;
