@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="js/login.js"></script>
+        <script src="js/login.js" type="text/javascript"></script>
         <script type="text/javascript">
             var myVar = setInterval(myTimer, 300);
             function myTimer() {
@@ -21,6 +21,7 @@
         </script>
     </head>
     <body>
+      <script src="js/fb_login.js"></script>  
         <div class="navbar"> FII Invaders</div>
         <div class="col-1"> 
             <div class="aliens">
@@ -36,7 +37,7 @@
                 <div class="login">Login</div>
                 <ul class="logins">
                     <li><a class="guest" href="index_updated.html">Login as Guest</a></li>
-                    <li><a class="facebook" href="index_updated.html" onmouseover="fbhover();" onmouseout="fbunhover();">Login with Facebook <img class="fb2" src="images/fb2.svg"></a></li>
+                    <li><a class="facebook" onmouseover="fbhover();" onmouseout="fbunhover();"onclick="checkLoginState()">Login with Facebook <img class="fb2" src="images/fb2.svg"></a></li>
                 </ul>
             </div>
             <div class="ship">
