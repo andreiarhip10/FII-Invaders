@@ -1,3 +1,4 @@
+
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -12,7 +13,7 @@ function statusChangeCallback(response) {
     FB.getLoginStatus(function(response) {
       if(response.status==="connected"){
           access_token = response.authResponse.accessToken;
-      window.location.replace("index_updated.html");}
+      window.location.replace("login_flow.php");}
       else
       login();
       //smt();
@@ -60,7 +61,7 @@ function statusChangeCallback(response) {
      
       FB.api('/me', function(response) {
           //window.location.replace("login_flow.php?access_token="+access_token);
-          window.location.replace("index_updated.html");
+          window.location.replace("login_flow.php");
           console.log('Good to see you, ' + response.name + '.');
   
         });  
