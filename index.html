@@ -7,15 +7,8 @@
             rel="stylesheet">
             <script src="js/dropdown.js"></script>
             <script src="js/move_alien.js"></script>
+            <script src="js/get_user_info.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-            <?php 
-	session_start();
-	$accessToken = isset($_SESSION['accessToken']) ? $_SESSION['accessToken'] : NULL;
-	//echo $fbToken;
-	$playerIcon = isset($_SESSION['playerIcon']) ? $_SESSION['playerIcon'] : NULL;
-	$userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : NULL;
-	//echo $playerIcon;?>
     </head>
 
     <body>
@@ -25,11 +18,11 @@
         <div class="container">
         <div class="col1">
 
-            <img class="invader1" src=""images/invader1_blue.png">
+            <img class="invader1" src="images/invader1_blue.png">
                 
             <div class="sidebar">
-                   
-                <div class="menu"><img class="title" src="<?php echo $playerIcon?>" id="playerIcon"></div>
+                
+                <div class="menu"><img class="title" src="images/invader4_blue.png" id="playerIcon"></div>
                     <ul class="sidebar-links">
                         
                             <a class="sidebar-link rule" href="#" onclick="showElement(this, 'rules','controls')" value="show">
