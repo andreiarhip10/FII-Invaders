@@ -8,10 +8,11 @@
             <script src="js/dropdown.js"></script>
             <script src="js/move_alien.js"></script>
             <script src="js/get_user_info.js"></script>
+            <script src="js/game.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body>
+    <body onload="initiateCanvas()">
         <div class="navbar">FII Invaders
             <img id="alien" src="images/for_navbar.png" onclick="move('alien','navbar')"></div>
         
@@ -77,7 +78,7 @@
             <img class="invader2" src="images/invader1_blue.png">
             <div class="canvasContainer"><canvas id="my-canvas">
             </canvas>
-            <script>            
+            <!--<script>            
             var canvas = document.getElementById("my-canvas");
             var ctx = canvas.getContext('2d');
             function make_bug()
@@ -93,7 +94,7 @@
             ctx.shadowBlur=20;
             ctx.shadowColor="#538CC6";            
             ctx.fillText("*INSERT GAME HERE*",8,75);        
-            </script>
+            </script>-->
             </div>
         </div>
     </div>
