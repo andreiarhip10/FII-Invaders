@@ -81,7 +81,7 @@ class Projectile {
                 listOfStudents[i].die();
             }
         }
-        if (this.y <= 10) {
+        if (this.y <= 15) {
             this.erase();
         }
         else {
@@ -164,14 +164,17 @@ function initiateCanvas() {
     //Draw the teacher
     teacher.draw();
 
-    var student = new Student(ctx, 146, 70);
+    // var student = new Student(ctx, 146, 70);
 
-    console.log(listOfStudents);
-    listOfStudents.push(student);
-    console.log(listOfStudents);
-    console.log(listOfStudents[0].y)
-    student.draw();
-    student.move();
+    // console.log(listOfStudents);
+    // listOfStudents.push(student);
+    // console.log(listOfStudents);
+    // console.log(listOfStudents[0].y)
+    // student.draw();
+    // student.move();
+
+    // Measurements: 7.5px - 1 unit
+    // Use these measurements when drawing
 
     ctx.strokeStyle = 'red';
     ctx.beginPath();
@@ -185,6 +188,72 @@ function initiateCanvas() {
     ctx.lineTo(270, 150);
     ctx.stroke();
     ctx.lineTo(270, 15);
+    ctx.stroke();
+
+    ctx.strokeStyle = 'grey';
+
+    //Left side
+
+    ctx.beginPath();
+    ctx.moveTo(75, 37.5);
+    ctx.lineTo(135, 37.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(60, 52.5);
+    ctx.lineTo(135, 52.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 67.5);
+    ctx.lineTo(135, 67.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 82.5);
+    ctx.lineTo(135, 82.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 97.5);
+    ctx.lineTo(135, 97.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(60, 112.5);
+    ctx.lineTo(135, 112.5);
+    ctx.stroke();
+
+    // Right side
+
+    ctx.beginPath();
+    ctx.moveTo(162, 37.5);
+    ctx.lineTo(224.5, 37.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 52.5);
+    ctx.lineTo(239.5, 52.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 67.5);
+    ctx.lineTo(254.5, 67.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 82.5);
+    ctx.lineTo(254.5, 82.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 97.5);
+    ctx.lineTo(254.5, 97.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 112.5);
+    ctx.lineTo(239.5, 112.5);
     ctx.stroke();
 
 
