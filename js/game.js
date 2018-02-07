@@ -16,6 +16,19 @@ class Student {
         this.context.fillStyle = 'white';
         this.context.fillRect(this.x, this.y, 7, 7);
     }
+    move() {
+        var repetitions = 0;
+        var student = this;
+        var intervalId = setInterval(function() {
+            student.erase();
+            student.x = student.x + 1;
+            student.draw();
+            if (++repetitions == 20) {
+                window.clearInterval(intervalId);
+                console.log('Movement finished');
+            }
+        }, 500);
+    }
     explode() {
         this.erase();
         var repetitions = 0;
@@ -42,6 +55,7 @@ class Student {
     die() {
         this.explode();
         console.log('Student is dying.');
+        listOfStudents.splice(listOfStudents.indexOf(this), 1);
     }
 }
 
@@ -157,6 +171,22 @@ function initiateCanvas() {
     console.log(listOfStudents);
     console.log(listOfStudents[0].y)
     student.draw();
+    student.move();
+
+    ctx.strokeStyle = 'red';
+    ctx.beginPath();
+    ctx.moveTo(30, 15);
+    ctx.lineTo(270, 15);
+    ctx.stroke();
+    ctx.moveTo(30, 15);
+    ctx.lineTo(30, 150);
+    ctx.stroke();
+    ctx.moveTo(270, 15);
+    ctx.lineTo(270, 150);
+    ctx.stroke();
+    ctx.lineTo(270, 15);
+    ctx.stroke();
+
 
 
 }
