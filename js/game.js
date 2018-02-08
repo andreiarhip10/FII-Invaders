@@ -3,10 +3,14 @@ var listOfStudents = [];
 
 //Student class
 class Student {
-    constructor(context, x, y) {
+    constructor(context, x, y, side, row, line, type) {
         this.context = context;
         this.x = x;
         this.y = y;
+        this.side = side;
+        this.row = row;
+        this.line = line;
+        this.type = type;
     }
     draw() {
         this.context.fillStyle = 'black';
@@ -67,6 +71,16 @@ class Student {
                 window.clearInterval(intervalId);
                 repetitions = 0;
                 intervalId = setInterval(function () {
+                    // var flag = false;
+                    // for (var i = 0; i < listOfStudents.length; i ++) {
+                    //     if (listOfStudents[i].side == student.side && listOfStudents[i].row == student.row && listOfStudents[i].line == student.line) {
+                    //         flag = true;
+                    //         break;
+                    //     } 
+                    // }
+                    // if (!flag) {
+                    //     student.erase();
+                    // }
                     student.erase();
                     student.y = student.y + 15;
                     student.draw();
@@ -214,9 +228,14 @@ class Projectile {
                 }
                 //Calibrate projectile AoE - Work in Progress
                 travel() {
-                    for (var i = 0; i < listOfStudents.length; i++) {
-                        if ((this.x == listOfStudents[i].x - 2 || this.x == listOfStudents[i] - 1 || this.x == listOfStudents[i].x || this.x == listOfStudents[i].x + 1 || this.x == listOfStudents[i].x + 2) && (this.y == listOfStudents[i].y - 1 || this.y == listOfStudents[i].y || this.y == listOfStudents[i].y + 1)) {
-                            console.log('Target hit');
+                    // for (var i = 0; i < listOfStudents.length; i ++) {
+                    //     if ((this.x == listOfStudents[i].x - 2 || this.x == listOfStudents[i] - 1 || this.x == listOfStudents[i].x || this.x == listOfStudents[i].x + 1 || this.x == listOfStudents[i].x + 2) && (this.y == listOfStudents[i].y - 1 || this.y == listOfStudents[i].y || this.y == listOfStudents[i].y + 1)) {
+                    //         console.log('Target hit');
+                    //         listOfStudents[i].die();
+                    //     }
+                    // }
+                    for (var i = 0; i < listOfStudents.length; i ++) {
+                        if ((this.x >= listOfStudents[i].x - 3.5 && this.x <= listOfStudents[i].x + 3.5) && (this.y >= listOfStudents[i].y - 3.5 && this.y <= listOfStudents[i].y + 3.5)) {
                             listOfStudents[i].die();
                         }
                     }
@@ -400,7 +419,7 @@ function initiateCanvas() {
                 for (var i = 0; i < 6; i++) {
                     var x = 76 + 10 * i;
                     var y = 28;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'left', 1, i + 4, 'normal'));
                     listOfStudents[i].draw();
                 }
 
@@ -409,25 +428,25 @@ function initiateCanvas() {
                 for (var i = 0; i < 6; i++) {
                     var x = 163 + 10 * i;
                     var y = 28;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'right', 1, i + 1, 'normal'));
                     listOfStudents[i + 6].draw();
                 }
-                /*
+                
                 //Adding + drawing left row 2 students
             
                 for (var i = 0; i < 7; i++) {
                     var x = 66 + 10*i;
                     var y = 43;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'left', 2, i + 3, 'normal'));
                     listOfStudents[i + 12].draw();
                 }
-            
+                
                 //Adding + drawing right row 2 students
             
                 for (var i = 0; i < 7; i++) {
                     var x = 163 + 10*i;
                     var y = 43;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'right', 2, i + 1, 'normal'));
                     listOfStudents[i + 19].draw();
                 }
             
@@ -436,7 +455,7 @@ function initiateCanvas() {
                 for (var i = 0; i < 9; i++) {
                     var x = 46 + 10*i;
                     var y = 58;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, 'normal'));
                     listOfStudents[i + 26].draw();
                 }
             
@@ -445,13 +464,14 @@ function initiateCanvas() {
                 for (var i = 0; i < 9; i++) {
                     var x = 163 + 10*i;
                     var y = 58;
-                    listOfStudents.push(new Student(ctx, x, y));
+                    listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, 'normal'));
                     listOfStudents[i + 35].draw();
                 }
-                */
+                
 
                 for (var i = 0; i < listOfStudents.length; i++) {
-                    listOfStudents[i].move();
+                    //listOfStudents[i].move();
+                    console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
                 }
 
 
