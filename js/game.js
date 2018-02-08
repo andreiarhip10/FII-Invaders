@@ -57,8 +57,41 @@ class Student {
         }, 600)
     }
 
-    //Student movement method: x + 1 moves right, y - 15 moves down, x - 1 moves left; intervals decrease
+    
     //To implement - do not delete existing student when moving down
+
+    // Methods used for movement - doesn't erase the student behind when they first arrive on lower level seat
+
+    nothingBehind() {
+        for (var i = 0; i < listOfStudents.length; i ++) {
+            if (listOfStudents[i].line == this.line && listOfStudents[i].row == this.row - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    onEdge() {
+        if ((this.side == 'left' && ((this.row == 2 && this.line == 3) || (this.row == 3 && (this.line == 1 || this.line == 2)))) || (this.side == 'right' && ((this.row == 2 && this.line == 7) || (this.row == 3 && (this.line == 8 || this.line == 9))))) {
+            return true;
+        }
+        return false;
+    }
+
+    //Moves the student one row downwards
+
+    moveDown() {
+        if (!this.nothingBehind()) {
+            this.erase();
+        }
+        if (this.onEdge()) {
+            this.erase();
+        }
+        this.y = this.y + 15;
+        this.draw();
+    }
+
+    //Student movement method: x + 1 moves right, moveDown() moves down, x - 1 moves left; intervals decrease
 
     move() {
         var repetitions = 0;
@@ -71,19 +104,7 @@ class Student {
                 window.clearInterval(intervalId);
                 repetitions = 0;
                 intervalId = setInterval(function () {
-                    // var flag = false;
-                    // for (var i = 0; i < listOfStudents.length; i ++) {
-                    //     if (listOfStudents[i].side == student.side && listOfStudents[i].row == student.row && listOfStudents[i].line == student.line) {
-                    //         flag = true;
-                    //         break;
-                    //     } 
-                    // }
-                    // if (!flag) {
-                    //     student.erase();
-                    // }
-                    student.erase();
-                    student.y = student.y + 15;
-                    student.draw();
+                    student.moveDown();
                     if (++repetitions == 1) {
                         window.clearInterval(intervalId);
                         repetitions = 0;
@@ -95,9 +116,7 @@ class Student {
                                 window.clearInterval(intervalId);
                                 repetitions = 0;
                                 intervalId = setInterval(function () {
-                                    student.erase();
-                                    student.y = student.y + 15;
-                                    student.draw();
+                                    student.moveDown();
                                     if (++repetitions == 1) {
                                         window.clearInterval(intervalId);
                                         repetitions = 0;
@@ -109,9 +128,7 @@ class Student {
                                                 window.clearInterval(intervalId);
                                                 repetitions = 0;
                                                 intervalId = setInterval(function () {
-                                                    student.erase();
-                                                    student.y = student.y + 15;
-                                                    student.draw();
+                                                    student.moveDown();
                                                     if (++repetitions == 1) {
                                                         window.clearInterval(intervalId);
                                                         repetitions = 0;
@@ -123,9 +140,7 @@ class Student {
                                                                 window.clearInterval(intervalId);
                                                                 repetitions = 0;
                                                                 intervalId = setInterval(function () {
-                                                                    student.erase();
-                                                                    student.y = student.y + 15;
-                                                                    student.draw();
+                                                                    student.moveDown();
                                                                     if (++repetitions == 1) {
                                                                         window.clearInterval(intervalId);
                                                                         repetitions = 0;
@@ -137,9 +152,7 @@ class Student {
                                                                                 window.clearInterval(intervalId);
                                                                                 repetitions = 0;
                                                                                 intervalId = setInterval(function () {
-                                                                                    student.erase();
-                                                                                    student.y = student.y + 15;
-                                                                                    student.draw();
+                                                                                    student.moveDown();
                                                                                     if (++repetitions == 1) {
                                                                                         window.clearInterval(intervalId);
                                                                                         repetitions = 0;
@@ -151,9 +164,7 @@ class Student {
                                                                                                 window.clearInterval(intervalId);
                                                                                                 repetitions = 0;
                                                                                                 intervalId = setInterval(function () {
-                                                                                                    student.erase();
-                                                                                                    student.y = student.y +15;
-                                                                                                    student.draw();
+                                                                                                    student.moveDown();
                                                                                                     if (++repetitions == 1) {
                                                                                                         window.clearInterval(intervalId);
                                                                                                     }
@@ -470,8 +481,8 @@ function initiateCanvas() {
                 
 
                 for (var i = 0; i < listOfStudents.length; i++) {
-                    //listOfStudents[i].move();
-                    console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
+                    listOfStudents[i].move();
+                    //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
                 }
 
 
