@@ -4,6 +4,8 @@ var ctx;
 var listOfStudents = [];
 // List containing the front students - the ones that are able to fire
 var frontStudents = [];
+// Special student instance
+var specialStudent;
 // Teacher instance
 var teacher;
 // Score
@@ -636,6 +638,21 @@ function initiateCanvas() {
         }, 2000)
     }
 
+    // Method that controls the special student's movement
+
+    function specialStudentAI() {
+        var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+        listOfStudents.push(specialStudent);
+        repetitions = 0;
+        intervalId = setInterval(function () {
+            specialStudent.move();
+            if (++repetitions == 1) {
+                specialStudent.alive = true;
+                repetitions = 0;
+            }
+        }, 15000);
+    }
+
     //Initiate teacher location
     teacher = new Teacher(ctx, 140, 130, true, 3);
 
@@ -747,11 +764,7 @@ function initiateCanvas() {
         //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
     }
 
-    var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
-    //specialStudent.draw();
-    //specialStudent.erase();
-    listOfStudents.push(specialStudent);
-    specialStudent.move();
+    specialStudentAI();
 
     //listOfStudents[listOfStudents.length - 4].fire();
     //console.log(frontStudents);
