@@ -1,3 +1,5 @@
+// Canvas context
+var ctx;
 // List with containing users, used to check their coordinates, call their methods
 var listOfStudents = [];
 // List containing the front students - the ones that are able to fire
@@ -17,6 +19,74 @@ function checkScore() {
         console.log('Earned extra life.');
         previousScore = previousScore + 400;
     }
+}
+
+// Method for drawing simple tables
+
+function drawTables() {
+    ctx.strokeStyle = 'grey';
+    //Left side
+    ctx.beginPath();
+    ctx.moveTo(75, 37.5);
+    ctx.lineTo(135, 37.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(60, 52.5);
+    ctx.lineTo(135, 52.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 67.5);
+    ctx.lineTo(135, 67.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 82.5);
+    ctx.lineTo(135, 82.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(45, 97.5);
+    ctx.lineTo(135, 97.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(60, 112.5);
+    ctx.lineTo(135, 112.5);
+    ctx.stroke();
+
+    // Right side
+
+    ctx.beginPath();
+    ctx.moveTo(162, 37.5);
+    ctx.lineTo(224.5, 37.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 52.5);
+    ctx.lineTo(239.5, 52.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 67.5);
+    ctx.lineTo(254.5, 67.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 82.5);
+    ctx.lineTo(254.5, 82.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 97.5);
+    ctx.lineTo(254.5, 97.5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(162, 112.5);
+    ctx.lineTo(239.5, 112.5);
+    ctx.stroke();
 }
 
 //Student class
@@ -428,7 +498,6 @@ class Projectile {
                         checkScore();
                     }
                 }
-
             }
             if (this.y <= 15) {
                 this.erase();
@@ -437,6 +506,8 @@ class Projectile {
                 this.erase();
                 this.y = this.y - 2;
                 this.draw();
+                drawTables();
+
             }
         }
         if (this.type == 'student') {
@@ -444,6 +515,7 @@ class Projectile {
             //console.log(this.x);
             this.y = this.y + 2;
             this.draw();
+            drawTables();
             //console.log(this.y);
             if ((this.x >= teacher.x) && (this.x <= teacher.x + 20) && (this.y >= teacher.y) && (this.y <= teacher.y + 10)) {
                 teacher.die();
@@ -541,7 +613,7 @@ class Teacher {
 function initiateCanvas() {
 
     var canvas = document.getElementById("my-canvas");
-    var ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
     var canvasInfo = canvas.getBoundingClientRect();
     console.log(canvasInfo.height);
     console.log(canvasInfo.width);
@@ -608,71 +680,7 @@ function initiateCanvas() {
     ctx.lineTo(270, 15);
     ctx.stroke();
 
-    ctx.strokeStyle = 'grey';
-
-    //Left side
-
-    ctx.beginPath();
-    ctx.moveTo(75, 37.5);
-    ctx.lineTo(135, 37.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(60, 52.5);
-    ctx.lineTo(135, 52.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(45, 67.5);
-    ctx.lineTo(135, 67.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(45, 82.5);
-    ctx.lineTo(135, 82.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(45, 97.5);
-    ctx.lineTo(135, 97.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(60, 112.5);
-    ctx.lineTo(135, 112.5);
-    ctx.stroke();
-
-    // Right side
-
-    ctx.beginPath();
-    ctx.moveTo(162, 37.5);
-    ctx.lineTo(224.5, 37.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(162, 52.5);
-    ctx.lineTo(239.5, 52.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(162, 67.5);
-    ctx.lineTo(254.5, 67.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(162, 82.5);
-    ctx.lineTo(254.5, 82.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(162, 97.5);
-    ctx.lineTo(254.5, 97.5);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(162, 112.5);
-    ctx.lineTo(239.5, 112.5);
-    ctx.stroke();
+    drawTables();
 
     //Adding + drawing left row 1 students
 
