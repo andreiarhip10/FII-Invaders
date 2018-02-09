@@ -323,11 +323,12 @@ class Projectile {
 
 //Teacher class
 class Teacher {
-    constructor(context, x, y, alive) {
+    constructor(context, x, y, alive, lives) {
         this.context = context;
         this.x = x;
         this.y = y;
         this.alive = alive;
+        this.lives = lives;
     }
     draw() {
         this.context.fillStyle = 'black';
@@ -370,7 +371,7 @@ class Teacher {
             }, 5);
             if (++repetitions == 50) {
                 window.clearInterval(intervalId);
-                console.log('Explosion finished.');
+                //console.log('Explosion finished.');
                 setTimeout(function () {
                     ctx.fillStyle = 'white';
                     ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
@@ -386,6 +387,16 @@ class Teacher {
             this.alive = true;
             this.explode();
             console.log('Teacher killed.');
+            this.lives = this.lives - 1;
+            console.log('Lives left: ' + this.lives);
+            if (this.lives >= 1) {
+                this.x = 140;
+                this.y = 130;
+                this.draw();
+            }
+            if (!this.lives) {
+                console.log('Game over');
+            }
         }
     }
 }
@@ -411,25 +422,25 @@ function initiateCanvas() {
             while (!frontStudents[choice].alive) {
                 choice = Math.floor(Math.random() * (frontStudents.length))
             }
-            console.log('Selected student number: ' + choice);
+            //console.log('Selected student number: ' + choice);
             frontStudents[choice].fire();
         }, 2000)
     }
 
     //Initiate teacher location
-    teacher = new Teacher(ctx, 140, 130, true);
+    teacher = new Teacher(ctx, 140, 130, true, 3);
 
     //Check pressed keys, call methods accordingly
     window.addEventListener('keydown', function (e) {
         if (e.keyCode == '65') {
             teacher.moveLeft();
-            console.log(teacher.x);
-            console.log(teacher.y);
+            //console.log(teacher.x);
+            //console.log(teacher.y);
         }
         if (e.keyCode == '68') {
             teacher.moveRight();
-            console.log(teacher.x);
-            console.log(teacher.y);
+            //console.log(teacher.x);
+            //sconsole.log(teacher.y);
         }
         if (e.keyCode == '87') {
             teacher.fire();
