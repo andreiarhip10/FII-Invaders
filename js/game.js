@@ -1,5 +1,6 @@
 //List with containing users, used to check their coordinates, call their methods
 var listOfStudents = [];
+var frontStudents = [];
 
 //Student class
 class Student {
@@ -213,6 +214,12 @@ class Student {
             }
         }, 600)
     }
+    fire() {
+        var projectile = new Projectile(this.context, this.x, this.y, 'student');
+        setInterval(function () {
+            projectile.travel();
+        }, 20)
+    }
     explode() {
         this.erase();
         var repetitions = 0;
@@ -240,18 +247,30 @@ class Student {
         if (this.alive == true) {
             this.explode();
             this.alive = false;
-            console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.' + ' Status: ' + this.alive);
-
+            console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.');
+            for (var i = 0; i < listOfStudents.length; i ++) {
+                if (listOfStudents[i].side == this.side && listOfStudents[i].row == this.row - 1 && listOfStudents[i].line == this.line) {
+                    frontStudents[frontStudents.indexOf(this)] = listOfStudents[i];
+                }
+            }
         }
     }
 }
 
 //Projectile class
 class Projectile {
-    constructor(context, teacherX, teacherY) {
+    constructor(context, x, y, type) {
         this.context = context;
-        this.x = teacherX + 9;
-        this.y = teacherY - 8;
+        this.type = type;
+        if (this.type == 'teacher') {
+            this.x = x + 9;
+            this.y = y - 5;
+        }
+        if (this.type == 'student') {
+            this.x = x + 3;
+            this.y = y + 8;
+        }
+
     }
     draw() {
         this.context.fillStyle = 'black';
@@ -263,24 +282,35 @@ class Projectile {
     }
 
     // Method that checks projectile's surroundings, if it hits students, student dies, projectile disappears.
+    // TO IMPLEMENT - table redrawing function, called each time a projectile travels
 
     travel() {
-        for (var i = 0; i < listOfStudents.length; i++) {
-            if ((this.x >= listOfStudents[i].x - 4 && this.x <= listOfStudents[i].x + 4) && (this.y >= listOfStudents[i].y - 1 && this.y <= listOfStudents[i].y + 1) && listOfStudents[i].alive) {
-                listOfStudents[i].die();
+        if (this.type == 'teacher') {
+            for (var i = 0; i < listOfStudents.length; i++) {
+                if ((this.x >= listOfStudents[i].x - 4 && this.x <= listOfStudents[i].x + 4) && (this.y >= listOfStudents[i].y - 1 && this.y <= listOfStudents[i].y + 1) && listOfStudents[i].alive) {
+                    listOfStudents[i].die();
+                    this.erase();
+                    this.y = 0;
+                }
+            }
+            if (this.y <= 15) {
                 this.erase();
-                this.y = 0;
+            }
+            else {
+                this.erase();
+                this.y = this.y - 2;
+                this.draw();
             }
         }
-        if (this.y <= 15) {
+        if (this.type == 'student') {
             this.erase();
-        }
-        else {
-            this.erase();
-            this.y = this.y - 2;
+            this.y = this.y + 2;
             this.draw();
+            //console.log(this.y);
+            if (this.y >= 130) {
+                this.erase();
+            }
         }
-
     }
 }
 
@@ -312,7 +342,7 @@ class Teacher {
         this.context.fillRect(this.x, this.y, 20, 10);
     }
     fire() {
-        var projectile = new Projectile(this.context, this.x, this.y);
+        var projectile = new Projectile(this.context, this.x, this.y, 'teacher');
         setInterval(function () {
             projectile.travel();
         }, 20)
@@ -330,6 +360,19 @@ function initiateCanvas() {
     function clearCanvas() {
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvasInfo.height, canvasInfo.width);
+    }
+
+    // Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
+
+    function studentAI() {
+        setInterval(function() {
+            var choice = Math.floor(Math.random() * (frontStudents.length))
+            while (!frontStudents[choice].alive) {
+                choice = Math.floor(Math.random() * (frontStudents.length))
+            }
+            console.log('Selected student number: ' + choice);
+            frontStudents[choice].fire();
+        }, 2000)
     }
 
     //Initiate teacher location
@@ -354,6 +397,8 @@ function initiateCanvas() {
 
     //Draw the teacher
     teacher.draw();
+
+
 
     // var student = new Student(ctx, 146, 70);
 
@@ -490,6 +535,7 @@ function initiateCanvas() {
         var y = 58;
         listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, true, 'normal'));
         listOfStudents[i + 26].draw();
+        frontStudents.push(listOfStudents[i + 26]);
     }
 
     //Adding + drawing right row 3 students
@@ -499,7 +545,10 @@ function initiateCanvas() {
         var y = 58;
         listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, true, 'normal'));
         listOfStudents[i + 35].draw();
+        frontStudents.push(listOfStudents[i + 35]);
     }
+
+    studentAI();
 
 
     for (var i = 0; i < listOfStudents.length; i++) {
@@ -507,6 +556,11 @@ function initiateCanvas() {
 
         //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
     }
+
+    
+
+    //listOfStudents[listOfStudents.length - 4].fire();
+    //console.log(frontStudents);
 
 
 
