@@ -13,6 +13,21 @@
       -webkit-transform: rotate(135deg);
   }
   
+
+  canvas{
+    image-rendering: optimizeSpeed;             
+    image-rendering: -moz-crisp-edges;          
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: -o-crisp-edges;            
+    image-rendering: pixelated;              
+    -ms-interpolation-mode: nearest-neighbor;
+}
+#my-canvas{
+    display:none;
+}
+#intro-canvas{
+    background-color:#608dbb;
+}
     
 html,body{
     background-color:white;
