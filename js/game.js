@@ -1,11 +1,27 @@
-//List with containing users, used to check their coordinates, call their methods
+// List with containing users, used to check their coordinates, call their methods
 var listOfStudents = [];
+// List containing the front students - the ones that are able to fire
 var frontStudents = [];
+// Teacher instance
 var teacher;
+// Score
+var score;
+// Variable that keeps count of previous bonus life score
+var previousScore;
+
+// Function for score cheking - used when awarding bonus life
+
+function checkScore() {
+    if (score >= previousScore + 400) {
+        teacher.lives = teacher.lives + 1;
+        console.log('Earned extra life.');
+        previousScore = previousScore + 400;
+    }
+}
 
 //Student class
 class Student {
-    constructor(context, x, y, side, row, line, alive, type) {
+    constructor(context, x, y, side, row, line, alive, type, score) {
         this.context = context;
         this.x = x;
         this.y = y;
@@ -14,14 +30,27 @@ class Student {
         this.line = line;
         this.alive = alive;
         this.type = type;
+        this.score = score;
     }
     draw() {
-        this.context.fillStyle = 'black';
-        this.context.fillRect(this.x, this.y, 7, 7);
+        if (this.type == 'normal') {
+            this.context.fillStyle = 'black';
+            this.context.fillRect(this.x, this.y, 7, 7);
+        }
+        if (this.type == 'special') {
+            this.context.fillStyle = 'red';
+            this.context.fillRect(this.x, this.y, 10, 5);
+        }
     }
     erase() {
-        this.context.fillStyle = 'white';
-        this.context.fillRect(this.x, this.y, 7, 7);
+        if (this.type == 'normal') {
+            this.context.fillStyle = 'white';
+            this.context.fillRect(this.x, this.y, 7, 7);
+        }
+        if (this.type == 'special') {
+            this.context.fillStyle = 'white';
+            this.context.fillRect(this.x, this.y, 10, 5);
+        }
     }
     moveRight() {
         var repetitions = 0;
@@ -99,160 +128,250 @@ class Student {
     //After updating position and drawing, we check if student is still alive. If dead, student gets erased.
 
     move() {
-        var repetitions = 0;
-        var student = this;
-        var intervalId = setInterval(function () {
-            student.erase();
-            student.x = student.x + 1;
-            student.draw();
-            if (!student.alive) {
+        if (this.type == 'normal') {
+            var repetitions = 0;
+            var student = this;
+            var intervalId = setInterval(function () {
                 student.erase();
-            }
-            if (++repetitions == 10) {
-                window.clearInterval(intervalId);
-                repetitions = 0;
-                intervalId = setInterval(function () {
-                    student.moveDown();
-                    if (++repetitions == 1) {
-                        window.clearInterval(intervalId);
-                        repetitions = 0;
-                        intervalId = setInterval(function () {
-                            student.erase();
-                            student.x = student.x - 1;
-                            student.draw();
-                            if (!student.alive) {
+                student.x = student.x + 1;
+                student.draw();
+                if (!student.alive) {
+                    student.erase();
+                }
+                if (++repetitions == 10) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function () {
+                        student.moveDown();
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                            repetitions = 0;
+                            intervalId = setInterval(function () {
                                 student.erase();
-                            }
-                            if (++repetitions == 10) {
-                                window.clearInterval(intervalId);
-                                repetitions = 0;
-                                intervalId = setInterval(function () {
-                                    student.moveDown();
-                                    if (++repetitions == 1) {
-                                        window.clearInterval(intervalId);
-                                        repetitions = 0;
-                                        intervalId = setInterval(function () {
-                                            student.erase();
-                                            student.x = student.x + 1;
-                                            student.draw();
-                                            if (!student.alive) {
+                                student.x = student.x - 1;
+                                student.draw();
+                                if (!student.alive) {
+                                    student.erase();
+                                }
+                                if (++repetitions == 10) {
+                                    window.clearInterval(intervalId);
+                                    repetitions = 0;
+                                    intervalId = setInterval(function () {
+                                        student.moveDown();
+                                        if (++repetitions == 1) {
+                                            window.clearInterval(intervalId);
+                                            repetitions = 0;
+                                            intervalId = setInterval(function () {
                                                 student.erase();
-                                            }
-                                            if (++repetitions == 10) {
-                                                window.clearInterval(intervalId);
-                                                repetitions = 0;
-                                                intervalId = setInterval(function () {
-                                                    student.moveDown();
-                                                    if (++repetitions == 1) {
-                                                        window.clearInterval(intervalId);
-                                                        repetitions = 0;
-                                                        intervalId = setInterval(function () {
-                                                            student.erase();
-                                                            student.x = student.x - 1;
-                                                            student.draw();
-                                                            if (!student.alive) {
+                                                student.x = student.x + 1;
+                                                student.draw();
+                                                if (!student.alive) {
+                                                    student.erase();
+                                                }
+                                                if (++repetitions == 10) {
+                                                    window.clearInterval(intervalId);
+                                                    repetitions = 0;
+                                                    intervalId = setInterval(function () {
+                                                        student.moveDown();
+                                                        if (++repetitions == 1) {
+                                                            window.clearInterval(intervalId);
+                                                            repetitions = 0;
+                                                            intervalId = setInterval(function () {
                                                                 student.erase();
-                                                            }
-                                                            if (++repetitions == 10) {
-                                                                window.clearInterval(intervalId);
-                                                                repetitions = 0;
-                                                                intervalId = setInterval(function () {
-                                                                    student.moveDown();
-                                                                    if (++repetitions == 1) {
-                                                                        window.clearInterval(intervalId);
-                                                                        repetitions = 0;
-                                                                        intervalId = setInterval(function () {
-                                                                            student.erase();
-                                                                            student.x = student.x + 1;
-                                                                            student.draw();
-                                                                            if (!student.alive) {
+                                                                student.x = student.x - 1;
+                                                                student.draw();
+                                                                if (!student.alive) {
+                                                                    student.erase();
+                                                                }
+                                                                if (++repetitions == 10) {
+                                                                    window.clearInterval(intervalId);
+                                                                    repetitions = 0;
+                                                                    intervalId = setInterval(function () {
+                                                                        student.moveDown();
+                                                                        if (++repetitions == 1) {
+                                                                            window.clearInterval(intervalId);
+                                                                            repetitions = 0;
+                                                                            intervalId = setInterval(function () {
                                                                                 student.erase();
-                                                                            }
-                                                                            if (++repetitions == 10) {
-                                                                                window.clearInterval(intervalId);
-                                                                                repetitions = 0;
-                                                                                intervalId = setInterval(function () {
-                                                                                    student.moveDown();
-                                                                                    if (++repetitions == 1) {
-                                                                                        window.clearInterval(intervalId);
-                                                                                        repetitions = 0;
-                                                                                        intervalId = setInterval(function () {
-                                                                                            student.erase();
-                                                                                            student.x = student.x - 1;
-                                                                                            student.draw();
-                                                                                            if (!student.alive) {
+                                                                                student.x = student.x + 1;
+                                                                                student.draw();
+                                                                                if (!student.alive) {
+                                                                                    student.erase();
+                                                                                }
+                                                                                if (++repetitions == 10) {
+                                                                                    window.clearInterval(intervalId);
+                                                                                    repetitions = 0;
+                                                                                    intervalId = setInterval(function () {
+                                                                                        student.moveDown();
+                                                                                        if (++repetitions == 1) {
+                                                                                            window.clearInterval(intervalId);
+                                                                                            repetitions = 0;
+                                                                                            intervalId = setInterval(function () {
                                                                                                 student.erase();
-                                                                                            }
-                                                                                            if (++repetitions == 10) {
-                                                                                                window.clearInterval(intervalId);
-                                                                                                repetitions = 0;
-                                                                                                intervalId = setInterval(function () {
-                                                                                                    student.moveDown();
-                                                                                                    if (++repetitions == 1) {
-                                                                                                        window.clearInterval(intervalId);
-                                                                                                    }
-                                                                                                }, 200)
-                                                                                            }
-                                                                                        }, 200)
-                                                                                    }
-                                                                                }, 250)
-                                                                            }
-                                                                        }, 350)
-                                                                    }
-                                                                }, 350)
-                                                            }
-                                                        }, 350)
-                                                    }
-                                                }, 350)
-                                            }
-                                        }, 450)
-                                    }
-                                }, 450)
-                            }
-                        }, 450)
-                    }
-                }, 600)
-            }
-        }, 600)
+                                                                                                student.x = student.x - 1;
+                                                                                                student.draw();
+                                                                                                if (!student.alive) {
+                                                                                                    student.erase();
+                                                                                                }
+                                                                                                if (++repetitions == 10) {
+                                                                                                    window.clearInterval(intervalId);
+                                                                                                    repetitions = 0;
+                                                                                                    intervalId = setInterval(function () {
+                                                                                                        student.moveDown();
+                                                                                                        if (++repetitions == 1) {
+                                                                                                            window.clearInterval(intervalId);
+                                                                                                        }
+                                                                                                    }, 200)
+                                                                                                }
+                                                                                            }, 200)
+                                                                                        }
+                                                                                    }, 250)
+                                                                                }
+                                                                            }, 350)
+                                                                        }
+                                                                    }, 350)
+                                                                }
+                                                            }, 350)
+                                                        }
+                                                    }, 350)
+                                                }
+                                            }, 450)
+                                        }
+                                    }, 450)
+                                }
+                            }, 450)
+                        }
+                    }, 600)
+                }
+            }, 600)
+        }
+        if (this.type == 'special') {
+            var repetitions = 0;
+            var student = this;
+            var intervalId = setInterval(function () {
+                student.erase();
+                student.x = student.x + 1;
+                student.draw();
+                if (!student.alive) {
+                    student.erase();
+                }
+                if (++repetitions == 100) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function () {
+                        student.erase();
+                        student.x = student.x - 1;
+                        student.draw();
+                        if (!student.alive) {
+                            student.erase();
+                        }
+                        if (++repetitions == 200) {
+                            window.clearInterval(intervalId);
+                            repetitions = 0;
+                            intervalId = setInterval(function () {
+                                student.erase();
+                                student.x = student.x + 1;
+                                student.draw();
+                                if (!student.alive) {
+                                    student.erase();
+                                }
+                                if (++repetitions == 200) {
+                                    window.clearInterval(intervalId);
+                                    repetitions = 0;
+                                    intervalId = setInterval(function () {
+                                        student.erase();
+                                        student.x = student.x - 1;
+                                        student.draw();
+                                        if (!student.alive) {
+                                            student.erase();
+                                        }
+                                        if (++repetitions == 100) {
+                                            window.clearInterval(intervalId);
+                                            student.erase();
+                                        }
+                                    }, 5)
+                                }
+                            }, 15);
+                        }
+                    }, 15)
+                }
+            }, 15)
+        }
     }
     fire() {
-        var projectile = new Projectile(this.context, this.x, this.y, 'student');
-        setInterval(function () {
-            projectile.travel();
-        }, 20)
+        if (this.type == 'normal') {
+            var projectile = new Projectile(this.context, this.x, this.y, 'student');
+            setInterval(function () {
+                projectile.travel();
+            }, 20)
+        }
     }
     explode() {
-        this.erase();
-        var repetitions = 0;
-        var ctx = this.context;
-        var explosionX = this.x;
-        var explosionY = this.y;
-        var intervalId = setInterval(function () {
-            ctx.fillStyle = 'red';
-            ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
-            setTimeout(function () {
-                ctx.fillStyle = 'yellow';
+        if (this.type == 'normal') {
+            this.erase();
+            var repetitions = 0;
+            var ctx = this.context;
+            var explosionX = this.x;
+            var explosionY = this.y;
+            var intervalId = setInterval(function () {
+                ctx.fillStyle = 'red';
                 ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
-            }, 5);
-            if (++repetitions == 50) {
-                window.clearInterval(intervalId);
-                console.log('Explosion finished.');
                 setTimeout(function () {
-                    ctx.fillStyle = 'white';
+                    ctx.fillStyle = 'yellow';
                     ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
-                }, 100);
-            }
-        }, 20)
+                }, 5);
+                if (++repetitions == 50) {
+                    window.clearInterval(intervalId);
+                    console.log('Explosion finished.');
+                    setTimeout(function () {
+                        ctx.fillStyle = 'white';
+                        ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
+                    }, 100);
+                }
+            }, 20)
+        }
+        if (this.type == 'special') {
+            this.erase();
+            var repetitions = 0;
+            var ctx = this.context;
+            var explosionX = this.x;
+            var explosionY = this.y;
+            var intervalId = setInterval(function () {
+                ctx.fillStyle = 'yellow';
+                ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
+                setTimeout(function () {
+                    ctx.fillStyle = 'red';
+                    ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
+                }, 5);
+                if (++repetitions == 50) {
+                    window.clearInterval(intervalId);
+                    console.log('Special student explosion finished.');
+                    setTimeout(function () {
+                        ctx.fillStyle = 'white';
+                        ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
+                    }, 100);
+                }
+            }, 20)
+        }
     }
     die() {
-        if (this.alive) {
-            this.explode();
-            this.alive = false;
-            console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.');
-            for (var i = 0; i < listOfStudents.length; i ++) {
-                if (listOfStudents[i].side == this.side && listOfStudents[i].row == this.row - 1 && listOfStudents[i].line == this.line) {
-                    frontStudents[frontStudents.indexOf(this)] = listOfStudents[i];
+        if (this.type == 'normal') {
+            if (this.alive) {
+                this.explode();
+                this.alive = false;
+                console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.');
+                for (var i = 0; i < listOfStudents.length; i++) {
+                    if (listOfStudents[i].side == this.side && listOfStudents[i].row == this.row - 1 && listOfStudents[i].line == this.line) {
+                        frontStudents[frontStudents.indexOf(this)] = listOfStudents[i];
+                    }
                 }
+            }
+        }
+        if (this.type == 'special') {
+            if (this.alive) {
+                this.explode();
+                this.alive = false;
+                console.log('Special student is dead.');
             }
         }
     }
@@ -288,11 +407,28 @@ class Projectile {
     travel() {
         if (this.type == 'teacher') {
             for (var i = 0; i < listOfStudents.length; i++) {
-                if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 7) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 7) && listOfStudents[i].alive) {
-                    listOfStudents[i].die();
-                    this.erase();
-                    this.y = 0;
+                if (listOfStudents[i].type == 'normal') {
+                    if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 7) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 7) && listOfStudents[i].alive) {
+                        listOfStudents[i].die();
+                        this.erase();
+                        this.y = 0;
+                        // Adding student score on death
+                        score = score + listOfStudents[i].score;
+                        console.log(score);
+                        checkScore();
+                    }
                 }
+                if (listOfStudents[i].type == 'special') {
+                    if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 10) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 5) && listOfStudents[i].alive) {
+                        listOfStudents[i].die();
+                        this.erase();
+                        this.y = 0;
+                        score = score + listOfStudents[i].score;
+                        console.log(score);
+                        checkScore();
+                    }
+                }
+
             }
             if (this.y <= 15) {
                 this.erase();
@@ -394,6 +530,7 @@ class Teacher {
                 this.y = 130;
                 this.draw();
             }
+            // TO IMPLEMENT - game over state
             if (!this.lives) {
                 console.log('Game over');
             }
@@ -417,7 +554,7 @@ function initiateCanvas() {
     // Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
 
     function studentAI() {
-        setInterval(function() {
+        setInterval(function () {
             var choice = Math.floor(Math.random() * (frontStudents.length))
             while (!frontStudents[choice].alive) {
                 choice = Math.floor(Math.random() * (frontStudents.length))
@@ -449,6 +586,10 @@ function initiateCanvas() {
 
     //Draw the teacher
     teacher.draw();
+
+    // Initiating the score with 0.
+    score = 0;
+    previousScore = 0;
 
     // Measurements: 7.5px - 1 unit
     // Use these measurements when drawing
@@ -538,7 +679,7 @@ function initiateCanvas() {
     for (var i = 0; i < 6; i++) {
         var x = 76 + 10 * i;
         var y = 28;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 1, i + 4, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'left', 1, i + 4, true, 'normal', 30));
         listOfStudents[i].draw();
     }
 
@@ -547,7 +688,7 @@ function initiateCanvas() {
     for (var i = 0; i < 6; i++) {
         var x = 163 + 10 * i;
         var y = 28;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 1, i + 1, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'right', 1, i + 1, true, 'normal', 30));
         listOfStudents[i + 6].draw();
     }
 
@@ -556,7 +697,7 @@ function initiateCanvas() {
     for (var i = 0; i < 7; i++) {
         var x = 66 + 10 * i;
         var y = 43;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 2, i + 3, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'left', 2, i + 3, true, 'normal', 20));
         listOfStudents[i + 12].draw();
     }
 
@@ -565,7 +706,7 @@ function initiateCanvas() {
     for (var i = 0; i < 7; i++) {
         var x = 163 + 10 * i;
         var y = 43;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 2, i + 1, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'right', 2, i + 1, true, 'normal', 20));
         listOfStudents[i + 19].draw();
     }
 
@@ -574,7 +715,7 @@ function initiateCanvas() {
     for (var i = 0; i < 9; i++) {
         var x = 46 + 10 * i;
         var y = 58;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, true, 'normal', 10));
         listOfStudents[i + 26].draw();
         frontStudents.push(listOfStudents[i + 26]);
     }
@@ -584,7 +725,7 @@ function initiateCanvas() {
     for (var i = 0; i < 9; i++) {
         var x = 163 + 10 * i;
         var y = 58;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, true, 'normal'));
+        listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, true, 'normal', 10));
         listOfStudents[i + 35].draw();
         frontStudents.push(listOfStudents[i + 35]);
     }
@@ -598,7 +739,11 @@ function initiateCanvas() {
         //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
     }
 
-    
+    var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+    //specialStudent.draw();
+    //specialStudent.erase();
+    listOfStudents.push(specialStudent);
+    specialStudent.move();
 
     //listOfStudents[listOfStudents.length - 4].fire();
     //console.log(frontStudents);
