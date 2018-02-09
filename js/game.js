@@ -1,6 +1,7 @@
 //List with containing users, used to check their coordinates, call their methods
 var listOfStudents = [];
 var frontStudents = [];
+var teacher;
 
 //Student class
 class Student {
@@ -244,7 +245,7 @@ class Student {
         }, 20)
     }
     die() {
-        if (this.alive == true) {
+        if (this.alive) {
             this.explode();
             this.alive = false;
             console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.');
@@ -287,7 +288,7 @@ class Projectile {
     travel() {
         if (this.type == 'teacher') {
             for (var i = 0; i < listOfStudents.length; i++) {
-                if ((this.x >= listOfStudents[i].x - 4 && this.x <= listOfStudents[i].x + 4) && (this.y >= listOfStudents[i].y - 1 && this.y <= listOfStudents[i].y + 1) && listOfStudents[i].alive) {
+                if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 7) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 7) && listOfStudents[i].alive) {
                     listOfStudents[i].die();
                     this.erase();
                     this.y = 0;
@@ -304,10 +305,16 @@ class Projectile {
         }
         if (this.type == 'student') {
             this.erase();
+            //console.log(this.x);
             this.y = this.y + 2;
             this.draw();
             //console.log(this.y);
-            if (this.y >= 130) {
+            if ((this.x >= teacher.x) && (this.x <= teacher.x + 20) && (this.y >= teacher.y) && (this.y <= teacher.y + 10)) {
+                teacher.die();
+                this.y = 140;
+                this.erase();
+            }
+            if (this.y >= 138) {
                 this.erase();
             }
         }
@@ -316,10 +323,11 @@ class Projectile {
 
 //Teacher class
 class Teacher {
-    constructor(context, x, y) {
+    constructor(context, x, y, alive) {
         this.context = context;
         this.x = x;
         this.y = y;
+        this.alive = alive;
     }
     draw() {
         this.context.fillStyle = 'black';
@@ -346,6 +354,39 @@ class Teacher {
         setInterval(function () {
             projectile.travel();
         }, 20)
+    }
+    explode() {
+        this.erase();
+        var repetitions = 0;
+        var ctx = this.context;
+        var explosionX = this.x;
+        var explosionY = this.y;
+        var intervalId = setInterval(function () {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
+            setTimeout(function () {
+                ctx.fillStyle = 'yellow';
+                ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
+            }, 5);
+            if (++repetitions == 50) {
+                window.clearInterval(intervalId);
+                console.log('Explosion finished.');
+                setTimeout(function () {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
+                }, 100);
+            }
+        }, 20)
+    }
+
+    // Teacher death method - killed, lives decrements. When lives is 0, game over.
+
+    die() {
+        if (this.alive) {
+            this.alive = true;
+            this.explode();
+            console.log('Teacher killed.');
+        }
     }
 }
 
@@ -376,7 +417,7 @@ function initiateCanvas() {
     }
 
     //Initiate teacher location
-    var teacher = new Teacher(ctx, 140, 130);
+    teacher = new Teacher(ctx, 140, 130, true);
 
     //Check pressed keys, call methods accordingly
     window.addEventListener('keydown', function (e) {
@@ -397,17 +438,6 @@ function initiateCanvas() {
 
     //Draw the teacher
     teacher.draw();
-
-
-
-    // var student = new Student(ctx, 146, 70);
-
-    // console.log(listOfStudents);
-    // listOfStudents.push(student);
-    // console.log(listOfStudents);
-    // console.log(listOfStudents[0].y)
-    // student.draw();
-    // student.move();
 
     // Measurements: 7.5px - 1 unit
     // Use these measurements when drawing
