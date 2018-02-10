@@ -12,6 +12,8 @@ var teacher;
 var score;
 // Variable that keeps count of previous bonus life score
 var previousScore;
+// List with desk instances
+var deskBits = [];
 
 // Function for score cheking - used when awarding bonus life
 
@@ -456,7 +458,7 @@ class Projectile {
         this.type = type;
         if (this.type == 'teacher') {
             this.x = x + 9;
-            this.y = y - 5;
+            this.y = y - 3;
         }
         if (this.type == 'student') {
             this.x = x + 3;
@@ -501,6 +503,18 @@ class Projectile {
                     }
                 }
             }
+            for (var i = 0; i < deskBits.length; i++) {
+                if ((this.x >= deskBits[i].x && this.x <= deskBits[i].x + 10) && (this.y >= deskBits[i].y && this.y <= deskBits[i].y + 5)) {
+                    if (deskBits[i].durability > 0) {
+                        console.log('Desk hit.')
+                        deskBits[i].deteriorate();
+                        deskBits[i].durability = deskBits[i].durability - 1;
+                        deskBits[i].durabilityCheck();
+                        this.erase();
+                        this.y = 0;
+                    }
+                }
+            }
             if (this.y <= 15) {
                 this.erase();
             }
@@ -521,8 +535,21 @@ class Projectile {
             //console.log(this.y);
             if ((this.x >= teacher.x) && (this.x <= teacher.x + 20) && (this.y >= teacher.y) && (this.y <= teacher.y + 10)) {
                 teacher.die();
-                this.y = 140;
                 this.erase();
+                this.y = 140;
+                
+            }
+            for (var i = 0; i < deskBits.length; i++) {
+                if ((this.x >= deskBits[i].x && this.x <= deskBits[i].x + 10) && (this.y >= deskBits[i].y && this.y <= deskBits[i].y + 5)) {
+                    if (deskBits[i].durability > 0) {
+                        console.log('Desk hit.')
+                        deskBits[i].deteriorate();
+                        deskBits[i].durability = deskBits[i].durability - 1;
+                        deskBits[i].durabilityCheck();
+                        this.erase();
+                        this.y = 140;
+                    }
+                }
             }
             if (this.y >= 138) {
                 this.erase();
@@ -612,6 +639,37 @@ class Teacher {
     }
 }
 
+// Desk class
+class Desk {
+    constructor(context, x, y, durability) {
+        this.context = context;
+        this.x = x;
+        this.y = y;
+        this.durability = durability;
+    }
+    draw() {
+        this.context.fillStyle = 'brown';
+        this.context.fillRect(this.x, this.y, 10, 5);
+    }
+    erase() {
+        this.context.fillStyle = 'white';
+        this.context.fillRect(this.x, this.y, 10, 5);
+    }
+    deteriorate() {
+        var deteriorateX = Math.floor(Math.random() * (this.x + 10 - this.x + 1)) + this.x;
+        var deteriorateY = Math.floor(Math.random() * (this.y + 5 - this.y + 1)) + this.y;
+        this.context.fillStyle = 'white';
+        this.context.fillRect(deteriorateX, deteriorateY, 1, 1);
+    }
+    durabilityCheck() {
+        if (!this.durability) {
+            this.erase();
+        }
+    }
+
+    
+}
+
 function initiateCanvas() {
 
     var canvas = document.getElementById("my-canvas");
@@ -641,13 +699,13 @@ function initiateCanvas() {
     // Method that controls the special student's movement
 
     function specialStudentAI() {
-        var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
-        listOfStudents.push(specialStudent);
         repetitions = 0;
         intervalId = setInterval(function () {
+            var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+            listOfStudents.push(specialStudent);
+            console.log(listOfStudents);
             specialStudent.move();
             if (++repetitions == 1) {
-                specialStudent.alive = true;
                 repetitions = 0;
             }
         }, 15000);
@@ -697,7 +755,16 @@ function initiateCanvas() {
     ctx.lineTo(270, 15);
     ctx.stroke();
 
+    // Drawing tables
     drawTables();
+
+    // Creating + drawing desk
+    for (var i = 0; i < 8; i ++) {
+        deskBits.push(new Desk(ctx, 110 + i * 10, 120, 10));
+        deskBits[i].draw();
+    }
+
+    console.log(deskBits);
 
     //Adding + drawing left row 1 students
 
