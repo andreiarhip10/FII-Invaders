@@ -19,13 +19,15 @@ var deskBits = [];
 
 function checkScore() {
     if (score >= previousScore + 400) {
+        eraseLives(teacher.lives);
         teacher.lives = teacher.lives + 1;
+        drawLives(teacher.lives);
         console.log('Earned extra life.');
         previousScore = previousScore + 400;
     }
 }
 
-// Function for score area
+// Method for score area
 
 function scoreArea() {
     ctx.shadowOffsetX = 1;
@@ -40,7 +42,7 @@ function scoreArea() {
     ctx.shadowBlur = 0;
 }
 
-// Function for drawing score
+// Method for drawing score
 
 function drawScore(score) {
     ctx.fillStyle = 'black';
@@ -51,6 +53,35 @@ function drawScore(score) {
 function eraseScore(score) {
     ctx.fillStyle = 'white';
     ctx.fillRect(258, 3, 20, 10);
+}
+
+// Methods for lives area
+
+function livesArea() {
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 2;
+    ctx.shadowColor = "#57575c";
+    ctx.shadowBlur = 3;
+    ctx.fillStyle = 'black';
+    ctx.font = "8px 'Press Start 2P'";   
+    ctx.fillText('Lives: ', 5, 11);
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+}
+
+function drawLives(lives) {
+    ctx.fillStyle = 'black';
+    for (var i = 0; i < lives; i ++) {
+        ctx.fillRect(55 + i * 10, 3, 7, 7);
+    }
+}
+
+function eraseLives(lives) {
+    ctx.fillStyle = 'white';
+    for (var i = 0; i < lives; i ++) {
+        ctx.fillRect(55 + i * 10, 3, 7, 7);
+    }
 }
 
 // Method for drawing simple tables
@@ -714,7 +745,9 @@ class Teacher {
             this.alive = true;
             this.explode();
             console.log('Teacher killed.');
+            eraseLives(this.lives);
             this.lives = this.lives - 1;
+            drawLives(this.lives);
             console.log('Lives left: ' + this.lives);
             if (this.lives >= 1) {
                 this.x = 140;
@@ -801,6 +834,12 @@ function initiateCanvas() {
 
     //Initiate teacher location
     teacher = new Teacher(ctx, 140, 130, true, 3);
+
+    // Draw lives
+
+    livesArea();
+    drawLives(teacher.lives);
+    //eraseLives(teacher.lives);
 
     //Check pressed keys, call methods accordingly
     window.addEventListener('keydown', function (e) {
