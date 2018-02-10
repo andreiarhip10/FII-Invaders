@@ -25,6 +25,34 @@ function checkScore() {
     }
 }
 
+// Function for score area
+
+function scoreArea() {
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 2;
+    ctx.shadowColor = "#57575c";
+    ctx.shadowBlur = 3;
+    ctx.fillStyle = 'black';
+    ctx.font = "8px 'Press Start 2P'";   
+    ctx.fillText('Score: ', 210, 11);
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+}
+
+// Function for drawing score
+
+function drawScore(score) {
+    ctx.fillStyle = 'black';
+    ctx.font = "8px 'Press Start 2P'";   
+    ctx.fillText(score, 260, 11);
+}
+
+function eraseScore(score) {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(258, 3, 20, 10);
+}
+
 // Method for drawing simple tables
 
 function drawTables() {
@@ -540,8 +568,10 @@ class Projectile {
                         listOfStudents[i].die();
                         this.erase();
                         this.y = 0;
-                        // Adding student score on death
+                        // Adding student score on death - DRAW SCORE FUNCTION
+                        eraseScore(score);
                         score = score + listOfStudents[i].score;
+                        drawScore(score);
                         console.log(score);
                         checkScore();
                     }
@@ -551,7 +581,9 @@ class Projectile {
                         listOfStudents[i].die();
                         this.erase();
                         this.y = 0;
+                        eraseScore(score);
                         score = score + listOfStudents[i].score;
+                        drawScore(score);
                         console.log(score);
                         checkScore();
                     }
@@ -794,6 +826,9 @@ function initiateCanvas() {
     score = 0;
     previousScore = 0;
 
+    scoreArea();
+    drawScore(score);
+
     // Measurements: 7.5px - 1 unit
     // Use these measurements when drawing
 
@@ -885,7 +920,7 @@ function initiateCanvas() {
 
     for (var i = 0; i < listOfStudents.length; i++) {
         if (listOfStudents[i].type == 'normal') {
-            listOfStudents[i].move();
+            //listOfStudents[i].move();
         }
 
 
