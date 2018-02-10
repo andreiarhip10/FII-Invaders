@@ -61,6 +61,7 @@ window.onload = function () {
         initiateCanvas();
 
     }, false);
+    
     canvas.addEventListener("mousemove", handleMouseMove);
     function reOffset() {
         var BB = canvas.getBoundingClientRect();
@@ -88,17 +89,21 @@ window.onload = function () {
 
         mx = parseInt(e.clientX - offsetX);
         my = parseInt(e.clientY - offsetY);
+        
+        const bounds = canvas.getBoundingClientRect();
+        mx = (mx / bounds.width) * canvas.width;
+        my = (my / bounds.height) * canvas.height;
         console.log(mx, my);
-        if(my>200 &&my<410)
-        if (mx > 100 && mx < 255) 
+        if(my>65 &&my<135)
+        if (mx > 30 && mx < 85) 
             {
             hover_b = true;
             hover=true;}
-        else if(mx>380 &&mx<545)
+        else if(mx>125 &&mx<175)
         {
             hover_v = true;
             hover=true;}
-        else if(mx>685&&mx<845){
+        else if(mx>220&&mx<270){
             hover_i = true;
             hover=true;}
         
