@@ -153,14 +153,16 @@ class Student {
     moveDown() {
         var repetitions = 0;
         var student = this;
-        var intervalId = setInterval(function () {
-            student.erase();
-            student.y = student.y + 15;
-            student.draw();
-            if (++repetitions == 1) {
-                window.clearInterval(intervalId);
-            }
-        }, 600)
+        if (student.alive) {
+            var intervalId = setInterval(function () {
+                student.erase();
+                student.y = student.y + 15;
+                student.draw();
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                }
+            }, 600)
+        }
     }
 
     // Methods used for movement - doesn't erase the student behind when they first arrive on lower level seat
@@ -206,6 +208,7 @@ class Student {
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
+                // First movement to the right
                 student.erase();
                 student.x = student.x + 1;
                 student.draw();
@@ -216,11 +219,13 @@ class Student {
                     window.clearInterval(intervalId);
                     repetitions = 0;
                     intervalId = setInterval(function () {
+                        // First movement downwards
                         student.moveDown();
                         if (++repetitions == 1) {
                             window.clearInterval(intervalId);
                             repetitions = 0;
                             intervalId = setInterval(function () {
+                                // First movement to the left
                                 student.erase();
                                 student.x = student.x - 1;
                                 student.draw();
@@ -231,11 +236,13 @@ class Student {
                                     window.clearInterval(intervalId);
                                     repetitions = 0;
                                     intervalId = setInterval(function () {
+                                        // Second movement downwards
                                         student.moveDown();
                                         if (++repetitions == 1) {
                                             window.clearInterval(intervalId);
                                             repetitions = 0;
                                             intervalId = setInterval(function () {
+                                                // Second movement to the right
                                                 student.erase();
                                                 student.x = student.x + 1;
                                                 student.draw();
@@ -246,11 +253,13 @@ class Student {
                                                     window.clearInterval(intervalId);
                                                     repetitions = 0;
                                                     intervalId = setInterval(function () {
+                                                        // Third movement downwards
                                                         student.moveDown();
                                                         if (++repetitions == 1) {
                                                             window.clearInterval(intervalId);
                                                             repetitions = 0;
                                                             intervalId = setInterval(function () {
+                                                                // Second movement to the left
                                                                 student.erase();
                                                                 student.x = student.x - 1;
                                                                 student.draw();
@@ -261,47 +270,92 @@ class Student {
                                                                     window.clearInterval(intervalId);
                                                                     repetitions = 0;
                                                                     intervalId = setInterval(function () {
-                                                                        student.moveDown();
+                                                                        // Fourth movement downwards
+                                                                        var onRow = false;
+                                                                        for (var i = 0; i < frontStudents.length; i++) {
+                                                                            if (frontStudents[i].alive == true && frontStudents[i].row == 3) {
+                                                                                onRow = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                        if (!onRow) {
+                                                                            student.moveDown();
+                                                                        } else {
+                                                                            // Losing condition - bottom students reach desk
+                                                                            console.log('Game over.')
+                                                                        }
                                                                         if (++repetitions == 1) {
                                                                             window.clearInterval(intervalId);
                                                                             repetitions = 0;
-                                                                            intervalId = setInterval(function () {
-                                                                                student.erase();
-                                                                                student.x = student.x + 1;
-                                                                                student.draw();
-                                                                                if (!student.alive) {
+                                                                            if (student.alive) {
+                                                                                intervalId = setInterval(function () {
+                                                                                    // Third movement to the right
                                                                                     student.erase();
-                                                                                }
-                                                                                if (++repetitions == 10) {
-                                                                                    window.clearInterval(intervalId);
-                                                                                    repetitions = 0;
-                                                                                    intervalId = setInterval(function () {
-                                                                                        student.moveDown();
-                                                                                        if (++repetitions == 1) {
-                                                                                            window.clearInterval(intervalId);
-                                                                                            repetitions = 0;
-                                                                                            intervalId = setInterval(function () {
-                                                                                                student.erase();
-                                                                                                student.x = student.x - 1;
-                                                                                                student.draw();
-                                                                                                if (!student.alive) {
-                                                                                                    student.erase();
+                                                                                    student.x = student.x + 1;
+                                                                                    student.draw();
+                                                                                    if (!student.alive) {
+                                                                                        student.erase();
+                                                                                    }
+                                                                                    if (++repetitions == 10) {
+                                                                                        window.clearInterval(intervalId);
+                                                                                        repetitions = 0;
+                                                                                        intervalId = setInterval(function () {
+                                                                                            // Fifth movement downwards - TO IMPLEMENT - check winning condition for 4th, 5th, 6th movement downwards
+                                                                                            var onRow = false;
+                                                                                            for (var i = 0; i < frontStudents.length; i++) {
+                                                                                                if (frontStudents[i].alive == true && frontStudents[i].row == 2) {
+                                                                                                    onRow = true;
+                                                                                                    break;
                                                                                                 }
-                                                                                                if (++repetitions == 10) {
-                                                                                                    window.clearInterval(intervalId);
-                                                                                                    repetitions = 0;
+                                                                                            }
+                                                                                            if (!onRow) {
+                                                                                                student.moveDown();
+                                                                                            } else {
+                                                                                                // Losing condition - bottom students reach desk
+                                                                                                console.log('Game over.')
+                                                                                            }
+                                                                                            if (++repetitions == 1) {
+                                                                                                window.clearInterval(intervalId);
+                                                                                                repetitions = 0;
+                                                                                                if (student.alive) {
                                                                                                     intervalId = setInterval(function () {
-                                                                                                        student.moveDown();
-                                                                                                        if (++repetitions == 1) {
+                                                                                                        // Third movement to the left
+                                                                                                        student.erase();
+                                                                                                        student.x = student.x - 1;
+                                                                                                        student.draw();
+                                                                                                        if (!student.alive) {
+                                                                                                            student.erase();
+                                                                                                        }
+                                                                                                        if (++repetitions == 10) {
                                                                                                             window.clearInterval(intervalId);
+                                                                                                            repetitions = 0;
+                                                                                                            intervalId = setInterval(function () {
+                                                                                                                // Sixth movement downwards
+                                                                                                                var onRow = false;
+                                                                                                                for (var i = 0; i < frontStudents.length; i++) {
+                                                                                                                    if (frontStudents[i].alive == true && frontStudents[i].row == 1) {
+                                                                                                                        onRow = true;
+                                                                                                                        break;
+                                                                                                                    }
+                                                                                                                }
+                                                                                                                if (!onRow) {
+                                                                                                                    student.moveDown();
+                                                                                                                } else {
+                                                                                                                    // Losing condition - bottom students reach desk
+                                                                                                                    console.log('Game over.')
+                                                                                                                }
+                                                                                                                if (++repetitions == 1) {
+                                                                                                                    window.clearInterval(intervalId);
+                                                                                                                }
+                                                                                                            }, 200)
                                                                                                         }
                                                                                                     }, 200)
                                                                                                 }
-                                                                                            }, 200)
-                                                                                        }
-                                                                                    }, 250)
-                                                                                }
-                                                                            }, 350)
+                                                                                            }
+                                                                                        }, 250)
+                                                                                    }
+                                                                                }, 350)
+                                                                            }
                                                                         }
                                                                     }, 350)
                                                                 }
@@ -537,7 +591,7 @@ class Projectile {
                 teacher.die();
                 this.erase();
                 this.y = 140;
-                
+
             }
             for (var i = 0; i < deskBits.length; i++) {
                 if ((this.x >= deskBits[i].x && this.x <= deskBits[i].x + 10) && (this.y >= deskBits[i].y && this.y <= deskBits[i].y + 5)) {
@@ -576,16 +630,20 @@ class Teacher {
         this.context.fillRect(this.x, this.y, 20, 10);
     }
     moveRight() {
-        this.erase();
-        this.context.fillStyle = 'black';
-        this.x = this.x + 5;
-        this.context.fillRect(this.x, this.y, 20, 10);
+        if (this.x <= 240) {
+            this.erase();
+            this.context.fillStyle = 'black';
+            this.x = this.x + 5;
+            this.context.fillRect(this.x, this.y, 20, 10);
+        }
     }
     moveLeft() {
-        this.erase();
-        this.context.fillStyle = 'black';
-        this.x = this.x - 5;
-        this.context.fillRect(this.x, this.y, 20, 10);
+        if (this.x >= 40) {
+            this.erase();
+            this.context.fillStyle = 'black';
+            this.x = this.x - 5;
+            this.context.fillRect(this.x, this.y, 20, 10);
+        }
     }
     fire() {
         var projectile = new Projectile(this.context, this.x, this.y, 'teacher');
@@ -656,8 +714,8 @@ class Desk {
         this.context.fillRect(this.x, this.y, 10, 5);
     }
     deteriorate() {
-        var deteriorateX = Math.floor(Math.random() * (this.x + 10 - this.x + 1)) + this.x;
-        var deteriorateY = Math.floor(Math.random() * (this.y + 5 - this.y + 1)) + this.y;
+        var deteriorateX = Math.floor(Math.random() * (this.x + 9 - this.x + 1)) + this.x;
+        var deteriorateY = Math.floor(Math.random() * (this.y + 4 - this.y + 1)) + this.y;
         this.context.fillStyle = 'white';
         this.context.fillRect(deteriorateX, deteriorateY, 1, 1);
     }
@@ -666,8 +724,6 @@ class Desk {
             this.erase();
         }
     }
-
-    
 }
 
 function initiateCanvas() {
@@ -759,12 +815,12 @@ function initiateCanvas() {
     drawTables();
 
     // Creating + drawing desk
-    for (var i = 0; i < 8; i ++) {
-        deskBits.push(new Desk(ctx, 110 + i * 10, 120, 10));
+    for (var i = 0; i < 8; i++) {
+        deskBits.push(new Desk(ctx, 110 + i * 10, 120, 5));
         deskBits[i].draw();
     }
 
-    console.log(deskBits);
+    //console.log(deskBits);
 
     //Adding + drawing left row 1 students
 
@@ -824,14 +880,19 @@ function initiateCanvas() {
 
     studentAI();
 
+    specialStudentAI();
+
 
     for (var i = 0; i < listOfStudents.length; i++) {
-        //listOfStudents[i].move();
+        if (listOfStudents[i].type == 'normal') {
+            listOfStudents[i].move();
+        }
+
 
         //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
     }
 
-    specialStudentAI();
+
 
     //listOfStudents[listOfStudents.length - 4].fire();
     //console.log(frontStudents);
