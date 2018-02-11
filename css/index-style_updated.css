@@ -27,6 +27,11 @@
 }
 #intro-canvas{
     background-color:#608dbb;
+    display:none;
+}
+#end-canvas{
+    background-color:#608dbb;
+    display:none;
 }
     
 html,body{

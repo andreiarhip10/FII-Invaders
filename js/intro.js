@@ -1,5 +1,7 @@
-window.onload = function () {
+window.onload = introCanvas ();
+function introCanvas() {
     var canvas = document.getElementById("intro-canvas");
+    canvas.style.display = "block";
 
     var ctx = canvas.getContext('2d');
     var width = canvas.getAttribute('width');
@@ -98,7 +100,7 @@ window.onload = function () {
         const bounds = canvas.getBoundingClientRect();
         mx = (mx / bounds.width) * canvas.width;
         my = (my / bounds.height) * canvas.height;
-        //console.log(mx, my);
+        console.log(mx, my);
         if (my > 65 && my < 135)
             if (mx > 30 && mx < 85) {
                 hover_b = true;
@@ -118,6 +120,7 @@ window.onload = function () {
                 if (mx > 0 && mx < 300) {
                     can_start = true;
                 }
+                else can_start=false;
         }
     }
 
@@ -168,6 +171,7 @@ window.onload = function () {
 
             canvas.style.display = "none";
             cnv.style.display = "block";
+            hovered=false;
             initiateCanvas();
         }
 
