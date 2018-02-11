@@ -54,7 +54,7 @@ function drawScore(score) {
 }
 
 function eraseScore(score) {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#f1f1f1';
     ctx.fillRect(258, 3, 35, 10);
 }
 
@@ -78,18 +78,18 @@ function drawLives(lives) {
     // for (var i = 0; i < lives; i++) {
     //     ctx.fillRect(55 + i * 10, 3, 7, 7);
     // }
-    for (var i = 0; i < lives; i ++) {
+    for (var i = 0; i < lives; i++) {
         ctx.fillStyle = 'red';
         ctx.fillRect(55 + i * 10, 4, 7, 3);
         ctx.fillRect(57 + i * 10, 7, 3, 1);
         ctx.fillRect(58 + i * 10, 8, 1, 1);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#f1f1f1';
         ctx.fillRect(58 + i * 10, 4, 1, 1)
     }
 }
 
 function eraseLives(lives) {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#f1f1f1';
     for (var i = 0; i < lives; i++) {
         ctx.fillRect(55 + i * 10, 3, 7, 7);
     }
@@ -161,6 +161,177 @@ function drawTables() {
     ctx.moveTo(162, 112.5);
     ctx.lineTo(239.5, 112.5);
     ctx.stroke();
+}
+
+// Method for drawing C2 amphitheatre
+
+function drawC2() {
+    ctx.fillStyle = '#a9c8fc';
+    ctx.fillRect(30, 10, 300, 200);
+
+    ctx.strokeStyle = "#000";
+    //background
+    // ctx.fillStyle="#4682B4";
+    ctx.fillStyle = "#f1f1f1";
+    ctx.fillRect(0, 0, 29, 200);
+    ctx.fillRect(29, 0, 300, 14);
+    ctx.fillRect(271, 0, 30, 200);
+    ctx.fillStyle = "#CFA76E";
+    ctx.fillRect(26, 15, 4, 200);
+    ctx.fillRect(271, 15, 3, 200);
+    //draw walls
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(20, 10);
+    ctx.lineTo(30, 15);
+    ctx.stroke();
+    ctx.moveTo(270, 15);
+    ctx.lineTo(278, 10);
+    ctx.stroke();
+    //door
+    ctx.fillStyle = "brown";
+    ctx.lineCap = "round";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.fillRect(137, 0, 11, 15);
+    ctx.moveTo(148, 0);
+    ctx.lineTo(148, 15);
+    ctx.stroke();
+    ctx.moveTo(146, 10);
+    ctx.lineTo(148, 10);
+    ctx.stroke();
+    ctx.fillRect(148, 0, 10, 15);
+    ctx.strokeRect(137, 0, 21, 15);
+    ctx.closePath();
+    //schedule
+    ctx.fillStyle = "white";
+    ctx.lineCap = "round";
+    ctx.lineWidth = 1;
+    ctx.fillRect(151, 3, 4, 4);
+    ctx.strokeRect(151, 3, 5, 5);
+    //windows-left
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(0, 30);
+    ctx.lineTo(25, 45);
+    ctx.lineTo(25, 55);
+    ctx.lineTo(0, 40);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(12.5, 37.5);
+    ctx.lineTo(12.5, 46.5);
+    ctx.moveTo(0, 35);
+    ctx.lineTo(25, 50);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(0, 90);
+    ctx.lineTo(25, 105);
+    ctx.lineTo(25, 115);
+    ctx.lineTo(0, 100);
+    ctx.closePath();
+    ctx.fill();
+    ctx.moveTo(12.5, 97.5);
+    ctx.lineTo(12.5, 106.5);
+    ctx.moveTo(0, 95);
+    ctx.lineTo(25, 110);
+    ctx.stroke();
+    //windows-right
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 20);
+    ctx.lineTo(275, 35);
+    ctx.lineTo(275, 45);
+    ctx.lineTo(300, 30);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 27.5);
+    ctx.lineTo(287.5, 36.5);
+    ctx.moveTo(300, 25);
+    ctx.lineTo(275, 40);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 50);
+    ctx.lineTo(275, 65);
+    ctx.lineTo(275, 75);
+    ctx.lineTo(300, 60);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 57.5);
+    ctx.lineTo(287.5, 66.5);
+    ctx.moveTo(300, 55);
+    ctx.lineTo(275, 70);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 110);
+    ctx.lineTo(275, 125);
+    ctx.lineTo(275, 135);
+    ctx.lineTo(300, 120);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 117.5);
+    ctx.lineTo(287.5, 126.5);
+    ctx.moveTo(300, 115);
+    ctx.lineTo(275, 130);
+    ctx.stroke();
+    //cuier		
+    ctx.beginPath();
+    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = "brown";
+    ctx.lineCap = "round";
+    ctx.moveTo(15, 65);
+    ctx.lineTo(15, 85);
+    ctx.lineTo(30, 95);
+    ctx.lineTo(30, 75);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = "#CFA76E";
+    ctx.fill();
+    ctx.moveTo(20, 68);
+    ctx.lineTo(20, 88);
+    ctx.stroke();
+    ctx.moveTo(18, 67);
+    ctx.lineTo(18, 87);
+    ctx.stroke();
+    //secretdoor
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 0.8;
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 70);
+    ctx.lineTo(295, 80);
+    ctx.lineTo(270, 95);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(290, 84);
+    ctx.lineTo(290, 90);
+    ctx.lineTo(275, 100);
+    ctx.lineTo(275, 93);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = "brown";
+    ctx.fill();
+    ctx.moveTo(283, 95);
+    ctx.lineTo(283, 93);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#cfa76e'
+    ctx.moveTo(30, 15);
+    ctx.lineTo(136, 15);
+    ctx.stroke();
+
+    ctx.moveTo(160, 15);
+    ctx.lineTo(270, 15);
+    ctx.stroke();
+
 }
 
 // Method for checking if all normal students are dead - next level requirement
@@ -322,17 +493,17 @@ class Student {
             this.context.fillRect(this.x + 8, this.y - 3, 1, 3);
             this.context.fillRect(this.x + 1, this.y - 1, 1, 3);
             this.context.fillRect(this.x + 3, this.y, 4, 2);
-            this.context.fillStyle = 'white';
+            this.context.fillStyle = '#a9c8fc';
             this.context.fillRect(this.x + 4, this.y + 1, 2, 1);
         }
     }
     erase() {
         if (this.type == 'normal') {
-            this.context.fillStyle = 'white';
+            this.context.fillStyle = '#a9c8fc';
             this.context.fillRect(this.x, this.y, 7, 7);
         }
         if (this.type == 'special') {
-            this.context.fillStyle = 'white';
+            this.context.fillStyle = '#a9c8fc';
             this.context.fillRect(this.x, this.y - 3, 10, 5);
         }
     }
@@ -650,14 +821,16 @@ class Student {
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
-                student.erase();
-                student.x = student.x + 1;
-                student.draw();
+                if (student.x <= 260) {
+                    student.erase();
+                    student.x = student.x + 1;
+                    student.draw();
+                }
                 if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) && student.alive) {
                     student.context.fillStyle = 'black';
                     student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                     student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                    student.context.fillStyle = 'white';
+                    student.context.fillStyle = '#a9c8fc';
                     student.context.fillRect(student.x + 1, student.y, 1, 3);
                     student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                 }
@@ -668,50 +841,56 @@ class Student {
                     window.clearInterval(intervalId);
                     repetitions = 0;
                     intervalId = setInterval(function () {
-                        student.erase();
-                        student.x = student.x - 1;
-                        student.draw();
+                        if (student.x >= 32) {
+                            student.erase();
+                            student.x = student.x - 1;
+                            student.draw();
+                        }
                         if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) || (repetitions >= 100 && repetitions <= 110) || (repetitions >= 120 && repetitions <= 130) || (repetitions >= 140 && repetitions <= 150) || (repetitions >= 160 && repetitions <= 170) || (repetitions >= 180 && repetitions <= 190) && student.alive) {
                             student.context.fillStyle = 'black';
                             student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                            student.context.fillStyle = 'white';
+                            student.context.fillStyle = '#a9c8fc';
                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                         }
-                        if (!student.alive) {
-                            student.erase();
-                        }
+                         if (!student.alive && student.x <= 260) {
+                             student.erase();
+                         }
                         if (++repetitions == 200 && student.alive) {
                             window.clearInterval(intervalId);
                             repetitions = 0;
                             intervalId = setInterval(function () {
-                                student.erase();
-                                student.x = student.x + 1;
-                                student.draw();
+                                if (student.x <= 260) {
+                                    student.erase();
+                                    student.x = student.x + 1;
+                                    student.draw();
+                                }
                                 if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) || (repetitions >= 100 && repetitions <= 110) || (repetitions >= 120 && repetitions <= 130) || (repetitions >= 140 && repetitions <= 150) || (repetitions >= 160 && repetitions <= 170) || (repetitions >= 180 && repetitions <= 190) && student.alive) {
                                     student.context.fillStyle = 'black';
                                     student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                                     student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                                    student.context.fillStyle = 'white';
+                                    student.context.fillStyle = '#a9c8fc';
                                     student.context.fillRect(student.x + 1, student.y, 1, 3);
                                     student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                 }
-                                if (!student.alive) {
+                                if (!student.alive && student.x >= 32) {
                                     student.erase();
                                 }
                                 if (++repetitions == 200 && student.alive) {
                                     window.clearInterval(intervalId);
                                     repetitions = 0;
                                     intervalId = setInterval(function () {
-                                        student.erase();
-                                        student.x = student.x - 1;
-                                        student.draw();
+                                        if (student.x >= 32) {
+                                            student.erase();
+                                            student.x = student.x - 1;
+                                            student.draw();
+                                        }
                                         if ((repetitions >= 0 && repetitions <= 20) || (repetitions >= 40 && repetitions <= 60) || (repetitions >= 80 && repetitions <= 100) || (repetitions >= 120 && repetitions <= 140) || (repetitions >= 160 && repetitions <= 180) && student.alive) {
                                             student.context.fillStyle = 'black';
                                             student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                                             student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                                            student.context.fillStyle = 'white';
+                                            student.context.fillStyle = '#a9c8fc';
                                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                         }
@@ -757,7 +936,7 @@ class Student {
                     window.clearInterval(intervalId);
                     console.log('Explosion finished.');
                     setTimeout(function () {
-                        ctx.fillStyle = 'white';
+                        ctx.fillStyle = '#a9c8fc';
                         ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
                     }, 100);
                 }
@@ -780,7 +959,7 @@ class Student {
                     window.clearInterval(intervalId);
                     console.log('Special student explosion finished.');
                     setTimeout(function () {
-                        ctx.fillStyle = 'white';
+                        ctx.fillStyle = '#a9c8fc';
                         ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
                     }, 100);
                 }
@@ -836,7 +1015,7 @@ class Projectile {
         this.context.fillRect(this.x, this.y, 1, 2)
     }
     erase() {
-        this.context.fillStyle = 'white';
+        this.context.fillStyle = '#a9c8fc';
         this.context.fillRect(this.x, this.y, 1, 2);
     }
 
@@ -850,7 +1029,7 @@ class Projectile {
                     if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 7) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 7) && listOfStudents[i].alive) {
                         listOfStudents[i].die();
                         this.erase();
-                        this.y = 0;
+                        this.y = -2;
                         // Adding student score on death - DRAW SCORE FUNCTION
                         eraseScore(score);
                         score = score + listOfStudents[i].score;
@@ -863,7 +1042,7 @@ class Projectile {
                     if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 10) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 5) && listOfStudents[i].alive) {
                         listOfStudents[i].die();
                         this.erase();
-                        this.y = 0;
+                        this.y = -2;
                         eraseScore(score);
                         score = score + listOfStudents[i].score;
                         drawScore(score);
@@ -880,11 +1059,11 @@ class Projectile {
                         deskBits[i].durability = deskBits[i].durability - 1;
                         deskBits[i].durabilityCheck();
                         this.erase();
-                        this.y = 0;
+                        this.y = -2;
                     }
                 }
             }
-            if (this.y <= 15) {
+            if (this.y <= 17) {
                 this.erase();
             }
             else {
@@ -941,7 +1120,7 @@ class Teacher {
         this.context.fillRect(this.x, this.y, 20, 10);
     }
     erase() {
-        this.context.fillStyle = 'white';
+        this.context.fillStyle = '#a9c8fc';
         this.context.fillRect(this.x, this.y, 20, 10);
     }
     moveRight() {
@@ -983,7 +1162,7 @@ class Teacher {
                 window.clearInterval(intervalId);
                 //console.log('Explosion finished.');
                 setTimeout(function () {
-                    ctx.fillStyle = 'white';
+                    ctx.fillStyle = '#a9c8fc';
                     ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
                 }, 100);
             }
@@ -1028,13 +1207,13 @@ class Desk {
         this.context.fillRect(this.x, this.y, 10, 5);
     }
     erase() {
-        this.context.fillStyle = 'white';
+        this.context.fillStyle = '#a9c8fc';
         this.context.fillRect(this.x, this.y, 10, 5);
     }
     deteriorate() {
         var deteriorateX = Math.floor(Math.random() * (this.x + 9 - this.x + 1)) + this.x;
         var deteriorateY = Math.floor(Math.random() * (this.y + 4 - this.y + 1)) + this.y;
-        this.context.fillStyle = 'white';
+        this.context.fillStyle = '#a9c8fc';
         this.context.fillRect(deteriorateX, deteriorateY, 1, 1);
     }
     durabilityCheck() {
@@ -1062,6 +1241,10 @@ function initiateCanvas() {
 
     //Initiate teacher location
     teacher = new Teacher(ctx, 140, 130, true, 3);
+
+    // Draw background
+
+    drawC2();
 
     // Draw lives
 
@@ -1099,7 +1282,7 @@ function initiateCanvas() {
     // Measurements: 7.5px - 1 unit
     // Use these measurements when drawing
 
-    ctx.strokeStyle = 'grey';
+    /*ctx.strokeStyle = 'grey';
     ctx.beginPath();
     ctx.moveTo(30, 15);
     ctx.lineTo(270, 15);
@@ -1111,7 +1294,7 @@ function initiateCanvas() {
     ctx.lineTo(270, 150);
     ctx.stroke();
     ctx.lineTo(270, 15);
-    ctx.stroke();
+    ctx.stroke();*/
 
     // Drawing tables
     drawTables();
