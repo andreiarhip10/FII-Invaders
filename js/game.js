@@ -15,7 +15,7 @@ var previousScore;
 // List with desk instances
 var deskBits = [];
 
-// Function for score cheking - used when awarding bonus life
+// Function for score cheking - used when awarding bonus life - ANIMATION FOR EXTRA LIFE
 
 function checkScore() {
     if (score >= previousScore + 400) {
@@ -35,7 +35,7 @@ function scoreArea() {
     ctx.shadowColor = "#57575c";
     ctx.shadowBlur = 3;
     ctx.fillStyle = 'black';
-    ctx.font = "8px 'Press Start 2P'";   
+    ctx.font = "8px 'Press Start 2P'";
     ctx.fillText('Score: ', 210, 11);
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -46,13 +46,13 @@ function scoreArea() {
 
 function drawScore(score) {
     ctx.fillStyle = 'black';
-    ctx.font = "8px 'Press Start 2P'";   
+    ctx.font = "8px 'Press Start 2P'";
     ctx.fillText(score, 260, 11);
 }
 
 function eraseScore(score) {
     ctx.fillStyle = 'white';
-    ctx.fillRect(258, 3, 20, 10);
+    ctx.fillRect(258, 3, 35, 10);
 }
 
 // Methods for lives area
@@ -63,7 +63,7 @@ function livesArea() {
     ctx.shadowColor = "#57575c";
     ctx.shadowBlur = 3;
     ctx.fillStyle = 'black';
-    ctx.font = "8px 'Press Start 2P'";   
+    ctx.font = "8px 'Press Start 2P'";
     ctx.fillText('Lives: ', 5, 11);
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -72,14 +72,14 @@ function livesArea() {
 
 function drawLives(lives) {
     ctx.fillStyle = 'black';
-    for (var i = 0; i < lives; i ++) {
+    for (var i = 0; i < lives; i++) {
         ctx.fillRect(55 + i * 10, 3, 7, 7);
     }
 }
 
 function eraseLives(lives) {
     ctx.fillStyle = 'white';
-    for (var i = 0; i < lives; i ++) {
+    for (var i = 0; i < lives; i++) {
         ctx.fillRect(55 + i * 10, 3, 7, 7);
     }
 }
@@ -150,6 +150,126 @@ function drawTables() {
     ctx.moveTo(162, 112.5);
     ctx.lineTo(239.5, 112.5);
     ctx.stroke();
+}
+
+// Method for checking if all normal students are dead - next level requirement
+
+function checkIfAllDead() {
+    var allDead = true;
+    for (var i = 0; i < listOfStudents.length; i++) {
+        if (listOfStudents[i].alive && listOfStudents[i].type == 'normal') {
+            allDead = false;
+            break;
+        }
+    }
+    if (allDead) {
+        console.log('All dead!');
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Method for drawing normal students
+
+function drawStudents() {
+
+    //Adding + drawing left row 1 students
+
+    for (var i = 0; i < 6; i++) {
+        var x = 76 + 10 * i;
+        var y = 28;
+        listOfStudents.push(new Student(ctx, x, y, 'left', 1, i + 4, true, 'normal', 30));
+        listOfStudents[i].draw();
+    }
+
+    //Adding + drawing right row 1 students
+
+    for (var i = 0; i < 6; i++) {
+        var x = 163 + 10 * i;
+        var y = 28;
+        listOfStudents.push(new Student(ctx, x, y, 'right', 1, i + 1, true, 'normal', 30));
+        listOfStudents[i + 6].draw();
+    }
+
+    //Adding + drawing left row 2 students
+
+    for (var i = 0; i < 7; i++) {
+        var x = 66 + 10 * i;
+        var y = 43;
+        listOfStudents.push(new Student(ctx, x, y, 'left', 2, i + 3, true, 'normal', 20));
+        listOfStudents[i + 12].draw();
+    }
+
+    //Adding + drawing right row 2 students
+
+    for (var i = 0; i < 7; i++) {
+        var x = 163 + 10 * i;
+        var y = 43;
+        listOfStudents.push(new Student(ctx, x, y, 'right', 2, i + 1, true, 'normal', 20));
+        listOfStudents[i + 19].draw();
+    }
+
+    //Adding + drawing left row 3 students
+
+    for (var i = 0; i < 9; i++) {
+        var x = 46 + 10 * i;
+        var y = 58;
+        listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, true, 'normal', 10));
+        listOfStudents[i + 26].draw();
+        frontStudents.push(listOfStudents[i + 26]);
+    }
+
+    //Adding + drawing right row 3 students
+
+    for (var i = 0; i < 9; i++) {
+        var x = 163 + 10 * i;
+        var y = 58;
+        listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, true, 'normal', 10));
+        listOfStudents[i + 35].draw();
+        frontStudents.push(listOfStudents[i + 35]);
+    }
+}
+
+// Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
+
+function studentAI() {
+    setInterval(function () {
+        var choice = Math.floor(Math.random() * (frontStudents.length))
+        while (!frontStudents[choice].alive) {
+            choice = Math.floor(Math.random() * (frontStudents.length))
+        }
+        //console.log('Selected student number: ' + choice);
+        frontStudents[choice].fire();
+    }, 2000)
+}
+
+// Method that controls the special student's movement
+
+function specialStudentAI() {
+    repetitions = 0;
+    intervalId = setInterval(function () {
+        var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+        listOfStudents.push(specialStudent);
+        console.log(listOfStudents);
+        specialStudent.move();
+        if (++repetitions == 1) {
+            repetitions = 0;
+        }
+    }, 15000);
+}
+
+// Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
+
+function changeLevel() {
+    listOfStudents = [];
+    drawStudents();
+    studentAI();
+    for (var i = 0; i < listOfStudents.length; i++) {
+        if (listOfStudents[i].type == 'normal') {
+            listOfStudents[i].move();
+        }
+    }
 }
 
 //Student class
@@ -546,12 +666,18 @@ class Student {
             if (this.alive) {
                 this.explode();
                 this.alive = false;
+                // After each kill, check if all students are dead. If true, advance to next level.
+                if (checkIfAllDead()) {
+                    changeLevel();
+                }
                 console.log('Student on ' + this.side + ' side, row ' + this.row + ', line ' + this.line + ' is dead.');
                 for (var i = 0; i < listOfStudents.length; i++) {
-                    if (listOfStudents[i].side == this.side && listOfStudents[i].row == this.row - 1 && listOfStudents[i].line == this.line) {
+                    //console.log('Updating front students ...');
+                    if (listOfStudents[i].side == this.side && listOfStudents[i].row == this.row - 1 && listOfStudents[i].line == this.line && listOfStudents[i].alive) {
                         frontStudents[frontStudents.indexOf(this)] = listOfStudents[i];
                     }
                 }
+                //console.log('Finished updating front students!');
             }
         }
         if (this.type == 'special') {
@@ -804,34 +930,6 @@ function initiateCanvas() {
         ctx.fillRect(0, 0, canvasInfo.height, canvasInfo.width);
     }
 
-    // Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
-
-    function studentAI() {
-        setInterval(function () {
-            var choice = Math.floor(Math.random() * (frontStudents.length))
-            while (!frontStudents[choice].alive) {
-                choice = Math.floor(Math.random() * (frontStudents.length))
-            }
-            //console.log('Selected student number: ' + choice);
-            frontStudents[choice].fire();
-        }, 2000)
-    }
-
-    // Method that controls the special student's movement
-
-    function specialStudentAI() {
-        repetitions = 0;
-        intervalId = setInterval(function () {
-            var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
-            listOfStudents.push(specialStudent);
-            console.log(listOfStudents);
-            specialStudent.move();
-            if (++repetitions == 1) {
-                repetitions = 0;
-            }
-        }, 15000);
-    }
-
     //Initiate teacher location
     teacher = new Teacher(ctx, 140, 130, true, 3);
 
@@ -894,84 +992,15 @@ function initiateCanvas() {
         deskBits[i].draw();
     }
 
-    //console.log(deskBits);
-
-    //Adding + drawing left row 1 students
-
-    for (var i = 0; i < 6; i++) {
-        var x = 76 + 10 * i;
-        var y = 28;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 1, i + 4, true, 'normal', 30));
-        listOfStudents[i].draw();
-    }
-
-    //Adding + drawing right row 1 students
-
-    for (var i = 0; i < 6; i++) {
-        var x = 163 + 10 * i;
-        var y = 28;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 1, i + 1, true, 'normal', 30));
-        listOfStudents[i + 6].draw();
-    }
-
-    //Adding + drawing left row 2 students
-
-    for (var i = 0; i < 7; i++) {
-        var x = 66 + 10 * i;
-        var y = 43;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 2, i + 3, true, 'normal', 20));
-        listOfStudents[i + 12].draw();
-    }
-
-    //Adding + drawing right row 2 students
-
-    for (var i = 0; i < 7; i++) {
-        var x = 163 + 10 * i;
-        var y = 43;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 2, i + 1, true, 'normal', 20));
-        listOfStudents[i + 19].draw();
-    }
-
-    //Adding + drawing left row 3 students
-
-    for (var i = 0; i < 9; i++) {
-        var x = 46 + 10 * i;
-        var y = 58;
-        listOfStudents.push(new Student(ctx, x, y, 'left', 3, i + 1, true, 'normal', 10));
-        listOfStudents[i + 26].draw();
-        frontStudents.push(listOfStudents[i + 26]);
-    }
-
-    //Adding + drawing right row 3 students
-
-    for (var i = 0; i < 9; i++) {
-        var x = 163 + 10 * i;
-        var y = 58;
-        listOfStudents.push(new Student(ctx, x, y, 'right', 3, i + 1, true, 'normal', 10));
-        listOfStudents[i + 35].draw();
-        frontStudents.push(listOfStudents[i + 35]);
+    drawStudents();
+    for (var i = 0; i < listOfStudents.length; i++) {
+        if (listOfStudents[i].type == 'normal') {
+            listOfStudents[i].move();
+        }
     }
 
     studentAI();
 
     specialStudentAI();
-
-
-    for (var i = 0; i < listOfStudents.length; i++) {
-        if (listOfStudents[i].type == 'normal') {
-            //listOfStudents[i].move();
-        }
-
-
-        //console.log(listOfStudents[i].side + ' ' + listOfStudents[i].row + ' ' + listOfStudents[i].line);
-    }
-
-
-
-    //listOfStudents[listOfStudents.length - 4].fire();
-    //console.log(frontStudents);
-
-
-
 
 }
