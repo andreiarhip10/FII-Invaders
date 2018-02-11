@@ -74,9 +74,17 @@ function livesArea() {
 }
 
 function drawLives(lives) {
-    ctx.fillStyle = 'black';
-    for (var i = 0; i < lives; i++) {
-        ctx.fillRect(55 + i * 10, 3, 7, 7);
+    // ctx.fillStyle = 'black';
+    // for (var i = 0; i < lives; i++) {
+    //     ctx.fillRect(55 + i * 10, 3, 7, 7);
+    // }
+    for (var i = 0; i < lives; i ++) {
+        ctx.fillStyle = 'red';
+        ctx.fillRect(55 + i * 10, 4, 7, 3);
+        ctx.fillRect(57 + i * 10, 7, 3, 1);
+        ctx.fillRect(58 + i * 10, 8, 1, 1);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(58 + i * 10, 4, 1, 1)
     }
 }
 
