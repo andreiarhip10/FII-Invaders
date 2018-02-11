@@ -288,7 +288,16 @@ class Student {
     draw() {
         if (this.type == 'normal') {
             this.context.fillStyle = 'black';
-            this.context.fillRect(this.x, this.y, 7, 7);
+            //this.context.fillRect(this.x, this.y, 7, 7);
+            this.context.fillRect(this.x + 1, this.y, 5, 3);
+            this.context.fillStyle = 'white';
+            this.context.fillRect(this.x + 2, this.y + 1, 1, 1);
+            this.context.fillRect(this.x + 4, this.y + 1, 1, 1);
+            this.context.fillStyle = 'black';
+            this.context.fillRect(this.x + 3, this.y + 3, 1, 1);
+            this.context.fillRect(this.x + 1, this.y + 4, 5, 1);
+            this.context.fillRect(this.x + 2, this.y + 5, 1, 1);
+            this.context.fillRect(this.x + 4, this.y + 5, 1, 1);
         }
         if (this.type == 'special') {
             this.context.fillStyle = 'red';
@@ -391,6 +400,11 @@ class Student {
                 student.erase();
                 student.x = student.x + 1;
                 student.draw();
+                if (repetitions % 2 == 0) {
+                    student.context.fillStyle = 'red';
+                    student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                    student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                }
                 if (!student.alive) {
                     student.erase();
                 }
@@ -400,6 +414,11 @@ class Student {
                     intervalId = setInterval(function () {
                         // First movement downwards
                         student.moveDown();
+                        if (repetitions % 2 == 0) {
+                            student.context.fillStyle = 'red';
+                            student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                            student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                        }
                         if (++repetitions == 1) {
                             window.clearInterval(intervalId);
                             repetitions = 0;
@@ -408,6 +427,11 @@ class Student {
                                 student.erase();
                                 student.x = student.x - 1;
                                 student.draw();
+                                if (repetitions % 2 == 1) {
+                                    student.context.fillStyle = 'red';
+                                    student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                    student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                }
                                 if (!student.alive) {
                                     student.erase();
                                 }
@@ -417,6 +441,11 @@ class Student {
                                     intervalId = setInterval(function () {
                                         // Second movement downwards
                                         student.moveDown();
+                                        if (repetitions % 2 == 1) {
+                                            student.context.fillStyle = 'red';
+                                            student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                            student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                        }
                                         if (++repetitions == 1) {
                                             window.clearInterval(intervalId);
                                             repetitions = 0;
@@ -425,6 +454,11 @@ class Student {
                                                 student.erase();
                                                 student.x = student.x + 1;
                                                 student.draw();
+                                                if (repetitions % 2 == 0) {
+                                                    student.context.fillStyle = 'red';
+                                                    student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                    student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                }
                                                 if (!student.alive) {
                                                     student.erase();
                                                 }
@@ -434,6 +468,11 @@ class Student {
                                                     intervalId = setInterval(function () {
                                                         // Third movement downwards
                                                         student.moveDown();
+                                                        if (repetitions % 2 == 0) {
+                                                            student.context.fillStyle = 'red';
+                                                            student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                            student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                        }
                                                         if (++repetitions == 1) {
                                                             window.clearInterval(intervalId);
                                                             repetitions = 0;
@@ -442,6 +481,11 @@ class Student {
                                                                 student.erase();
                                                                 student.x = student.x - 1;
                                                                 student.draw();
+                                                                if (repetitions % 2 == 1) {
+                                                                    student.context.fillStyle = 'red';
+                                                                    student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                    student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                }
                                                                 if (!student.alive) {
                                                                     student.erase();
                                                                 }
@@ -459,6 +503,11 @@ class Student {
                                                                         }
                                                                         if (!onRow) {
                                                                             student.moveDown();
+                                                                            if (repetitions % 2 == 1) {
+                                                                                student.context.fillStyle = 'red';
+                                                                                student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                                student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                            }
                                                                         } else {
                                                                             // Losing condition - bottom students reach desk
                                                                             console.log('Game over.')
@@ -472,6 +521,11 @@ class Student {
                                                                                     student.erase();
                                                                                     student.x = student.x + 1;
                                                                                     student.draw();
+                                                                                    if (repetitions % 2 == 0) {
+                                                                                        student.context.fillStyle = 'red';
+                                                                                        student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                                        student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                                    }
                                                                                     if (!student.alive) {
                                                                                         student.erase();
                                                                                     }
@@ -489,6 +543,11 @@ class Student {
                                                                                             }
                                                                                             if (!onRow) {
                                                                                                 student.moveDown();
+                                                                                                if (repetitions % 2 == 0) {
+                                                                                                    student.context.fillStyle = 'red';
+                                                                                                    student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                                                    student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                                                }
                                                                                             } else {
                                                                                                 // Losing condition - bottom students reach desk
                                                                                                 console.log('Game over.')
@@ -502,6 +561,11 @@ class Student {
                                                                                                         student.erase();
                                                                                                         student.x = student.x - 1;
                                                                                                         student.draw();
+                                                                                                        if (repetitions % 2 == 1) {
+                                                                                                            student.context.fillStyle = 'red';
+                                                                                                            student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                                                            student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                                                        }
                                                                                                         if (!student.alive) {
                                                                                                             student.erase();
                                                                                                         }
@@ -519,6 +583,11 @@ class Student {
                                                                                                                 }
                                                                                                                 if (!onRow) {
                                                                                                                     student.moveDown();
+                                                                                                                    if (repetitions % 2 == 1) {
+                                                                                                                        student.context.fillStyle = 'red';
+                                                                                                                        student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
+                                                                                                                        student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
+                                                                                                                    }
                                                                                                                 } else {
                                                                                                                     // Losing condition - bottom students reach desk
                                                                                                                     console.log('Game over.')
@@ -1002,5 +1071,6 @@ function initiateCanvas() {
     studentAI();
 
     specialStudentAI();
+
 
 }
