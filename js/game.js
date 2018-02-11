@@ -1099,7 +1099,7 @@ function initiateCanvas() {
     // Measurements: 7.5px - 1 unit
     // Use these measurements when drawing
 
-    ctx.strokeStyle = 'red';
+    ctx.strokeStyle = 'grey';
     ctx.beginPath();
     ctx.moveTo(30, 15);
     ctx.lineTo(270, 15);
