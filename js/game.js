@@ -1229,29 +1229,25 @@ class Teacher {
         this.lives = lives;
     }
     draw() {
-        //this.context.fillStyle = 'black';
-        //this.context.fillRect(this.x, this.y, 20, 10);
-        console.log(prof_choice);
-        this.context.drawImage(profs[prof_choice], this.x, this.y, 20, 20); //  apply image to all methods that use teacher.draw()
+        //console.log(prof_choice);
+        this.context.drawImage(profs[prof_choice], this.x, this.y - 2, 20, 21);
     }
     erase() {
         this.context.fillStyle = '#a9c8fc';
-        this.context.fillRect(this.x, this.y, 20, 10);
+        this.context.fillRect(this.x, this.y - 1, 20, 20);
     }
     moveRight() {
         if (this.x <= 240) {
             this.erase();
-            this.context.fillStyle = 'black';
             this.x = this.x + 5;
-            this.context.fillRect(this.x, this.y, 20, 10);
+            this.draw();
         }
     }
     moveLeft() {
         if (this.x >= 40) {
             this.erase();
-            this.context.fillStyle = 'black';
             this.x = this.x - 5;
-            this.context.fillRect(this.x, this.y, 20, 10);
+            this.draw();
         }
     }
     fire() {
@@ -1259,29 +1255,99 @@ class Teacher {
         teacherProjectileInterval = setInterval(function () {
             projectile.travel();
         }, 20)
+        if (prof_choice == 1) {
+            var repetitions = 0;
+            var teacher = this;
+            var intervalId = setInterval(function() {
+                teacher.context.fillStyle = 'red';
+                teacher.context.fillRect(teacher.x + 9, teacher.y + 9, 1, 1);
+                teacher.context.fillRect(teacher.x + 13, teacher.y + 10, 1, 1);
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function() {
+                        teacher.draw();
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                        }
+                    }, 100);
+                }
+            });
+        } else if (prof_choice == 0) {
+            var repetitions = 0;
+            var teacher = this;
+            var intervalId = setInterval(function() {
+                teacher.context.fillStyle = 'red';
+                teacher.context.fillRect(teacher.x + 5, teacher.y + 9, 1, 1);
+                teacher.context.fillRect(teacher.x + 8, teacher.y + 9, 1, 1);
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function() {
+                        teacher.draw();
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                        }
+                    }, 100);
+                }
+            });
+        } else if (prof_choice == 2) {
+            var repetitions = 0;
+            var teacher = this;
+            var intervalId = setInterval(function() {
+                teacher.context.fillStyle = 'red';
+                teacher.context.fillRect(teacher.x + 8, teacher.y + 9, 1, 1);
+                teacher.context.fillRect(teacher.x + 12, teacher.y + 8, 1, 1);
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function() {
+                        teacher.draw();
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                        }
+                    }, 100);
+                }
+            });
+        }
     }
     explode() {
         this.erase();
         var repetitions = 0;
-        var ctx = this.context;
-        var explosionX = this.x;
-        var explosionY = this.y;
+        var teacher = this;
+        var explosionX = teacher.x - 2;
+        var explosionY = teacher.y;
         var intervalId = setInterval(function () {
-            ctx.fillStyle = 'red';
-            ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
-            setTimeout(function () {
-                ctx.fillStyle = 'yellow';
-                ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
-            }, 5);
-            if (++repetitions == 50) {
-                window.clearInterval(intervalId);
-                //console.log('Explosion finished.');
-                setTimeout(function () {
-                    ctx.fillStyle = '#a9c8fc';
-                    ctx.fillRect(explosionX - 1, explosionY - 1, 22, 11);
-                }, 100);
-            }
-        }, 20)
+                teacher.context.fillStyle = 'yellow';
+                teacher.context.font = "5pt 'Press Start 2P'";
+                teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                    repetitions = 0;
+                    intervalId = setInterval(function () {
+                        teacher.context.fillStyle = 'red';
+                        teacher.context.font = "5pt 'Press Start 2P'";
+                        teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                            repetitions = 0;
+                            intervalId = setInterval(function () {
+                                teacher.context.fillStyle = 'yellow';
+                                teacher.context.font = "5pt 'Press Start 2P'";
+                                teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+                                if (++repetitions == 1) {
+                                    window.clearInterval(intervalId);
+                                    repetitions = 0;
+                                    teacher.context.fillStyle = '#a9c8fc';
+                                    teacher.context.fillRect(explosionX - 10, explosionY - 2, 80, 7);
+                                    teacher.draw();
+                                }
+                            }, 250);
+                        }
+                    }, 250);
+                }
+            }, 250)
+
     }
 
     // Teacher death method - killed, lives decrements. When lives is 0, game over.
@@ -1377,7 +1443,7 @@ function initiateCanvas() {
     gameOver = false;
 
     //Initiate teacher location
-    teacher = new Teacher(ctx, 140, 130, true, 1);
+    teacher = new Teacher(ctx, 140, 130, true, 3);
 
     // Draw background
 
