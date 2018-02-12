@@ -1,4 +1,4 @@
-window.onload = introCanvas ();
+
 function introCanvas() {
     var canvas = document.getElementById("intro-canvas");
     canvas.style.display = "block";
@@ -167,11 +167,27 @@ function introCanvas() {
         checkHover(e);
         if (can_start) {
 
-            var cnv = document.getElementById("my-canvas");
-
-            canvas.style.display = "none";
-            cnv.style.display = "block";
+            var cnv = document.getElementById("end-canvas");
+            ctx.clearRect(0, 0, 300, 300);
+            
+            // canvas.style.display="none";
+             
+            // cnv.style.display = "block";
             hovered=false;
+            var canvas = document.getElementById("intro-canvas");
+            // ctx.clearRect(0, 0, 300, 300);
+            var cnv = document.createElement('canvas'),
+            newContext = canvas.getContext('2d');
+        // Insert the new canvas after the old one
+        canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+        // Remove old canvas. Now the new canvas has its position.
+        canvas.parentNode.removeChild(canvas);
+        cnv.id="intro-canvas";
+            //canvas.style.display="none";
+            //canvas=null;  
+            cnv.style.display = "none";
+            var cenv = document.getElementById("my-canvas");
+            cenv.style.display = "block";
             initiateCanvas();
         }
 

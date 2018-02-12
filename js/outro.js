@@ -1,5 +1,5 @@
 // window.onload = function () {
-    function outro(){}
+    function outro(){
     var canvas = document.getElementById("end-canvas");
     var cnv = document.getElementById("intro-canvas");
     cnv.style.display = "none";
@@ -139,17 +139,38 @@
         checkHover(e);
         if (intro==true) {
 
-            var cnv = document.getElementById("intro-canvas");
-
-            canvas.style.display = "none";
-            cnv.style.display = "block";
+            // var cnv = document.getElementById("intro-canvas");
+            var canvas = document.getElementById("end-canvas");
+            // ctx.clearRect(0, 0, 300, 300);
+            var cnv = document.createElement('canvas'),
+            newContext = canvas.getContext('2d');
+        // Insert the new canvas after the old one
+        canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+        // Remove old canvas. Now the new canvas has its position.
+        canvas.parentNode.removeChild(canvas);
+        cnv.id="end-canvas";
+            //canvas.style.display="none";
+            //canvas=null;  
+            cnv.style.display = "none";
+            var cenv = document.getElementById("intro-canvas");
+            cenv.style.display = "block";
             introCanvas();
         }
         else if (game==true){
-            var cnv = document.getElementById("my-canvas");
-
-            canvas.style.display = "none";
-            cnv.style.display = "block";
+            var canvas = document.getElementById("end-canvas");
+            // ctx.clearRect(0, 0, 300, 300);
+            var cnv = document.createElement('canvas'),
+            newContext = canvas.getContext('2d');
+        // Insert the new canvas after the old one
+        canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+        // Remove old canvas. Now the new canvas has its position.
+        canvas.parentNode.removeChild(canvas);
+        cnv.id="end-canvas";
+            //canvas.style.display="none";
+            //canvas=null;  
+            cnv.style.display = "none";
+            var cenv = document.getElementById("my-canvas");
+            cenv.style.display = "block";
             initiateCanvas();
         }
 

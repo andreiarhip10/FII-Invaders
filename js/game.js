@@ -416,6 +416,7 @@ function drawStudents() {
 // Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
 
 function studentAI() {
+    
     setInterval(function () {
         var choice = Math.floor(Math.random() * (frontStudents.length))
         while (!frontStudents[choice].alive) {
@@ -424,11 +425,15 @@ function studentAI() {
         //console.log('Selected student number: ' + choice);
         frontStudents[choice].fire();
     }, 2000)
+    if(gameOver==true){
+        window.clearInterval(intervalId);
+    }
 }
 
 // Method that controls the special student's movement
 
 function specialStudentAI() {
+    
     repetitions = 0;
     intervalId = setInterval(function () {
         var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
@@ -439,6 +444,9 @@ function specialStudentAI() {
             repetitions = 0;
         }
     }, 15000);
+    if(gameOver==true){
+        window.clearInterval(intervalId);
+    }
 }
 
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
@@ -1189,6 +1197,13 @@ class Teacher {
             if (!this.lives) {
                 console.log('Game over');
                 gameOver = true;
+                var canvas = document.getElementById("my-canvas");
+     
+    canvas.style.display = "none";
+    canvas=null;
+    var cenv = document.getElementById("end-canvas");
+    cenv.style.display = "block";
+    outro();
             }
         }
     }
