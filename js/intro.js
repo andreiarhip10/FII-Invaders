@@ -7,6 +7,14 @@ function introCanvas() {
     var canvas = document.getElementById("intro-canvas");
     canvas.style.display = "block";
 
+    var top;
+    document.getElementById("result").innerHTML=" ";
+      for (var i = 0, len = localStorage.length; i < len; ++i) {
+          top = localStorage.getItem(localStorage.key(i));
+          document.getElementById("result").innerHTML += top + "<br />";
+      }
+  
+
     var ctx = canvas.getContext('2d');
     var width = canvas.getAttribute('width');
     var height = canvas.getAttribute('height');

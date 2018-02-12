@@ -530,6 +530,14 @@ function checkGameOver() {
     window.clearInterval(specialInterval);
     window.clearInterval(projectileInterval);
     window.clearInterval(teacherProjectileInterval);
+
+    var top;
+    var len = localStorage.length;
+    localStorage.setItem(len, username + " " + score);
+    top = localStorage.getItem(localStorage.key(len));
+    document.getElementById("result").innerHTML += top + "<br />";
+
+    //localStorage.clear();
 }
 
 //Student class

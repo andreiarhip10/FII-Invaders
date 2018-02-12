@@ -43,23 +43,12 @@ window.fbAsyncInit=function () {
     //console.log("nope");
     FB.api('/'+user_id, {access_token : access_token}, function(response) {
       username=response.name;
-      use_name();
   });
   });
   
 };
-function use_name(){
-  console.log(username);
-//   var txtFile = "highscores.txt";
-//   var file = new File([],txtFile);
-//   var str = "My string of text";
 
-// file.open("w"); // open file with write access
-// file.writeln(username);
-// file.writeln("Second line of text " + str);
-// file.write(str);
-// file.close();
 
-}
+
 
 
