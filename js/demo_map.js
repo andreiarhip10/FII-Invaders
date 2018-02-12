@@ -158,5 +158,5 @@ function drawc2()
 	ctx.lineTo(283,93);
 	ctx.stroke();
 }
-drawc2();
+//drawc2();
 

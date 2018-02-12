@@ -930,25 +930,36 @@ class Student {
         if (this.type == 'normal') {
             this.erase();
             var repetitions = 0;
-            var ctx = this.context;
-            var explosionX = this.x;
-            var explosionY = this.y;
+            var student = this;
             var intervalId = setInterval(function () {
-                ctx.fillStyle = 'red';
-                ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
-                setTimeout(function () {
-                    ctx.fillStyle = 'yellow';
-                    ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
-                }, 5);
-                if (++repetitions == 50) {
+                student.context.fillStyle = 'red';
+                student.context.font = "4pt 'Press Start 2P'";
+                student.context.fillText('Picat!', student.x - 8, student.y);
+                if (++repetitions == 1) {
                     window.clearInterval(intervalId);
-                    console.log('Explosion finished.');
-                    setTimeout(function () {
-                        ctx.fillStyle = '#a9c8fc';
-                        ctx.fillRect(explosionX - 1, explosionY - 1, 9, 9);
+                    repetitions = 0;
+                    intervalId = setInterval(function () {
+                        student.context.fillStyle = 'yellow';
+                        student.context.font = "4pt 'Press Start 2P'";
+                        student.context.fillText('Picat!', student.x - 8, student.y);
+                        if (++repetitions == 1) {
+                            window.clearInterval(intervalId);
+                            repetitions = 0;
+                            intervalId = setInterval(function () {
+                                student.context.fillStyle = 'red';
+                                student.context.font = "4pt 'Press Start 2P'";
+                                student.context.fillText('Picat!', student.x - 8, student.y);
+                                if (++repetitions == 1) {
+                                    window.clearInterval(intervalId);
+                                    repetitions = 0;
+                                    student.context.fillStyle = '#a9c8fc';
+                                    student.context.fillRect(student.x - 10, student.y - 5, 35, 5);
+                                }
+                            }, 100);
+                        }
                     }, 100);
                 }
-            }, 20)
+            }, 100)
         }
         if (this.type == 'special') {
             this.erase();
