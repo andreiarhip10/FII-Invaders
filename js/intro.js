@@ -1,6 +1,7 @@
-var buraga;
-var varlan;
-var iftene;
+
+var profs;
+var prof_choice;
+
 
 function introCanvas() {
     var canvas = document.getElementById("intro-canvas");
@@ -16,6 +17,7 @@ function introCanvas() {
     buraga = new Image();
     varlan = new Image();
     iftene = new Image();
+    profs=[buraga,varlan,iftene];
 
 
     var posX = [30, 125, 220];
@@ -204,12 +206,18 @@ function introCanvas() {
                 ctx.fillStyle = "white";
                 ctx.shadowBlur = 12;
                 ctx.shadowColor = "white";
-                if (hover_b)
+                if (hover_b){
                     ctx.drawImage(buraga, posX[0], posY[0], 54, 55);
-                if (hover_v)
+                    prof_choice=0;
+                }
+                if (hover_v){
                     ctx.drawImage(varlan, posX[1], posY[1], 53, 53);
-                if (hover_i)
+                    prof_choice=1;
+                }
+                if (hover_i){
                     ctx.drawImage(iftene, posX[2], posY[2], 52, 52);
+                    prof_choice=2;
+                }
 
                 clicked = false;
                 hovered = true;

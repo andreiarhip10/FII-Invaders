@@ -1231,7 +1231,8 @@ class Teacher {
     draw() {
         //this.context.fillStyle = 'black';
         //this.context.fillRect(this.x, this.y, 20, 10);
-        this.context.drawImage(varlan, this.x, this.y, 20, 20); //  apply image to all methods that use teacher.draw()
+        console.log(prof_choice);
+        this.context.drawImage(profs[prof_choice], this.x, this.y, 20, 20); //  apply image to all methods that use teacher.draw()
     }
     erase() {
         this.context.fillStyle = '#a9c8fc';
