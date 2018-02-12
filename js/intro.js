@@ -1,3 +1,6 @@
+var buraga;
+var varlan;
+var iftene;
 
 function introCanvas() {
     var canvas = document.getElementById("intro-canvas");
@@ -10,9 +13,9 @@ function introCanvas() {
     // var canvasInfo = canvas.getBoundingClientRect();
     //                 console.log(canvasInfo.height);
     //                 console.log(canvasInfo.width);
-    var buraga = new Image();
-    var varlan = new Image();
-    var iftene = new Image();
+    buraga = new Image();
+    varlan = new Image();
+    iftene = new Image();
 
 
     var posX = [30, 125, 220];
@@ -120,7 +123,7 @@ function introCanvas() {
                 if (mx > 0 && mx < 300) {
                     can_start = true;
                 }
-                else can_start=false;
+                else can_start = false;
         }
     }
 
@@ -169,20 +172,20 @@ function introCanvas() {
 
             var cnv = document.getElementById("end-canvas");
             ctx.clearRect(0, 0, 300, 300);
-            
+
             // canvas.style.display="none";
-             
+
             // cnv.style.display = "block";
-            hovered=false;
+            hovered = false;
             var canvas = document.getElementById("intro-canvas");
             // ctx.clearRect(0, 0, 300, 300);
             var cnv = document.createElement('canvas'),
-            newContext = canvas.getContext('2d');
-        // Insert the new canvas after the old one
-        canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
-        // Remove old canvas. Now the new canvas has its position.
-        canvas.parentNode.removeChild(canvas);
-        cnv.id="intro-canvas";
+                newContext = canvas.getContext('2d');
+            // Insert the new canvas after the old one
+            canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+            // Remove old canvas. Now the new canvas has its position.
+            canvas.parentNode.removeChild(canvas);
+            cnv.id = "intro-canvas";
             //canvas.style.display="none";
             //canvas=null;  
             cnv.style.display = "none";

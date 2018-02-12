@@ -18,6 +18,12 @@ var deskBits = [];
 // Variable that checks if GAME OVER
 var gameOver;
 
+// Variables for various intervals
+var normalInterval;
+var specialInterval;
+var projectileInterval;
+var teacherProjectileInterval;
+
 // Function for score cheking - used when awarding bonus life - ANIMATION FOR EXTRA LIFE
 
 function checkScore() {
@@ -161,6 +167,15 @@ function drawTables() {
     ctx.moveTo(162, 112.5);
     ctx.lineTo(239.5, 112.5);
     ctx.stroke();
+}
+
+// Method for drawing shield desk
+
+function drawDesk() {
+    for (var i = 0; i < 8; i++) {
+        deskBits.push(new Desk(ctx, 110 + i * 10, 120, 5));
+        deskBits[i].draw();
+    }
 }
 
 // Method for drawing C2 amphitheatre
@@ -345,7 +360,7 @@ function checkIfAllDead() {
         }
     }
     if (allDead) {
-        console.log('All dead!');
+        //console.log('All dead!');
         return true;
     } else {
         return false;
@@ -413,53 +428,108 @@ function drawStudents() {
     }
 }
 
+// Method for moving students
+
+function moveStudents() {
+    for (var i = 0; i < listOfStudents.length; i++) {
+        if (listOfStudents[i].type == 'normal') {
+            listOfStudents[i].move();
+        }
+    }
+}
+
 // Methods that coordinates students' projectiles. Randomly choses a student from the front row. If no student is available on that line, another student will be chosen. Only student in front row shoot.
 
 function studentAI() {
-    
-    setInterval(function () {
+
+    normalInterval = setInterval(function () {
         var choice = Math.floor(Math.random() * (frontStudents.length))
         while (!frontStudents[choice].alive) {
             choice = Math.floor(Math.random() * (frontStudents.length))
         }
+        //console.log(frontStudents);
+        //console.log('Chose student: ' + choice);
         //console.log('Selected student number: ' + choice);
         frontStudents[choice].fire();
+        //console.log('Firing.')
     }, 2000)
-    if(gameOver==true){
-        window.clearInterval(intervalId);
-    }
+
 }
 
 // Method that controls the special student's movement
 
 function specialStudentAI() {
-    
-    repetitions = 0;
-    intervalId = setInterval(function () {
+
+    var repetitions = 0;
+    specialInterval = setInterval(function () {
+        // Open door
+        ctx.fillStyle = 'black';
+        ctx.fillRect(138, 1, 10, 14);
         var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+        console.log('Created special student.');
         listOfStudents.push(specialStudent);
-        console.log(listOfStudents);
+        //console.log(listOfStudents);
         specialStudent.move();
         if (++repetitions == 1) {
             repetitions = 0;
+            var intervalId = setInterval(function () {
+                // Closed door
+                ctx.fillStyle = 'brown';
+                ctx.fillRect(138, 2, 9, 12);
+                ctx.fillStyle = 'black';
+                ctx.fillRect(145, 9, 2, 2);
+                if (++repetitions % 2 == 1) {
+                    repetitions = 0;
+                    window.clearInterval(intervalId);
+                }
+            }, 8000)
         }
-    }, 15000);
-    if(gameOver==true){
-        window.clearInterval(intervalId);
-    }
+    }, 10000);
 }
 
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
 
 function changeLevel() {
     listOfStudents = [];
+    deskBits = [];
     drawStudents();
+    drawDesk();
     studentAI();
-    for (var i = 0; i < listOfStudents.length; i++) {
-        if (listOfStudents[i].type == 'normal') {
-            listOfStudents[i].move();
-        }
-    }
+    moveStudents();
+}
+
+// Method used for checking for losing condition
+
+function checkGameOver() {
+    var cnv = document.getElementById("my-canvas");
+    ctx.clearRect(0, 0, 300, 300);
+
+    // canvas.style.display="none";
+
+    // cnv.style.display = "block";
+    hovered = false;
+    var canvas = document.getElementById("my-canvas");
+    // ctx.clearRect(0, 0, 300, 300);
+    var cnv = document.createElement('canvas'),
+        newContext = canvas.getContext('2d');
+    // Insert the new canvas after the old one
+    canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+    // Remove old canvas. Now the new canvas has its position.
+    canvas.parentNode.removeChild(canvas);
+    cnv.id = "my-canvas";
+    //canvas.style.display="none";
+    //canvas=null;  
+    cnv.style.display = "none";
+    var cenv = document.getElementById("end-canvas");
+    cenv.style.display = "block";
+    outro();
+    listOfStudents = [];
+    deskBits = [];
+    frontStudents = [];
+    window.clearInterval(normalInterval);
+    window.clearInterval(specialInterval);
+    window.clearInterval(projectileInterval);
+    window.clearInterval(teacherProjectileInterval);
 }
 
 //Student class
@@ -477,6 +547,7 @@ class Student {
     }
     draw() {
         if (this.type == 'normal') {
+            //console.log('Drawing student...')
             this.context.fillStyle = 'black';
             //this.context.fillRect(this.x, this.y, 7, 7);
             this.context.fillRect(this.x + 1, this.y, 5, 3);
@@ -713,6 +784,8 @@ class Student {
                                                                             // Losing condition - bottom students reach desk
                                                                             console.log('Game over.')
                                                                             gameOver = true;
+                                                                            window.clearInterval(intervalId);
+                                                                            checkGameOver();
                                                                         }
                                                                         if (++repetitions == 1) {
                                                                             window.clearInterval(intervalId);
@@ -754,6 +827,8 @@ class Student {
                                                                                                 // Losing condition - bottom students reach desk
                                                                                                 console.log('Game over.')
                                                                                                 gameOver = true;
+                                                                                                window.clearInterval(intervalId);
+                                                                                                checkGameOver();
                                                                                             }
                                                                                             if (++repetitions == 1) {
                                                                                                 window.clearInterval(intervalId);
@@ -795,6 +870,8 @@ class Student {
                                                                                                                     // Losing condition - bottom students reach desk
                                                                                                                     console.log('Game over.')
                                                                                                                     gameOver = true;
+                                                                                                                    window.clearInterval(intervalId);
+                                                                                                                    checkGameOver();
                                                                                                                 }
                                                                                                                 if (++repetitions == 1) {
                                                                                                                     window.clearInterval(intervalId);
@@ -825,7 +902,7 @@ class Student {
                 }
             }, 600)
         }
-        if (this.type == 'special') {
+        if (this.type == 'special' && this.alive) {
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
@@ -862,9 +939,9 @@ class Student {
                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                         }
-                         if (!student.alive && student.x <= 260) {
-                             student.erase();
-                         }
+                        if (!student.alive && student.x <= 260) {
+                            student.erase();
+                        }
                         if (++repetitions == 200 && student.alive) {
                             window.clearInterval(intervalId);
                             repetitions = 0;
@@ -908,6 +985,7 @@ class Student {
                                         if (++repetitions == 100 && student.alive) {
                                             window.clearInterval(intervalId);
                                             student.erase();
+                                            student.alive = false;
                                         }
                                     }, 5)
                                 }
@@ -920,11 +998,14 @@ class Student {
     }
     fire() {
         if (this.type == 'normal') {
+            //console.log(listOfStudents);
             var projectile = new Projectile(this.context, this.x, this.y, 'student');
-            setInterval(function () {
+            //console.log('Projectile info: ' + projectile.x + ' ' + projectile.y);
+            projectileInterval = setInterval(function () {
                 projectile.travel();
             }, 20)
         }
+
     }
     explode() {
         if (this.type == 'normal') {
@@ -964,23 +1045,24 @@ class Student {
         if (this.type == 'special') {
             this.erase();
             var repetitions = 0;
-            var ctx = this.context;
-            var explosionX = this.x;
-            var explosionY = this.y;
+            var student = this;
             var intervalId = setInterval(function () {
-                ctx.fillStyle = 'yellow';
-                ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
+                student.context.fillStyle = 'yellow';
+                var pixelX = Math.floor(Math.random() * (student.x + 6 - student.x)) + student.x;
+                var pixelY = Math.floor(Math.random() * (student.y - student.y - 3)) + student.y;
+                student.context.fillRect(pixelX, pixelY, 2, 2);
                 setTimeout(function () {
-                    ctx.fillStyle = 'red';
-                    ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
-                }, 5);
+                    student.context.fillStyle = 'red';
+                    var pixelX = Math.floor(Math.random() * (student.x + 6 - student.x)) + student.x;
+                    var pixelY = Math.floor(Math.random() * (student.y - student.y - 3)) + student.y;
+                    student.context.fillRect(pixelX, pixelY, 2, 2);
+                }, 10);
                 if (++repetitions == 50) {
                     window.clearInterval(intervalId);
                     console.log('Special student explosion finished.');
                     setTimeout(function () {
-                        ctx.fillStyle = '#a9c8fc';
-                        ctx.fillRect(explosionX - 1, explosionY - 1, 11, 6);
-                    }, 100);
+                        student.erase();
+                    }, 50);
                 }
             }, 20)
         }
@@ -988,6 +1070,7 @@ class Student {
     die() {
         if (this.type == 'normal') {
             if (this.alive) {
+                window.clearInterval(specialInterval);
                 this.explode();
                 this.alive = false;
                 // After each kill, check if all students are dead. If true, advance to next level.
@@ -1032,6 +1115,7 @@ class Projectile {
     draw() {
         this.context.fillStyle = 'black';
         this.context.fillRect(this.x, this.y, 1, 2)
+        //console.log('Drawing projectile ...');
     }
     erase() {
         this.context.fillStyle = '#a9c8fc';
@@ -1049,6 +1133,7 @@ class Projectile {
                         listOfStudents[i].die();
                         this.erase();
                         this.y = -2;
+                        //window.clearInterval(teacherProjectileInterval);
                         // Adding student score on death - DRAW SCORE FUNCTION
                         eraseScore(score);
                         score = score + listOfStudents[i].score;
@@ -1062,11 +1147,13 @@ class Projectile {
                         listOfStudents[i].die();
                         this.erase();
                         this.y = -2;
+                        //window.clearInterval(teacherProjectileInterval);
                         eraseScore(score);
                         score = score + listOfStudents[i].score;
                         drawScore(score);
                         console.log(score);
                         checkScore();
+                        //listOfStudents.splice(-1, 1);  
                     }
                 }
             }
@@ -1079,11 +1166,13 @@ class Projectile {
                         deskBits[i].durabilityCheck();
                         this.erase();
                         this.y = -2;
+                        //window.clearInterval(teacherProjectileInterval);
                     }
                 }
             }
             if (this.y <= 17) {
                 this.erase();
+                //window.clearInterval(teacherProjectileInterval);
             }
             else {
                 this.erase();
@@ -1094,16 +1183,14 @@ class Projectile {
             }
         }
         if (this.type == 'student') {
-            this.erase();
-            //console.log(this.x);
-            this.y = this.y + 2;
-            this.draw();
-            drawTables();
+
             //console.log(this.y);
+            // Check if projectile reached teacher
             if ((this.x >= teacher.x) && (this.x <= teacher.x + 20) && (this.y >= teacher.y) && (this.y <= teacher.y + 10)) {
                 teacher.die();
                 this.erase();
                 this.y = 140;
+                window.clearInterval(projectileInterval);
 
             }
             for (var i = 0; i < deskBits.length; i++) {
@@ -1115,11 +1202,18 @@ class Projectile {
                         deskBits[i].durabilityCheck();
                         this.erase();
                         this.y = 140;
+                        window.clearInterval(projectileInterval);
                     }
                 }
             }
             if (this.y >= 138) {
                 this.erase();
+                window.clearInterval(projectileInterval);
+            } else {
+                this.erase();
+                this.y = this.y + 2;
+                this.draw();
+                drawTables();
             }
         }
     }
@@ -1135,8 +1229,9 @@ class Teacher {
         this.lives = lives;
     }
     draw() {
-        this.context.fillStyle = 'black';
-        this.context.fillRect(this.x, this.y, 20, 10);
+        //this.context.fillStyle = 'black';
+        //this.context.fillRect(this.x, this.y, 20, 10);
+        this.context.drawImage(varlan, this.x, this.y, 20, 20); //  apply image to all methods that use teacher.draw()
     }
     erase() {
         this.context.fillStyle = '#a9c8fc';
@@ -1160,7 +1255,7 @@ class Teacher {
     }
     fire() {
         var projectile = new Projectile(this.context, this.x, this.y, 'teacher');
-        setInterval(function () {
+        teacherProjectileInterval = setInterval(function () {
             projectile.travel();
         }, 20)
     }
@@ -1208,13 +1303,11 @@ class Teacher {
             if (!this.lives) {
                 console.log('Game over');
                 gameOver = true;
-                var canvas = document.getElementById("my-canvas");
-     
-    canvas.style.display = "none";
-    canvas=null;
-    var cenv = document.getElementById("end-canvas");
-    cenv.style.display = "block";
-    outro();
+                window.clearInterval(normalInterval);
+                window.clearInterval(specialInterval);
+                window.clearInterval(projectileInterval);
+                window.clearInterval(teacherProjectileInterval);
+                checkGameOver();
             }
         }
     }
@@ -1249,6 +1342,23 @@ class Desk {
     }
 }
 
+//Check pressed keys, call methods accordingly
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode == '65') {
+        teacher.moveLeft();
+        //console.log(teacher.x);
+        //console.log(teacher.y);
+    }
+    if (e.keyCode == '68') {
+        teacher.moveRight();
+        //console.log(teacher.x);
+        //sconsole.log(teacher.y);
+    }
+    if (e.keyCode == '87') {
+        teacher.fire();
+    }
+}, false)
+
 function initiateCanvas() {
 
     var canvas = document.getElementById("my-canvas");
@@ -1266,7 +1376,7 @@ function initiateCanvas() {
     gameOver = false;
 
     //Initiate teacher location
-    teacher = new Teacher(ctx, 140, 130, true, 3);
+    teacher = new Teacher(ctx, 140, 130, true, 1);
 
     // Draw background
 
@@ -1277,23 +1387,6 @@ function initiateCanvas() {
     livesArea();
     drawLives(teacher.lives);
     //eraseLives(teacher.lives);
-
-    //Check pressed keys, call methods accordingly
-    window.addEventListener('keydown', function (e) {
-        if (e.keyCode == '65') {
-            teacher.moveLeft();
-            //console.log(teacher.x);
-            //console.log(teacher.y);
-        }
-        if (e.keyCode == '68') {
-            teacher.moveRight();
-            //console.log(teacher.x);
-            //sconsole.log(teacher.y);
-        }
-        if (e.keyCode == '87') {
-            teacher.fire();
-        }
-    }, false)
 
     //Draw the teacher
     teacher.draw();
@@ -1326,25 +1419,30 @@ function initiateCanvas() {
     drawTables();
 
     // Creating + drawing desk
-    for (var i = 0; i < 8; i++) {
-        deskBits.push(new Desk(ctx, 110 + i * 10, 120, 5));
-        deskBits[i].draw();
-    }
+    drawDesk();
 
     drawStudents();
-    for (var i = 0; i < listOfStudents.length; i++) {
-        if (listOfStudents[i].type == 'normal') {
-            //listOfStudents[i].move();
-        }
-    }
 
-    // var specialStudent = new Student(ctx, 140, 95, null, null, null, true, 'special', 100);
-    // specialStudent.draw();
-    // specialStudent.move();
+    //moveStudents();
+
+    //   var specialStudent = new Student(ctx, 140, 95, null, null, null, true, 'special', 100);
+    //   listOfStudents.push(specialStudent);
+    //   specialStudent.draw();
+    //   specialStudent.move();
 
     studentAI();
 
     specialStudentAI();
 
+    /*
+    // Open door
+    ctx.fillStyle = 'black';
+    ctx.fillRect(138, 1, 10, 14);
 
+    // Closed door
+    ctx.fillStyle = 'brown';
+    ctx.fillRect(138, 2, 9, 12);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(145, 9, 2, 2);
+    */
 }
