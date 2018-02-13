@@ -57,7 +57,15 @@
 			<p>Primul contact cu aplicatia este pagina de log-in, unde utilizatorul poate sa se conecteze cu contul de Facebook sau sa participe in calitate de vizitator.</p>
 			<p>Dupa ce intra in aplicatie, aceasta va interactiona cu utilizatorul prin intermediul UI-ului oferit si a controalelor puse la dispozitie (disponibile in sectiunea "rules" de pe pagina jocului).</p>
 		<h2>Arhitectura aplicatiei</h2>
-			<p>Aplicatia este realizata integral pe partea de client, fara a avea nicio componenta realizata utilizand un server. Astfel, utilitatile sunt oferite la nivel local, iar toate cererile sunt preluate si prelucrate in browser.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este realizata integral pe partea de client, fara a avea nicio componenta realizata utilizand un server. Astfel, utilitatile sunt oferite la nivel local, iar toate cererile sunt preluate si prelucrate in browser.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este construita orientat-obiect. Sunt folosite 4 clase - Student, Teacher, Projectile si Desk.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Student</b> poate fi de 2 feluri, special si normal. Studentii normali sunt cei obligatoriu de eliminat. Daca acestia ajung la nivel cu profesorul, se indeplineste conditia de Game Over. Acestia actioneaza pe baza unei metode studentAI, care foloseste un vector pentru a-i selecta pe studentii din fata pentru a arunca proiectile.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;De fiecare data cand un student lanseaza un proiectil, se creeaza o noua instanta a clasei <b>Projectile</b>, care are metode pentru a se deplasa si pentru a detecta eventual inamici sau obstacole. Proiectilele pot fi de asemenea de 2 feluri, de profesor si de student.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;O alta functie care controleaza comportamentul studentilor, si anume a studentului special, este specialStudentAI. Aceasta manipuleaza miscarile studentului special, animatiile acestuia.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Clasa <b>Teacher</b> controleaza comportamentul profesorului (vom avea o singura instanta, creata atunci cand apelam functia initiateCanvas()), care va avea, de asemena, metode pentru miscare, lansare de proiectile, moarte.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultima clasa folosite este <b>Desk</b>, cu ajutorul careia construim bariera protectoare (catedra).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Odata lansat, jocul intra in executia a 2 loopuri, unul care verifica conditia de oprire si reinitializeaza canvasul si altul care controleaza schimbarea nivelelor, atunci cand toti studentii normali sunt eliminati.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Exista, de asemena, sisteme pentru <b>vieti</b> (profesorul incepe cu 3 vieti, primeste cate o viata bonus la fiecare 400 de puncte obtinute) si pentru <b>scor</b>, obtinut prin eliminarea studentilor de orice fel, scopul jocului in sine fiind obtinerea unui scor cat mai mare.</p>
 		<h2>Modelul datelor, API-uri externe, solutii de stocare</h2>
 			<p>Login-ul va folosi API-ul oferit de Facebook pentru preluarea datelor utilizatorului (poza, nume). Datele sunt stocate in browser, folosind cookies, care sunt folosite pentru preluarea highscore-urilor (disponibile in sectiunea highscores a paginii jocului).</p>
 		<h2>Folosirea sistemului de management a codului-sursa</h2>
