@@ -1138,15 +1138,17 @@ class Student {
             var student = this;
             var intervalId = setInterval(function () {
                 // First movement to the right
-                student.erase();
-                student.x = student.x + 1;
-                student.draw();
+                if (listOfStudents.includes(student)) {
+                    student.erase();
+                    student.x = student.x + 1;
+                    student.draw();
+                }
                 if (repetitions % 2 == 0 && student.alive) {
                     student.context.fillStyle = 'red';
                     student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                     student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                 }
-                if (!student.alive) {
+                if (!student.alive && listOfStudents.includes(student)) {
                     student.erase();
                 }
                 if (++repetitions == 10) {
@@ -1154,7 +1156,9 @@ class Student {
                     repetitions = 0;
                     intervalId = setInterval(function () {
                         // First movement downwards
-                        student.moveDown();
+                        if (listOfStudents.includes(student)) {
+                            student.moveDown();
+                        }
                         if (repetitions % 2 == 0 && student.alive) {
                             student.context.fillStyle = 'red';
                             student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
@@ -1165,15 +1169,17 @@ class Student {
                             repetitions = 0;
                             intervalId = setInterval(function () {
                                 // First movement to the left
-                                student.erase();
-                                student.x = student.x - 1;
-                                student.draw();
+                                if (listOfStudents.includes(student)) {
+                                    student.erase();
+                                    student.x = student.x - 1;
+                                    student.draw();
+                                }
                                 if (repetitions % 2 == 1 && student.alive) {
                                     student.context.fillStyle = 'red';
                                     student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                     student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                 }
-                                if (!student.alive) {
+                                if (!student.alive && listOfStudents.includes(student)) {
                                     student.erase();
                                 }
                                 if (++repetitions == 10) {
@@ -1181,7 +1187,9 @@ class Student {
                                     repetitions = 0;
                                     intervalId = setInterval(function () {
                                         // Second movement downwards
-                                        student.moveDown();
+                                        if (listOfStudents.includes(student)) {
+                                            student.moveDown();
+                                        }
                                         if (repetitions % 2 == 1 && student.alive) {
                                             student.context.fillStyle = 'red';
                                             student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
@@ -1192,15 +1200,17 @@ class Student {
                                             repetitions = 0;
                                             intervalId = setInterval(function () {
                                                 // Second movement to the right
-                                                student.erase();
-                                                student.x = student.x + 1;
-                                                student.draw();
+                                                if (listOfStudents.includes(student)) {
+                                                    student.erase();
+                                                    student.x = student.x + 1;
+                                                    student.draw();
+                                                }
                                                 if (repetitions % 2 == 0 && student.alive) {
                                                     student.context.fillStyle = 'red';
                                                     student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                                     student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                                 }
-                                                if (!student.alive) {
+                                                if (!student.alive && listOfStudents.includes(student)) {
                                                     student.erase();
                                                 }
                                                 if (++repetitions == 10) {
@@ -1208,7 +1218,9 @@ class Student {
                                                     repetitions = 0;
                                                     intervalId = setInterval(function () {
                                                         // Third movement downwards
-                                                        student.moveDown();
+                                                        if (listOfStudents.includes(student)) {
+                                                            student.moveDown();
+                                                        }
                                                         if (repetitions % 2 == 0 && student.alive) {
                                                             student.context.fillStyle = 'red';
                                                             student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
@@ -1219,15 +1231,17 @@ class Student {
                                                             repetitions = 0;
                                                             intervalId = setInterval(function () {
                                                                 // Second movement to the left
-                                                                student.erase();
-                                                                student.x = student.x - 1;
-                                                                student.draw();
+                                                                if (listOfStudents.includes(student)) {
+                                                                    student.erase();
+                                                                    student.x = student.x - 1;
+                                                                    student.draw();
+                                                                }
                                                                 if (repetitions % 2 == 1 && student.alive) {
                                                                     student.context.fillStyle = 'red';
                                                                     student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                                                     student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                                                 }
-                                                                if (!student.alive) {
+                                                                if (!student.alive && listOfStudents.includes(student)) {
                                                                     student.erase();
                                                                 }
                                                                 if (++repetitions == 10) {
@@ -1243,20 +1257,22 @@ class Student {
                                                                             }
                                                                         }
                                                                         if (!onRow) {
-                                                                            student.moveDown();
+                                                                            if (listOfStudents.includes(student)) {
+                                                                                student.moveDown();
+                                                                            }
                                                                             if (repetitions % 2 == 1 && student.alive) {
                                                                                 student.context.fillStyle = 'red';
                                                                                 student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                                                                 student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                                                             }
                                                                         } else {
-                                                                            // Losing condition - bottom students reach desk
+                                                                            // Losing condition - bottom students reach desk - TO IMPLEMENT - CHECK LAST STUDENT COORDINATES
                                                                             console.log('Game over.')
                                                                             gameOver = true;
-                                                                            if (justChanged) {
+                                                                            window.clearInterval(intervalId);
+                                                                            if (!listOfStudents.includes(student)) {
                                                                                 gameOver = false;
                                                                             }
-                                                                            window.clearInterval(intervalId);
                                                                             checkGameOver();
                                                                         }
                                                                         if (++repetitions == 1) {
@@ -1265,15 +1281,17 @@ class Student {
                                                                             if (student.alive) {
                                                                                 intervalId = setInterval(function () {
                                                                                     // Third movement to the right
-                                                                                    student.erase();
-                                                                                    student.x = student.x + 1;
-                                                                                    student.draw();
+                                                                                    if (listOfStudents.includes(student)) {
+                                                                                        student.erase();
+                                                                                        student.x = student.x + 1;
+                                                                                        student.draw();
+                                                                                    }
                                                                                     if (repetitions % 2 == 0 && student.alive) {
                                                                                         student.context.fillStyle = 'red';
                                                                                         student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                                                                         student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                                                                     }
-                                                                                    if (!student.alive) {
+                                                                                    if (!student.alive && listOfStudents.includes(student)) {
                                                                                         student.erase();
                                                                                     }
                                                                                     if (++repetitions == 10) {
@@ -1289,7 +1307,9 @@ class Student {
                                                                                                 }
                                                                                             }
                                                                                             if (!onRow) {
-                                                                                                student.moveDown();
+                                                                                                if (listOfStudents.includes(student)) {
+                                                                                                    student.moveDown();
+                                                                                                }
                                                                                                 if (repetitions % 2 == 0 && student.alive) {
                                                                                                     student.context.fillStyle = 'red';
                                                                                                     student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
@@ -1299,7 +1319,7 @@ class Student {
                                                                                                 // Losing condition - bottom students reach desk
                                                                                                 console.log('Game over.')
                                                                                                 gameOver = true;
-                                                                                                if (justChanged) {
+                                                                                                if (listOfStudents.includes(student)) {
                                                                                                     gameOver = false;
                                                                                                 }
                                                                                                 window.clearInterval(intervalId);
@@ -1311,15 +1331,17 @@ class Student {
                                                                                                 if (student.alive) {
                                                                                                     intervalId = setInterval(function () {
                                                                                                         // Third movement to the left
-                                                                                                        student.erase();
-                                                                                                        student.x = student.x - 1;
-                                                                                                        student.draw();
+                                                                                                        if (listOfStudents.includes(student)) {
+                                                                                                            student.erase();
+                                                                                                            student.x = student.x - 1;
+                                                                                                            student.draw();
+                                                                                                        }
                                                                                                         if (repetitions % 2 == 1 && student.alive) {
                                                                                                             student.context.fillStyle = 'red';
                                                                                                             student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
                                                                                                             student.context.fillRect(student.x + 4, student.y + 1, 1, 1);
                                                                                                         }
-                                                                                                        if (!student.alive) {
+                                                                                                        if (!student.alive && listOfStudents.includes(student)) {
                                                                                                             student.erase();
                                                                                                         }
                                                                                                         if (++repetitions == 10) {
@@ -1335,7 +1357,9 @@ class Student {
                                                                                                                     }
                                                                                                                 }
                                                                                                                 if (!onRow) {
-                                                                                                                    student.moveDown();
+                                                                                                                    if (listOfStudents.includes(student)) {
+                                                                                                                        student.moveDown();
+                                                                                                                    }
                                                                                                                     if (repetitions % 2 == 1 && student.alive) {
                                                                                                                         student.context.fillStyle = 'red';
                                                                                                                         student.context.fillRect(student.x + 2, student.y + 1, 1, 1);
@@ -1345,7 +1369,7 @@ class Student {
                                                                                                                     // Losing condition - bottom students reach desk
                                                                                                                     console.log('Game over.')
                                                                                                                     gameOver = true;
-                                                                                                                    if (justChanged) {
+                                                                                                                    if (!listOfStudents.includes(student)) {
                                                                                                                         gameOver = false;
                                                                                                                     }
                                                                                                                     window.clearInterval(intervalId);
