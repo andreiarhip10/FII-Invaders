@@ -523,11 +523,11 @@ function redrawC2sides()
     //background
     // ctx.fillStyle="#4682B4";
     ctx.fillStyle="#f1f1f1";
-    ctx.fillRect(0,90,29,100);
-    ctx.fillRect(271,90,30,100);
+    ctx.fillRect(0,110,29,100);
+    ctx.fillRect(271,110,30,100);
     ctx.fillStyle="#CFA76E";
-    ctx.fillRect(26,90,4,100);
-    ctx.fillRect(271,90,3,100);
+    ctx.fillRect(26,110,4,100);
+    ctx.fillRect(271,110,3,100);
     //windows
     ctx.beginPath();
     ctx.lineCap="round";
@@ -561,11 +561,11 @@ function redrawC2sides()
 function redrawC112sides()
 {
     //caseta maro
-    ctx.fillStyle="#9A7B47";
-    ctx.fillRect(30,15,240,200);    
+    //ctx.fillStyle="#9A7B47";
+    //sctx.fillRect(30,15,240,200);    
     ctx.fillStyle="#f1f1f1";
-    ctx.fillRect(0, 90, 29, 100);
-    ctx.fillRect(271, 90, 30, 100);
+    ctx.fillRect(0, 110, 29, 100);
+    ctx.fillRect(271, 110, 30, 100);
     ctx.beginPath();
     ctx.strokeStyle="#CFA76E";
     ctx.lineWidth=2;
@@ -606,11 +606,11 @@ function redrawC112sides()
 function redrawC309sides()
 {
     //caseta pal-bej
-    ctx.fillStyle="#d8d09f";
-    ctx.fillRect(30,15,240,200);
+    //ctx.fillStyle="#d8d09f";
+    //ctx.fillRect(30,15,240,200);
     ctx.fillStyle="#f1f1f1";
-    ctx.fillRect(0, 90, 29, 100);
-    ctx.fillRect(271, 90, 30, 100);
+    ctx.fillRect(0, 110, 29, 100);
+    ctx.fillRect(271, 110, 30, 100);
     ctx.beginPath();
     ctx.strokeStyle="#CFA76E";
     ctx.lineWidth=2;
