@@ -882,7 +882,8 @@ function changeLevel() {
     window.clearInterval(normalInterval);
     window.clearInterval(specialInterval);
     window.clearInterval(projectileInterval);
-    window.clearInterval(teacherProjectileInterval);
+    //window.clearInterval(teacherProjectileInterval);
+    document.getElementById("changeLevel").play();
     var repetitions = 0;
     var intervalId = setInterval(function () {
         ctx.fillStyle = '#6d9ce8';
@@ -966,6 +967,8 @@ function checkGameOver() {
         document.getElementById('audio').pause();
         document.getElementById('audio').currentTime = 0;
 
+        document.getElementById("gameOver").play();
+
         var cnv = document.getElementById("my-canvas");
         ctx.clearRect(0, 0, 300, 300);
 
@@ -994,7 +997,7 @@ function checkGameOver() {
         window.clearInterval(normalInterval);
         window.clearInterval(specialInterval);
         window.clearInterval(projectileInterval);
-        window.clearInterval(teacherProjectileInterval);
+        //window.clearInterval(teacherProjectileInterval);
 
         var top;
         var len = localStorage.length;
@@ -1416,6 +1419,7 @@ class Student {
                 if (student.x <= 260) {
                     student.erase();
                     student.x = student.x + 1;
+                    document.getElementById("specialStudent").play();
                     student.draw();
                 }
                 if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) && student.alive) {
@@ -1436,6 +1440,7 @@ class Student {
                         if (student.x >= 32) {
                             student.erase();
                             student.x = student.x - 1;
+                            document.getElementById("specialStudent").play();
                             student.draw();
                         }
                         if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) || (repetitions >= 100 && repetitions <= 110) || (repetitions >= 120 && repetitions <= 130) || (repetitions >= 140 && repetitions <= 150) || (repetitions >= 160 && repetitions <= 170) || (repetitions >= 180 && repetitions <= 190) && student.alive) {
@@ -1456,6 +1461,7 @@ class Student {
                                 if (student.x <= 260) {
                                     student.erase();
                                     student.x = student.x + 1;
+                                    document.getElementById("specialStudent").play();
                                     student.draw();
                                 }
                                 if ((repetitions >= 0 && repetitions <= 10) || (repetitions >= 20 && repetitions <= 30) || (repetitions >= 40 && repetitions <= 50) || (repetitions >= 60 && repetitions <= 70) || (repetitions >= 80 && repetitions <= 90) || (repetitions >= 100 && repetitions <= 110) || (repetitions >= 120 && repetitions <= 130) || (repetitions >= 140 && repetitions <= 150) || (repetitions >= 160 && repetitions <= 170) || (repetitions >= 180 && repetitions <= 190) && student.alive) {
@@ -1476,6 +1482,7 @@ class Student {
                                         if (student.x >= 32) {
                                             student.erase();
                                             student.x = student.x - 1;
+                                            document.getElementById("specialStudent").play();
                                             student.draw();
                                         }
                                         if ((repetitions >= 0 && repetitions <= 20) || (repetitions >= 40 && repetitions <= 60) || (repetitions >= 80 && repetitions <= 100) || (repetitions >= 120 && repetitions <= 140) || (repetitions >= 160 && repetitions <= 180) && student.alive) {
@@ -1507,6 +1514,7 @@ class Student {
         if (this.type == 'normal') {
             //console.log(listOfStudents);
             var projectile = new Projectile(this.context, this.x, this.y, 'student');
+            document.getElementById('studentLaser').play();
             //console.log('Projectile info: ' + projectile.x + ' ' + projectile.y);
             projectileInterval = setInterval(function () {
                 projectile.travel();
@@ -1580,6 +1588,14 @@ class Student {
     }
     die() {
         if (this.type == 'normal') {
+            var deathChoice = Math.floor(Math.random() * 3) + 1;
+            if (deathChoice == 1) {
+                document.getElementById("death1").play();
+            } else if (deathChoice == 2) {
+                document.getElementById("death2").play();
+            } else if (deathChoice == 3) {
+                document.getElementById("death3").play();
+            }
             if (this.alive) {
                 //window.clearInterval(specialInterval);
                 this.explode();
@@ -1600,6 +1616,7 @@ class Student {
         }
         if (this.type == 'special') {
             if (this.alive) {
+                document.getElementById("specialDeath").play();
                 this.explode();
                 this.alive = false;
                 console.log('Special student is dead.');
@@ -1685,11 +1702,12 @@ class Projectile {
                     }
                 }
             }
-            if (justChanged) {
+            /*if (justChanged) {
                 this.y = -2;
-            }
+            }*/
             if (oldState < newState) {
                 this.y = -2;
+                newState = oldState;
             }
             if (this.y <= 17) {
                 this.erase();
@@ -1779,8 +1797,10 @@ class Teacher {
     }
     fire() {
         var projectile = new Projectile(this.context, this.x, this.y, 'teacher');
+        document.getElementById('teacherLaser').play();
         teacherProjectileInterval = setInterval(function () {
             projectile.travel();
+            //console.log(projectile.x + ' ' + projectile.y);
             /*if (projectile.y <= 0) {
                 window.clearInterval(teacherProjectileInterval);
             }*/
@@ -1902,14 +1922,13 @@ class Teacher {
                 this.y = 130;
                 this.draw();
             }
-            // TO IMPLEMENT - game over state
             if (!this.lives) {
                 console.log('Game over');
                 gameOver = true;
                 window.clearInterval(normalInterval);
                 window.clearInterval(specialInterval);
                 window.clearInterval(projectileInterval);
-                window.clearInterval(teacherProjectileInterval);
+                //window.clearInterval(teacherProjectileInterval);
                 checkGameOver();
             }
         }
