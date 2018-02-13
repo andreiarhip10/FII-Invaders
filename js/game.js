@@ -27,6 +27,8 @@ var teacherProjectileInterval;
 // Variables used when chaning level
 var justChanged;
 var levelAdvance;
+var oldState;
+var newState;
 
 // Variable used for background color
 var backgroundColor;
@@ -739,6 +741,7 @@ function checkIfAllDead() {
     }
     if (allDead) {
         //console.log('All dead!');
+        //justChanged = false;
         return true;
     } else {
         return false;
@@ -900,7 +903,9 @@ function changeLevel() {
             repetitions = 0;
             intervalId = setInterval(function () {
                 justChanged = true;
+                oldState = levelAdvance;
                 levelAdvance++;
+                newState = levelAdvance;
                 if (levelAdvance % 3 == 0) {
                     drawC2();
                 } else if (levelAdvance % 3 == 1) {
@@ -1681,6 +1686,9 @@ class Projectile {
                 }
             }
             if (justChanged) {
+                this.y = -2;
+            }
+            if (oldState < newState) {
                 this.y = -2;
             }
             if (this.y <= 17) {
