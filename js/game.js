@@ -24,6 +24,9 @@ var specialInterval;
 var projectileInterval;
 var teacherProjectileInterval;
 
+// Variable used when chaning level
+var justChanged;
+
 // Function for score cheking - used when awarding bonus life - ANIMATION FOR EXTRA LIFE
 
 function checkScore() {
@@ -490,12 +493,66 @@ function specialStudentAI() {
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
 
 function changeLevel() {
+    frontStudents = [];
     listOfStudents = [];
     deskBits = [];
-    drawStudents();
+    window.clearInterval(normalInterval);
+    window.clearInterval(specialInterval);
+    window.clearInterval(projectileInterval);
+    window.clearInterval(teacherProjectileInterval);
+    var repetitions = 0;
+    var intervalId = setInterval(function (listOfStudents) {
+        ctx.fillStyle = '#6d9ce8';
+        ctx.fillRect(0, 0, 400, 300);
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 2;
+        ctx.shadowColor = "#57575c";
+        ctx.shadowBlur = 3;
+        ctx.fillStyle = 'white';
+        ctx.font = "10px 'Press Start 2P'";
+        ctx.fillText("Eliminated all students!", 40, 70);
+        ctx.fillText("Advancing to next level ...", 23, 90);
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.shadowBlur = 0;
+        if (++repetitions == 1) {
+            window.clearInterval(intervalId);
+            repetitions = 0;
+            intervalId = setInterval(function () {
+                justChanged = true;
+                drawC2();
+                livesArea();
+                drawLives(teacher.lives);
+                scoreArea();
+                drawScore(score);
+                drawTables();
+                drawDesk();
+                teacher.x = 140;
+                teacher.y = 130;
+                teacher.draw();
+                justChanged = false;
+                drawStudents();
+                studentAI();
+                specialStudentAI();
+                if (++repetitions == 1) {
+                    window.clearInterval(intervalId);
+                }
+            }, 1500);
+        }
+    })
+    /*drawC2();
+    livesArea();
+    drawLives(teacher.lives);
+    scoreArea();
+    drawScore(score);
+    drawTables();
     drawDesk();
+    teacher.draw();
+    drawStudents();
     studentAI();
-    moveStudents();
+    specialStudentAI();*/
+
+    //moveStudents();
 }
 
 // Method used for checking for losing condition
@@ -1017,36 +1074,40 @@ class Student {
     }
     explode() {
         if (this.type == 'normal') {
-            this.erase();
+            if (!checkIfAllDead()) {
+                this.erase();
+            }
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
-                student.context.fillStyle = 'red';
-                student.context.font = "4pt 'Press Start 2P'";
-                student.context.fillText('Picat!', student.x - 8, student.y);
-                if (++repetitions == 1) {
-                    window.clearInterval(intervalId);
-                    repetitions = 0;
-                    intervalId = setInterval(function () {
-                        student.context.fillStyle = 'yellow';
-                        student.context.font = "4pt 'Press Start 2P'";
-                        student.context.fillText('Picat!', student.x - 8, student.y);
-                        if (++repetitions == 1) {
-                            window.clearInterval(intervalId);
-                            repetitions = 0;
-                            intervalId = setInterval(function () {
-                                student.context.fillStyle = 'red';
-                                student.context.font = "4pt 'Press Start 2P'";
-                                student.context.fillText('Picat!', student.x - 8, student.y);
-                                if (++repetitions == 1) {
-                                    window.clearInterval(intervalId);
-                                    repetitions = 0;
-                                    student.context.fillStyle = '#a9c8fc';
-                                    student.context.fillRect(student.x - 10, student.y - 5, 35, 5);
-                                }
-                            }, 100);
-                        }
-                    }, 100);
+                if (!checkIfAllDead()) {
+                    student.context.fillStyle = 'red';
+                    student.context.font = "4pt 'Press Start 2P'";
+                    student.context.fillText('Picat!', student.x - 8, student.y);
+                    if (++repetitions == 1) {
+                        window.clearInterval(intervalId);
+                        repetitions = 0;
+                        intervalId = setInterval(function () {
+                            student.context.fillStyle = 'yellow';
+                            student.context.font = "4pt 'Press Start 2P'";
+                            student.context.fillText('Picat!', student.x - 8, student.y);
+                            if (++repetitions == 1) {
+                                window.clearInterval(intervalId);
+                                repetitions = 0;
+                                intervalId = setInterval(function () {
+                                    student.context.fillStyle = 'red';
+                                    student.context.font = "4pt 'Press Start 2P'";
+                                    student.context.fillText('Picat!', student.x - 8, student.y);
+                                    if (++repetitions == 1) {
+                                        window.clearInterval(intervalId);
+                                        repetitions = 0;
+                                        student.context.fillStyle = '#a9c8fc';
+                                        student.context.fillRect(student.x - 10, student.y - 5, 35, 5);
+                                    }
+                                }, 100);
+                            }
+                        }, 100);
+                    }
                 }
             }, 100)
         }
@@ -1134,7 +1195,7 @@ class Projectile {
     // TO IMPLEMENT - table redrawing function, called each time a projectile travels
 
     travel() {
-        if (this.type == 'teacher') {
+        if (this.type == 'teacher' && !checkIfAllDead()) {
             for (var i = 0; i < listOfStudents.length; i++) {
                 if (listOfStudents[i].type == 'normal') {
                     if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 7) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 7) && listOfStudents[i].alive) {
@@ -1144,24 +1205,28 @@ class Projectile {
                         //window.clearInterval(teacherProjectileInterval);
                         // Adding student score on death - DRAW SCORE FUNCTION
                         eraseScore(score);
-                        score = score + listOfStudents[i].score;
+                        if (listOfStudents[i] != undefined) {
+                            score = score + listOfStudents[i].score;
+                        }
                         drawScore(score);
                         console.log(score);
                         checkScore();
                     }
                 }
-                if (listOfStudents[i].type == 'special') {
-                    if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 10) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 5) && listOfStudents[i].alive) {
-                        listOfStudents[i].die();
-                        this.erase();
-                        this.y = -2;
-                        //window.clearInterval(teacherProjectileInterval);
-                        eraseScore(score);
-                        score = score + listOfStudents[i].score;
-                        drawScore(score);
-                        console.log(score);
-                        checkScore();
-                        //listOfStudents.splice(-1, 1);  
+                if (listOfStudents[i] != undefined) {
+                    if (listOfStudents[i].type == 'special') {
+                        if ((this.x >= listOfStudents[i].x && this.x <= listOfStudents[i].x + 10) && (this.y >= listOfStudents[i].y && this.y <= listOfStudents[i].y + 5) && listOfStudents[i].alive) {
+                            listOfStudents[i].die();
+                            this.erase();
+                            this.y = -2;
+                            //window.clearInterval(teacherProjectileInterval);
+                            eraseScore(score);
+                            score = score + listOfStudents[i].score;
+                            drawScore(score);
+                            console.log(score);
+                            checkScore();
+                            //listOfStudents.splice(-1, 1);  
+                        }
                     }
                 }
             }
@@ -1187,10 +1252,9 @@ class Projectile {
                 this.y = this.y - 2;
                 this.draw();
                 drawTables();
-
             }
         }
-        if (this.type == 'student') {
+        if (this.type == 'student' && !checkIfAllDead()) {
 
             //console.log(this.y);
             // Check if projectile reached teacher
@@ -1238,11 +1302,18 @@ class Teacher {
     }
     draw() {
         //console.log(prof_choice);
-        this.context.drawImage(profs[prof_choice], this.x, this.y - 2, 20, 21);
+        if (!checkIfAllDead()) {
+            this.context.drawImage(profs[prof_choice], this.x, this.y - 2, 20, 21);
+        }
+        if (justChanged) {
+            this.context.drawImage(profs[prof_choice], this.x, this.y - 2, 20, 21);
+        }
     }
     erase() {
-        this.context.fillStyle = '#a9c8fc';
-        this.context.fillRect(this.x, this.y - 1, 20, 20);
+        if (!checkIfAllDead()) {
+            this.context.fillStyle = '#a9c8fc';
+            this.context.fillRect(this.x, this.y - 1, 20, 20);
+        } 
     }
     moveRight() {
         if (this.x <= 240) {
@@ -1266,15 +1337,20 @@ class Teacher {
         if (prof_choice == 1) {
             var repetitions = 0;
             var teacher = this;
-            var intervalId = setInterval(function() {
+            var intervalId = setInterval(function () {
                 teacher.context.fillStyle = 'red';
                 teacher.context.fillRect(teacher.x + 9, teacher.y + 9, 1, 1);
                 teacher.context.fillRect(teacher.x + 13, teacher.y + 10, 1, 1);
                 if (++repetitions == 1) {
                     window.clearInterval(intervalId);
                     repetitions = 0;
-                    intervalId = setInterval(function() {
+                    intervalId = setInterval(function () {
                         teacher.draw();
+                        for (var i = 0; i < listOfStudents.length; i++) {
+                            if (listOfStudents[i].type == 'normal' && listOfStudents[i].alive) {
+                                listOfStudents[i].draw();
+                            }
+                        }
                         if (++repetitions == 1) {
                             window.clearInterval(intervalId);
                         }
@@ -1284,14 +1360,14 @@ class Teacher {
         } else if (prof_choice == 0) {
             var repetitions = 0;
             var teacher = this;
-            var intervalId = setInterval(function() {
+            var intervalId = setInterval(function () {
                 teacher.context.fillStyle = 'red';
                 teacher.context.fillRect(teacher.x + 5, teacher.y + 9, 1, 1);
                 teacher.context.fillRect(teacher.x + 8, teacher.y + 9, 1, 1);
                 if (++repetitions == 1) {
                     window.clearInterval(intervalId);
                     repetitions = 0;
-                    intervalId = setInterval(function() {
+                    intervalId = setInterval(function () {
                         teacher.draw();
                         if (++repetitions == 1) {
                             window.clearInterval(intervalId);
@@ -1302,14 +1378,14 @@ class Teacher {
         } else if (prof_choice == 2) {
             var repetitions = 0;
             var teacher = this;
-            var intervalId = setInterval(function() {
+            var intervalId = setInterval(function () {
                 teacher.context.fillStyle = 'red';
                 teacher.context.fillRect(teacher.x + 8, teacher.y + 9, 1, 1);
                 teacher.context.fillRect(teacher.x + 12, teacher.y + 8, 1, 1);
                 if (++repetitions == 1) {
                     window.clearInterval(intervalId);
                     repetitions = 0;
-                    intervalId = setInterval(function() {
+                    intervalId = setInterval(function () {
                         teacher.draw();
                         if (++repetitions == 1) {
                             window.clearInterval(intervalId);
@@ -1326,35 +1402,35 @@ class Teacher {
         var explosionX = teacher.x - 2;
         var explosionY = teacher.y;
         var intervalId = setInterval(function () {
-                teacher.context.fillStyle = 'yellow';
-                teacher.context.font = "5pt 'Press Start 2P'";
-                teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
-                if (++repetitions == 1) {
-                    window.clearInterval(intervalId);
-                    repetitions = 0;
-                    intervalId = setInterval(function () {
-                        teacher.context.fillStyle = 'red';
-                        teacher.context.font = "5pt 'Press Start 2P'";
-                        teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
-                        if (++repetitions == 1) {
-                            window.clearInterval(intervalId);
-                            repetitions = 0;
-                            intervalId = setInterval(function () {
-                                teacher.context.fillStyle = 'yellow';
-                                teacher.context.font = "5pt 'Press Start 2P'";
-                                teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
-                                if (++repetitions == 1) {
-                                    window.clearInterval(intervalId);
-                                    repetitions = 0;
-                                    teacher.context.fillStyle = '#a9c8fc';
-                                    teacher.context.fillRect(explosionX - 10, explosionY - 2, 80, 7);
-                                    teacher.draw();
-                                }
-                            }, 250);
-                        }
-                    }, 250);
-                }
-            }, 250)
+            teacher.context.fillStyle = 'yellow';
+            teacher.context.font = "5pt 'Press Start 2P'";
+            teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+            if (++repetitions == 1) {
+                window.clearInterval(intervalId);
+                repetitions = 0;
+                intervalId = setInterval(function () {
+                    teacher.context.fillStyle = 'red';
+                    teacher.context.font = "5pt 'Press Start 2P'";
+                    teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+                    if (++repetitions == 1) {
+                        window.clearInterval(intervalId);
+                        repetitions = 0;
+                        intervalId = setInterval(function () {
+                            teacher.context.fillStyle = 'yellow';
+                            teacher.context.font = "5pt 'Press Start 2P'";
+                            teacher.context.fillText('Aveti pauza!', explosionX - 8, explosionY + 5);
+                            if (++repetitions == 1) {
+                                window.clearInterval(intervalId);
+                                repetitions = 0;
+                                teacher.context.fillStyle = '#a9c8fc';
+                                teacher.context.fillRect(explosionX - 10, explosionY - 2, 80, 7);
+                                teacher.draw();
+                            }
+                        }, 250);
+                    }
+                }, 250);
+            }
+        }, 250)
 
     }
 
@@ -1450,12 +1526,23 @@ function initiateCanvas() {
     // Initiate gameOver variable with false
     gameOver = false;
 
-    //Initiate teacher location
-    teacher = new Teacher(ctx, 140, 130, true, 3);
+    
 
     // Draw background
 
     drawC2();
+
+    // Instantiate + draw students
+
+    drawStudents();
+
+    //moveStudents();
+
+    //Initiate teacher location
+    teacher = new Teacher(ctx, 140, 130, true, 3);
+
+    //Draw the teacher
+    teacher.draw();
 
     // Draw lives
 
@@ -1463,9 +1550,7 @@ function initiateCanvas() {
     drawLives(teacher.lives);
     //eraseLives(teacher.lives);
 
-    //Draw the teacher
-    teacher.draw();
-
+    
     // Initiating the score with 0.
     score = 0;
     previousScore = 0;
@@ -1473,51 +1558,17 @@ function initiateCanvas() {
     scoreArea();
     drawScore(score);
 
-    // Measurements: 7.5px - 1 unit
-    // Use these measurements when drawing
-
-    /*ctx.strokeStyle = 'grey';
-    ctx.beginPath();
-    ctx.moveTo(30, 15);
-    ctx.lineTo(270, 15);
-    ctx.stroke();
-    ctx.moveTo(30, 15);
-    ctx.lineTo(30, 150);
-    ctx.stroke();
-    ctx.moveTo(270, 15);
-    ctx.lineTo(270, 150);
-    ctx.stroke();
-    ctx.lineTo(270, 15);
-    ctx.stroke();*/
-
     // Drawing tables
     drawTables();
 
     // Creating + drawing desk
     drawDesk();
 
-    drawStudents();
-
-    //moveStudents();
-
-    //   var specialStudent = new Student(ctx, 140, 95, null, null, null, true, 'special', 100);
-    //   listOfStudents.push(specialStudent);
-    //   specialStudent.draw();
-    //   specialStudent.move();
-
     studentAI();
 
     specialStudentAI();
 
-    /*
-    // Open door
-    ctx.fillStyle = 'black';
-    ctx.fillRect(138, 1, 10, 14);
+    //changeLevel();
 
-    // Closed door
-    ctx.fillStyle = 'brown';
-    ctx.fillRect(138, 2, 9, 12);
-    ctx.fillStyle = 'black';
-    ctx.fillRect(145, 9, 2, 2);
-    */
+
 }
