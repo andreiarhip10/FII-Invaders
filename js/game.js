@@ -840,7 +840,7 @@ function studentAI() {
 // Method that controls the special student's movement
 
 function specialStudentAI() {
-    window.clearInterval(teacherProjectileInterval);
+    //window.clearInterval(teacherProjectileInterval);
     var repetitions = 0;
     specialInterval = setInterval(function () {
         // Open door if in C2
@@ -869,7 +869,7 @@ function specialStudentAI() {
                 }
             }, 8000)
         }
-    }, 5000);
+    }, 10000);
 }
 
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
@@ -1581,7 +1581,7 @@ class Student {
     die() {
         if (this.type == 'normal') {
             if (this.alive) {
-                window.clearInterval(specialInterval);
+                //window.clearInterval(specialInterval);
                 this.explode();
                 this.alive = false;
                 // After each kill, check if all students are dead. If true, advance to next level.
