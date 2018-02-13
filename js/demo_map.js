@@ -517,3 +517,128 @@ function drawc309()
     ctx.stroke(); 
     ctx.fill();  
 }
+
+function redrawC2sides()
+{
+    //background
+    // ctx.fillStyle="#4682B4";
+    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(0,90,29,100);
+    ctx.fillRect(271,90,30,100);
+    ctx.fillStyle="#CFA76E";
+    ctx.fillRect(26,90,4,100);
+    ctx.fillRect(271,90,3,100);
+    //windows
+    ctx.beginPath();
+    ctx.lineCap="round";
+    ctx.moveTo(0,90);
+    ctx.lineTo(25,105);
+    ctx.lineTo(25,115);
+    ctx.lineTo(0,100);
+    ctx.closePath();
+    ctx.fill(); 
+    ctx.moveTo(12.5,97.5);
+    ctx.lineTo(12.5,106.5);
+    ctx.moveTo(0,95);
+    ctx.lineTo(25,110);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap="round";    
+    ctx.moveTo(300,110);
+    ctx.lineTo(275,125);
+    ctx.lineTo(275,135);
+    ctx.lineTo(300,120);
+    ctx.closePath();
+    ctx.fillStyle="white";
+    ctx.fill(); 
+    ctx.moveTo(287.5,117.5);
+    ctx.lineTo(287.5,126.5);
+    ctx.moveTo(300,115);
+    ctx.lineTo(275,130);
+    ctx.stroke();
+}
+
+function redrawC112sides()
+{
+    //caseta maro
+    ctx.fillStyle="#9A7B47";
+    ctx.fillRect(30,15,240,200);    
+    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(0, 90, 29, 100);
+    ctx.fillRect(271, 90, 30, 100);
+    ctx.beginPath();
+    ctx.strokeStyle="#CFA76E";
+    ctx.lineWidth=2;
+    ctx.strokeRect(30.5,15.5,240,200);
+    //door
+    ctx.beginPath();
+    ctx.strokeStyle="grey";
+    ctx.lineCap="round";
+    ctx.lineWidth=0.8;
+    ctx.moveTo(15.5,120.5);
+    ctx.lineTo(15.5,135);
+    ctx.lineTo(30,142.5);
+    ctx.lineTo(30,128);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle="#a9c8fc";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.moveTo(22.5,138.25);
+    ctx.lineTo(23.5,137.5);
+    ctx.stroke();
+    //marius
+    ctx.beginPath();
+    ctx.fillStyle="#ffe0bd";
+    ctx.arc(15.5,100.5,5,0,2*Math.PI);
+    ctx.moveTo(20.5,102.5);
+    ctx.lineTo(27,106);
+    ctx.lineTo(30,112);
+    ctx.moveTo(27,106);
+    ctx.lineTo(30,100);
+    ctx.moveTo(24,104);
+    ctx.lineTo(20,94);
+    ctx.stroke();
+    ctx.fill();
+}
+
+function redrawC309sides()
+{
+    //caseta pal-bej
+    ctx.fillStyle="#d8d09f";
+    ctx.fillRect(30,15,240,200);
+    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(0, 90, 29, 100);
+    ctx.fillRect(271, 90, 30, 100);
+    ctx.beginPath();
+    ctx.strokeStyle="#CFA76E";
+    ctx.lineWidth=2;
+    ctx.strokeRect(30.5,15.5,240,200);
+    //chair
+    ctx.beginPath();
+    ctx.moveTo(29.5,110.5);
+    ctx.lineTo(25,105);
+    ctx.lineTo(25.5,115);
+    ctx.lineTo(29,120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(25.5,115);
+    ctx.lineTo(20,113.5);
+    ctx.lineTo(20.5,103.5);
+    ctx.lineTo(25,105);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.moveTo(20,113.5);
+    ctx.lineTo(24.5,119.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20,113.5);
+    ctx.lineTo(15.5,110);
+    ctx.lineTo(15.5,99.5);
+    ctx.lineTo(20.5,103.5);
+    ctx.closePath();
+    ctx.stroke(); 
+    ctx.fill(); 
+}
