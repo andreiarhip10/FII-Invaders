@@ -838,7 +838,7 @@ function studentAI() {
 // Method that controls the special student's movement
 
 function specialStudentAI() {
-
+    window.clearInterval(teacherProjectileInterval);
     var repetitions = 0;
     specialInterval = setInterval(function () {
         // Open door if in C2
@@ -867,7 +867,7 @@ function specialStudentAI() {
                 }
             }, 8000)
         }
-    }, 10000);
+    }, 5000);
 }
 
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
@@ -1328,31 +1328,31 @@ class Student {
                                                                                                                 if (++repetitions == 1) {
                                                                                                                     window.clearInterval(intervalId);
                                                                                                                 }
-                                                                                                            }, 200)
+                                                                                                            }, 500)
                                                                                                         }
-                                                                                                    }, 200)
+                                                                                                    }, 500)
                                                                                                 }
                                                                                             }
-                                                                                        }, 250)
+                                                                                        }, 550)
                                                                                     }
-                                                                                }, 350)
+                                                                                }, 600)
                                                                             }
                                                                         }
-                                                                    }, 350)
+                                                                    }, 600)
                                                                 }
-                                                            }, 350)
+                                                            }, 650)
                                                         }
-                                                    }, 350)
+                                                    }, 650)
                                                 }
-                                            }, 450)
+                                            }, 700)
                                         }
-                                    }, 450)
+                                    }, 750)
                                 }
-                            }, 450)
+                            }, 750)
                         }
-                    }, 600)
+                    }, 850)
                 }
-            }, 600)
+            }, 850)
         }
         if (this.type == 'special' && this.alive) {
             var repetitions = 0;
@@ -1461,13 +1461,13 @@ class Student {
     }
     explode() {
         if (this.type == 'normal') {
-            if (!checkIfAllDead()) {
+            if (!checkIfAllDead() && !justChanged) {
                 this.erase();
             }
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
-                if (!checkIfAllDead()) {
+                if (!checkIfAllDead() && !justChanged) {
                     student.context.fillStyle = 'red';
                     student.context.font = "4pt 'Press Start 2P'";
                     student.context.fillText('Picat!', student.x - 8, student.y);
@@ -1630,6 +1630,9 @@ class Projectile {
                     }
                 }
             }
+            if (justChanged) {
+                this.y = -2;
+            }
             if (this.y <= 17) {
                 this.erase();
                 //window.clearInterval(teacherProjectileInterval);
@@ -1720,7 +1723,11 @@ class Teacher {
         var projectile = new Projectile(this.context, this.x, this.y, 'teacher');
         teacherProjectileInterval = setInterval(function () {
             projectile.travel();
+            /*if (projectile.y <= 0) {
+                window.clearInterval(teacherProjectileInterval);
+            }*/
         }, 20)
+        
         if (prof_choice == 1) {
             var repetitions = 0;
             var teacher = this;
@@ -1920,13 +1927,15 @@ function initiateCanvas() {
 
     drawC2();
 
+    specialStudentAI();
+
     console.log(backgroundColor);
 
     // Instantiate + draw students
 
     drawStudents();
 
-    //moveStudents();
+    moveStudents();
 
     //Initiate teacher location
     teacher = new Teacher(ctx, 140, 130, true, 3);
@@ -1956,6 +1965,6 @@ function initiateCanvas() {
 
     studentAI();
 
-    specialStudentAI();
+    
 
 }
