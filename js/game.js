@@ -24,8 +24,13 @@ var specialInterval;
 var projectileInterval;
 var teacherProjectileInterval;
 
-// Variable used when chaning level
+// Variables used when chaning level
 var justChanged;
+var levelAdvance;
+
+// Variable used for background color
+var backgroundColor;
+
 
 // Function for score cheking - used when awarding bonus life - ANIMATION FOR EXTRA LIFE
 
@@ -107,7 +112,13 @@ function eraseLives(lives) {
 // Method for drawing simple tables
 
 function drawTables() {
-    ctx.strokeStyle = 'grey';
+
+    if (backgroundColor == '#a9c8fc') {
+        ctx.strokeStyle = 'grey';
+    } else if (backgroundColor == '#9A7B47') {
+        ctx.strokeStyle = '#604736';
+    }
+    
     //Left side
     ctx.beginPath();
     ctx.moveTo(75, 37.5);
@@ -184,7 +195,10 @@ function drawDesk() {
 // Method for drawing C2 amphitheatre
 
 function drawC2() {
-    ctx.fillStyle = '#a9c8fc';
+
+    backgroundColor = '#a9c8fc'
+
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(30, 10, 300, 200);
 
     ctx.strokeStyle = "#000";
@@ -349,7 +363,369 @@ function drawC2() {
     ctx.moveTo(160, 15);
     ctx.lineTo(270, 15);
     ctx.stroke();
+}
 
+// Method for drawing C112
+
+function drawC112() {
+
+    backgroundColor = '#9A7B47';
+
+    //caseta maro
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(30,15,240,200);
+    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(0, 0, 29, 200);
+    ctx.fillRect(29, 0, 300, 14);
+    ctx.fillRect(271, 0, 30, 200);
+    ctx.beginPath();
+    ctx.strokeStyle="#CFA76E";
+    ctx.lineWidth=2;
+    ctx.strokeRect(30.5,15.5,240,200);
+    //draw walls
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(20, 10);
+    ctx.lineTo(30, 15);
+    ctx.stroke();
+    ctx.moveTo(270, 15);
+    ctx.lineTo(278, 10);
+    ctx.stroke();
+    //windows-right
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 20);
+    ctx.lineTo(275, 35);
+    ctx.lineTo(275, 45);
+    ctx.lineTo(300, 30);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 27.5);
+    ctx.lineTo(287.5, 36.5);
+    ctx.moveTo(300, 25);
+    ctx.lineTo(275, 40);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 50);
+    ctx.lineTo(275, 65);
+    ctx.lineTo(275, 75);
+    ctx.lineTo(300, 60);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 57.5);
+    ctx.lineTo(287.5, 66.5);
+    ctx.moveTo(300, 55);
+    ctx.lineTo(275, 70);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 80);
+    ctx.lineTo(275, 95);
+    ctx.lineTo(275, 105);
+    ctx.lineTo(300, 90);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 87.5);
+    ctx.lineTo(287.5, 96.5);
+    ctx.moveTo(300, 85);
+    ctx.lineTo(275, 100);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 110);
+    ctx.lineTo(275, 125);
+    ctx.lineTo(275, 135);
+    ctx.lineTo(300, 120);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 117.5);
+    ctx.lineTo(287.5, 126.5);
+    ctx.moveTo(300, 115);
+    ctx.lineTo(275, 130);
+    ctx.stroke();
+    //cuier
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle="brown";
+    ctx.lineCap="round";
+    ctx.fillStyle = "#CFA76E";
+    ctx.fillRect(100,8,100,7);
+    ctx.strokeRect(100.5,8.5,100,7);
+    ctx.beginPath();
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(100.5,10.5);
+    ctx.lineTo(200,10.5);
+    ctx.moveTo(100.5,12);
+    ctx.lineTo(200,12);
+    ctx.stroke();
+    //door
+    ctx.beginPath();
+    ctx.strokeStyle="grey";
+    ctx.lineCap="round";
+    ctx.lineWidth=0.8;
+    ctx.moveTo(15.5,120.5);
+    ctx.lineTo(15.5,135);
+    ctx.lineTo(30,142.5);
+    ctx.lineTo(30,128);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle="#a9c8fc";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.moveTo(22.5,138.25);
+    ctx.lineTo(23.5,137.5);
+    ctx.stroke();
+    //marius
+    ctx.beginPath();
+    ctx.fillStyle="#ffe0bd";
+    ctx.arc(15.5,100.5,5,0,2*Math.PI);
+    ctx.moveTo(20.5,102.5);
+    ctx.lineTo(27,106);
+    ctx.lineTo(30,112);
+    ctx.moveTo(27,106);
+    ctx.lineTo(30,100);
+    ctx.moveTo(24,104);
+    ctx.lineTo(20,94);
+    ctx.stroke();
+    ctx.fill();
+    ctx.save();
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.fillStyle="black";
+    cw=canvas.width;
+    ch=canvas.height;
+    ctx.translate(-75,90);
+    ctx.rotate(-40*Math.PI/90);
+    ctx.fillText("Domnu' Student!",15.5,90);
+    ctx.restore();
+}
+
+function drawC309()
+{
+    backgroundColor = "#d8d09f"
+	//caseta pal-bej
+	ctx.fillStyle = backgroundColor;
+	ctx.fillRect(30,15,240,200);
+    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(0, 0, 29, 200);
+    ctx.fillRect(29, 0, 300, 14);
+    ctx.fillRect(271, 0, 30, 200);
+    ctx.beginPath();
+    ctx.strokeStyle="#CFA76E";
+    ctx.lineWidth=2;
+    ctx.strokeRect(30.5,15.5,240,200);
+    //draw walls
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(20, 10);
+    ctx.lineTo(30, 15);
+    ctx.stroke();
+    ctx.moveTo(270, 15);
+    ctx.lineTo(278, 10);
+    ctx.stroke();
+    //windows-right
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 20);
+    ctx.lineTo(275, 35);
+    ctx.lineTo(275, 45);
+    ctx.lineTo(300, 30);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 27.5);
+    ctx.lineTo(287.5, 36.5);
+    ctx.moveTo(300, 25);
+    ctx.lineTo(275, 40);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 35);
+    ctx.lineTo(275, 50);
+    ctx.lineTo(275, 60);
+    ctx.lineTo(300, 45);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 42.5);
+    ctx.lineTo(287.5, 51.5);
+    ctx.moveTo(300, 40);
+    ctx.lineTo(275, 55);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 50);
+    ctx.lineTo(275, 65);
+    ctx.lineTo(275, 75);
+    ctx.lineTo(300, 60);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 57.5);
+    ctx.lineTo(287.5, 66.5);
+    ctx.moveTo(300, 55);
+    ctx.lineTo(275, 70);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 80);
+    ctx.lineTo(275, 95);
+    ctx.lineTo(275, 105);
+    ctx.lineTo(300, 90);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 87.5);
+    ctx.lineTo(287.5, 96.5);
+    ctx.moveTo(300, 85);
+    ctx.lineTo(275, 100);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.moveTo(300, 65);
+    ctx.lineTo(275, 80);
+    ctx.lineTo(275, 90);
+    ctx.lineTo(300, 75);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.moveTo(287.5, 72.5);
+    ctx.lineTo(287.5, 81.5);
+    ctx.moveTo(300, 70);
+    ctx.lineTo(275, 85);
+    ctx.stroke();
+    //cuier
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle="brown";
+    ctx.lineCap="round";
+    ctx.fillStyle = "#CFA76E";
+    ctx.fillRect(100,5,100,10);
+    ctx.strokeRect(100.5,5.5,100,10);
+    ctx.beginPath();
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(100.5,8.5);
+    ctx.lineTo(200,8.5);
+    ctx.moveTo(100.5,10);
+    ctx.lineTo(200,10);
+    ctx.stroke();
+    //door
+    ctx.beginPath();
+    ctx.strokeStyle="#362511";
+    ctx.lineCap="round";
+    ctx.lineWidth=0.8;
+    ctx.moveTo(15.5,25.5);
+    ctx.lineTo(15.5,40);
+    ctx.lineTo(30,47.5);
+    ctx.lineTo(30,33);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle="#CFA76E";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle="cobalt";
+    ctx.moveTo(22.5,43.5);
+    ctx.lineTo(23,42);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.strokeStyle="#362511";
+    ctx.moveTo(30,33);
+    ctx.lineTo(30,28.5);
+    ctx.lineTo(15.5,21);
+    ctx.lineTo(15.5,25.5);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    //chairs
+    ctx.beginPath();
+    ctx.moveTo(29.5,80.5);
+    ctx.lineTo(25,75);
+    ctx.lineTo(25.5,85);
+    ctx.lineTo(29,90);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(25.5,85);
+    ctx.lineTo(20,83.5);
+    ctx.lineTo(20.5,73.5);
+    ctx.lineTo(25,75);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.moveTo(20,83.5);
+    ctx.lineTo(24.5,89.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20,83.5);
+    ctx.lineTo(15.5,80);
+    ctx.lineTo(15.5,69.5);
+    ctx.lineTo(20.5,73.5);
+    ctx.closePath();
+    ctx.stroke(); 
+    ctx.fill(); 
+
+	ctx.beginPath();
+    ctx.moveTo(29.5,95.5);
+    ctx.lineTo(25,90);
+    ctx.lineTo(25.5,100);
+    ctx.lineTo(29,105);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(25.5,100);
+    ctx.lineTo(20,98.5);
+    ctx.lineTo(20.5,88.5);
+    ctx.lineTo(25,90);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.moveTo(20,98.5);
+    ctx.lineTo(24.5,104.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20,98.5);
+    ctx.lineTo(15.5,95);
+    ctx.lineTo(15.5,84.5);
+    ctx.lineTo(20.5,88.5);
+    ctx.closePath();
+    ctx.stroke(); 
+    ctx.fill(); 
+
+    ctx.beginPath();
+    ctx.moveTo(29.5,110.5);
+    ctx.lineTo(25,105);
+    ctx.lineTo(25.5,115);
+    ctx.lineTo(29,120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(25.5,115);
+    ctx.lineTo(20,113.5);
+    ctx.lineTo(20.5,103.5);
+    ctx.lineTo(25,105);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.moveTo(20,113.5);
+    ctx.lineTo(24.5,119.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20,113.5);
+    ctx.lineTo(15.5,110);
+    ctx.lineTo(15.5,99.5);
+    ctx.lineTo(20.5,103.5);
+    ctx.closePath();
+    ctx.stroke(); 
+    ctx.fill();  
 }
 
 // Method for checking if all normal students are dead - next level requirement
@@ -465,9 +841,11 @@ function specialStudentAI() {
 
     var repetitions = 0;
     specialInterval = setInterval(function () {
-        // Open door
-        ctx.fillStyle = 'black';
-        ctx.fillRect(138, 1, 10, 14);
+        // Open door if in C2
+        if (backgroundColor == '#a9c8fc') {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(138, 1, 10, 14);
+        }
         var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
         console.log('Created special student.');
         listOfStudents.push(specialStudent);
@@ -476,11 +854,13 @@ function specialStudentAI() {
         if (++repetitions == 1) {
             repetitions = 0;
             var intervalId = setInterval(function () {
-                // Closed door
-                ctx.fillStyle = 'brown';
-                ctx.fillRect(138, 2, 9, 12);
-                ctx.fillStyle = 'black';
-                ctx.fillRect(145, 9, 2, 2);
+                // Closed door if in C2
+                if (backgroundColor == '#a9c8fc') {
+                    ctx.fillStyle = 'brown';
+                    ctx.fillRect(138, 2, 9, 12);
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(145, 9, 2, 2);
+                }
                 if (++repetitions % 2 == 1) {
                     repetitions = 0;
                     window.clearInterval(intervalId);
@@ -520,7 +900,14 @@ function changeLevel() {
             repetitions = 0;
             intervalId = setInterval(function () {
                 justChanged = true;
-                drawC2();
+                levelAdvance ++;
+                if (levelAdvance % 3 == 0) {
+                    drawC2();
+                } else if (levelAdvance % 3 == 1) {
+                    drawC112();
+                } else if (levelAdvance % 3 == 2) {
+                    drawC309();
+                }
                 livesArea();
                 drawLives(teacher.lives);
                 scoreArea();
@@ -637,17 +1024,17 @@ class Student {
             this.context.fillRect(this.x + 8, this.y - 3, 1, 3);
             this.context.fillRect(this.x + 1, this.y - 1, 1, 3);
             this.context.fillRect(this.x + 3, this.y, 4, 2);
-            this.context.fillStyle = '#a9c8fc';
+            this.context.fillStyle = backgroundColor;
             this.context.fillRect(this.x + 4, this.y + 1, 2, 1);
         }
     }
     erase() {
         if (this.type == 'normal') {
-            this.context.fillStyle = '#a9c8fc';
+            this.context.fillStyle = backgroundColor;
             this.context.fillRect(this.x, this.y, 7, 7);
         }
         if (this.type == 'special') {
-            this.context.fillStyle = '#a9c8fc';
+            this.context.fillStyle = backgroundColor;
             this.context.fillRect(this.x, this.y - 3, 10, 5);
         }
     }
@@ -980,7 +1367,7 @@ class Student {
                     student.context.fillStyle = 'black';
                     student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                     student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                    student.context.fillStyle = '#a9c8fc';
+                    student.context.fillStyle = backgroundColor;
                     student.context.fillRect(student.x + 1, student.y, 1, 3);
                     student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                 }
@@ -1000,7 +1387,7 @@ class Student {
                             student.context.fillStyle = 'black';
                             student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                            student.context.fillStyle = '#a9c8fc';
+                            student.context.fillStyle = backgroundColor;
                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                         }
@@ -1020,7 +1407,7 @@ class Student {
                                     student.context.fillStyle = 'black';
                                     student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                                     student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                                    student.context.fillStyle = '#a9c8fc';
+                                    student.context.fillStyle = backgroundColor;
                                     student.context.fillRect(student.x + 1, student.y, 1, 3);
                                     student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                 }
@@ -1040,7 +1427,7 @@ class Student {
                                             student.context.fillStyle = 'black';
                                             student.context.fillRect(student.x + 1, student.y - 3, 1, 3);
                                             student.context.fillRect(student.x + 8, student.y - 1, 1, 3);
-                                            student.context.fillStyle = '#a9c8fc';
+                                            student.context.fillStyle = backgroundColor;
                                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                         }
@@ -1101,7 +1488,7 @@ class Student {
                                     if (++repetitions == 1) {
                                         window.clearInterval(intervalId);
                                         repetitions = 0;
-                                        student.context.fillStyle = '#a9c8fc';
+                                        student.context.fillStyle = backgroundColor;
                                         student.context.fillRect(student.x - 10, student.y - 5, 35, 5);
                                     }
                                 }, 100);
@@ -1187,7 +1574,7 @@ class Projectile {
         //console.log('Drawing projectile ...');
     }
     erase() {
-        this.context.fillStyle = '#a9c8fc';
+        this.context.fillStyle = backgroundColor;
         this.context.fillRect(this.x, this.y, 1, 2);
     }
 
@@ -1311,7 +1698,7 @@ class Teacher {
     }
     erase() {
         if (!checkIfAllDead()) {
-            this.context.fillStyle = '#a9c8fc';
+            this.context.fillStyle = backgroundColor;
             this.context.fillRect(this.x, this.y - 1, 20, 20);
         } 
     }
@@ -1422,7 +1809,7 @@ class Teacher {
                             if (++repetitions == 1) {
                                 window.clearInterval(intervalId);
                                 repetitions = 0;
-                                teacher.context.fillStyle = '#a9c8fc';
+                                teacher.context.fillStyle = backgroundColor;
                                 teacher.context.fillRect(explosionX - 10, explosionY - 2, 80, 7);
                                 teacher.draw();
                             }
@@ -1477,13 +1864,13 @@ class Desk {
         this.context.fillRect(this.x, this.y, 10, 5);
     }
     erase() {
-        this.context.fillStyle = '#a9c8fc';
+        this.context.fillStyle = backgroundColor;
         this.context.fillRect(this.x, this.y, 10, 5);
     }
     deteriorate() {
         var deteriorateX = Math.floor(Math.random() * (this.x + 9 - this.x + 1)) + this.x;
         var deteriorateY = Math.floor(Math.random() * (this.y + 4 - this.y + 1)) + this.y;
-        this.context.fillStyle = '#a9c8fc';
+        this.context.fillStyle = backgroundColor;
         this.context.fillRect(deteriorateX, deteriorateY, 1, 1);
     }
     durabilityCheck() {
@@ -1526,11 +1913,14 @@ function initiateCanvas() {
     // Initiate gameOver variable with false
     gameOver = false;
 
-    
+    // Variable that counts number of next levels is initialized with 0
+    levelAdvance = 0;
 
     // Draw background
 
     drawC2();
+
+    console.log(backgroundColor);
 
     // Instantiate + draw students
 
@@ -1567,8 +1957,5 @@ function initiateCanvas() {
     studentAI();
 
     specialStudentAI();
-
-    //changeLevel();
-
 
 }

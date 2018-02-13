@@ -159,7 +159,7 @@ function drawc2()
 	ctx.stroke();
 }
 
-function drawC112()
+function drawc112()
 {
     //caseta maro
     ctx.fillStyle="#9A7B47";
@@ -300,7 +300,7 @@ function drawC112()
 
 }
 
-function drawC309()
+function drawc309()
 {
 	//caseta pal-bej
 	ctx.fillStyle="#d8d09f";
