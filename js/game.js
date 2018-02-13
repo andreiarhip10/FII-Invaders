@@ -118,7 +118,7 @@ function drawTables() {
     } else if (backgroundColor == '#9A7B47') {
         ctx.strokeStyle = '#604736';
     }
-    
+
     //Left side
     ctx.beginPath();
     ctx.moveTo(75, 37.5);
@@ -373,18 +373,18 @@ function drawC112() {
 
     //caseta maro
     ctx.fillStyle = backgroundColor;
-    ctx.fillRect(30,15,240,200);
-    ctx.fillStyle="#f1f1f1";
+    ctx.fillRect(30, 15, 240, 200);
+    ctx.fillStyle = "#f1f1f1";
     ctx.fillRect(0, 0, 29, 200);
     ctx.fillRect(29, 0, 300, 14);
     ctx.fillRect(271, 0, 30, 200);
     ctx.beginPath();
-    ctx.strokeStyle="#CFA76E";
-    ctx.lineWidth=2;
-    ctx.strokeRect(30.5,15.5,240,200);
+    ctx.strokeStyle = "#CFA76E";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(30.5, 15.5, 240, 200);
     //draw walls
     ctx.beginPath();
-    ctx.strokeStyle="black";
+    ctx.strokeStyle = "black";
     ctx.lineWidth = 0.8;
     ctx.moveTo(20, 10);
     ctx.lineTo(30, 15);
@@ -454,78 +454,77 @@ function drawC112() {
     //cuier
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.strokeStyle="brown";
-    ctx.lineCap="round";
+    ctx.strokeStyle = "brown";
+    ctx.lineCap = "round";
     ctx.fillStyle = "#CFA76E";
-    ctx.fillRect(100,8,100,7);
-    ctx.strokeRect(100.5,8.5,100,7);
+    ctx.fillRect(100, 8, 100, 7);
+    ctx.strokeRect(100.5, 8.5, 100, 7);
     ctx.beginPath();
     ctx.lineWidth = 0.8;
-    ctx.moveTo(100.5,10.5);
-    ctx.lineTo(200,10.5);
-    ctx.moveTo(100.5,12);
-    ctx.lineTo(200,12);
+    ctx.moveTo(100.5, 10.5);
+    ctx.lineTo(200, 10.5);
+    ctx.moveTo(100.5, 12);
+    ctx.lineTo(200, 12);
     ctx.stroke();
     //door
     ctx.beginPath();
-    ctx.strokeStyle="grey";
-    ctx.lineCap="round";
-    ctx.lineWidth=0.8;
-    ctx.moveTo(15.5,120.5);
-    ctx.lineTo(15.5,135);
-    ctx.lineTo(30,142.5);
-    ctx.lineTo(30,128);
+    ctx.strokeStyle = "grey";
+    ctx.lineCap = "round";
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(15.5, 120.5);
+    ctx.lineTo(15.5, 135);
+    ctx.lineTo(30, 142.5);
+    ctx.lineTo(30, 128);
     ctx.closePath();
     ctx.stroke();
-    ctx.fillStyle="#a9c8fc";
+    ctx.fillStyle = "#a9c8fc";
     ctx.fill();
     ctx.beginPath();
-    ctx.strokeStyle="black";
-    ctx.moveTo(22.5,138.25);
-    ctx.lineTo(23.5,137.5);
+    ctx.strokeStyle = "black";
+    ctx.moveTo(22.5, 138.25);
+    ctx.lineTo(23.5, 137.5);
     ctx.stroke();
     //marius
     ctx.beginPath();
-    ctx.fillStyle="#ffe0bd";
-    ctx.arc(15.5,100.5,5,0,2*Math.PI);
-    ctx.moveTo(20.5,102.5);
-    ctx.lineTo(27,106);
-    ctx.lineTo(30,112);
-    ctx.moveTo(27,106);
-    ctx.lineTo(30,100);
-    ctx.moveTo(24,104);
-    ctx.lineTo(20,94);
+    ctx.fillStyle = "#ffe0bd";
+    ctx.arc(15.5, 100.5, 5, 0, 2 * Math.PI);
+    ctx.moveTo(20.5, 102.5);
+    ctx.lineTo(27, 106);
+    ctx.lineTo(30, 112);
+    ctx.moveTo(27, 106);
+    ctx.lineTo(30, 100);
+    ctx.moveTo(24, 104);
+    ctx.lineTo(20, 94);
     ctx.stroke();
     ctx.fill();
     ctx.save();
     ctx.beginPath();
-    ctx.strokeStyle="black";
-    ctx.fillStyle="black";
-    cw=canvas.width;
-    ch=canvas.height;
-    ctx.translate(-75,90);
-    ctx.rotate(-40*Math.PI/90);
-    ctx.fillText("Domnu' Student!",15.5,90);
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "black";
+    cw = canvas.width;
+    ch = canvas.height;
+    ctx.translate(-75, 90);
+    ctx.rotate(-40 * Math.PI / 90);
+    ctx.fillText("Domnu' Student!", 15.5, 90);
     ctx.restore();
 }
 
-function drawC309()
-{
+function drawC309() {
     backgroundColor = "#d8d09f"
-	//caseta pal-bej
-	ctx.fillStyle = backgroundColor;
-	ctx.fillRect(30,15,240,200);
-    ctx.fillStyle="#f1f1f1";
+    //caseta pal-bej
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(30, 15, 240, 200);
+    ctx.fillStyle = "#f1f1f1";
     ctx.fillRect(0, 0, 29, 200);
     ctx.fillRect(29, 0, 300, 14);
     ctx.fillRect(271, 0, 30, 200);
     ctx.beginPath();
-    ctx.strokeStyle="#CFA76E";
-    ctx.lineWidth=2;
-    ctx.strokeRect(30.5,15.5,240,200);
+    ctx.strokeStyle = "#CFA76E";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(30.5, 15.5, 240, 200);
     //draw walls
     ctx.beginPath();
-    ctx.strokeStyle="black";
+    ctx.strokeStyle = "black";
     ctx.lineWidth = 0.8;
     ctx.moveTo(20, 10);
     ctx.lineTo(30, 15);
@@ -609,123 +608,123 @@ function drawC309()
     //cuier
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.strokeStyle="brown";
-    ctx.lineCap="round";
+    ctx.strokeStyle = "brown";
+    ctx.lineCap = "round";
     ctx.fillStyle = "#CFA76E";
-    ctx.fillRect(100,5,100,10);
-    ctx.strokeRect(100.5,5.5,100,10);
+    ctx.fillRect(100, 5, 100, 10);
+    ctx.strokeRect(100.5, 5.5, 100, 10);
     ctx.beginPath();
     ctx.lineWidth = 0.8;
-    ctx.moveTo(100.5,8.5);
-    ctx.lineTo(200,8.5);
-    ctx.moveTo(100.5,10);
-    ctx.lineTo(200,10);
+    ctx.moveTo(100.5, 8.5);
+    ctx.lineTo(200, 8.5);
+    ctx.moveTo(100.5, 10);
+    ctx.lineTo(200, 10);
     ctx.stroke();
     //door
     ctx.beginPath();
-    ctx.strokeStyle="#362511";
-    ctx.lineCap="round";
-    ctx.lineWidth=0.8;
-    ctx.moveTo(15.5,25.5);
-    ctx.lineTo(15.5,40);
-    ctx.lineTo(30,47.5);
-    ctx.lineTo(30,33);
+    ctx.strokeStyle = "#362511";
+    ctx.lineCap = "round";
+    ctx.lineWidth = 0.8;
+    ctx.moveTo(15.5, 25.5);
+    ctx.lineTo(15.5, 40);
+    ctx.lineTo(30, 47.5);
+    ctx.lineTo(30, 33);
     ctx.closePath();
     ctx.stroke();
-    ctx.fillStyle="#CFA76E";
+    ctx.fillStyle = "#CFA76E";
     ctx.fill();
     ctx.beginPath();
-    ctx.strokeStyle="cobalt";
-    ctx.moveTo(22.5,43.5);
-    ctx.lineTo(23,42);
+    ctx.strokeStyle = "cobalt";
+    ctx.moveTo(22.5, 43.5);
+    ctx.lineTo(23, 42);
     ctx.stroke();
     ctx.beginPath();
-    ctx.strokeStyle="#362511";
-    ctx.moveTo(30,33);
-    ctx.lineTo(30,28.5);
-    ctx.lineTo(15.5,21);
-    ctx.lineTo(15.5,25.5);
+    ctx.strokeStyle = "#362511";
+    ctx.moveTo(30, 33);
+    ctx.lineTo(30, 28.5);
+    ctx.lineTo(15.5, 21);
+    ctx.lineTo(15.5, 25.5);
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
     //chairs
     ctx.beginPath();
-    ctx.moveTo(29.5,80.5);
-    ctx.lineTo(25,75);
-    ctx.lineTo(25.5,85);
-    ctx.lineTo(29,90);
+    ctx.moveTo(29.5, 80.5);
+    ctx.lineTo(25, 75);
+    ctx.lineTo(25.5, 85);
+    ctx.lineTo(29, 90);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(25.5,85);
-    ctx.lineTo(20,83.5);
-    ctx.lineTo(20.5,73.5);
-    ctx.lineTo(25,75);
+    ctx.moveTo(25.5, 85);
+    ctx.lineTo(20, 83.5);
+    ctx.lineTo(20.5, 73.5);
+    ctx.lineTo(25, 75);
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
-    ctx.moveTo(20,83.5);
-    ctx.lineTo(24.5,89.5);
+    ctx.moveTo(20, 83.5);
+    ctx.lineTo(24.5, 89.5);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(20,83.5);
-    ctx.lineTo(15.5,80);
-    ctx.lineTo(15.5,69.5);
-    ctx.lineTo(20.5,73.5);
-    ctx.closePath();
-    ctx.stroke(); 
-    ctx.fill(); 
-
-	ctx.beginPath();
-    ctx.moveTo(29.5,95.5);
-    ctx.lineTo(25,90);
-    ctx.lineTo(25.5,100);
-    ctx.lineTo(29,105);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(25.5,100);
-    ctx.lineTo(20,98.5);
-    ctx.lineTo(20.5,88.5);
-    ctx.lineTo(25,90);
+    ctx.moveTo(20, 83.5);
+    ctx.lineTo(15.5, 80);
+    ctx.lineTo(15.5, 69.5);
+    ctx.lineTo(20.5, 73.5);
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
-    ctx.moveTo(20,98.5);
-    ctx.lineTo(24.5,104.5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20,98.5);
-    ctx.lineTo(15.5,95);
-    ctx.lineTo(15.5,84.5);
-    ctx.lineTo(20.5,88.5);
-    ctx.closePath();
-    ctx.stroke(); 
-    ctx.fill(); 
 
     ctx.beginPath();
-    ctx.moveTo(29.5,110.5);
-    ctx.lineTo(25,105);
-    ctx.lineTo(25.5,115);
-    ctx.lineTo(29,120);
+    ctx.moveTo(29.5, 95.5);
+    ctx.lineTo(25, 90);
+    ctx.lineTo(25.5, 100);
+    ctx.lineTo(29, 105);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(25.5,115);
-    ctx.lineTo(20,113.5);
-    ctx.lineTo(20.5,103.5);
-    ctx.lineTo(25,105);
+    ctx.moveTo(25.5, 100);
+    ctx.lineTo(20, 98.5);
+    ctx.lineTo(20.5, 88.5);
+    ctx.lineTo(25, 90);
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
-    ctx.moveTo(20,113.5);
-    ctx.lineTo(24.5,119.5);
+    ctx.moveTo(20, 98.5);
+    ctx.lineTo(24.5, 104.5);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(20,113.5);
-    ctx.lineTo(15.5,110);
-    ctx.lineTo(15.5,99.5);
-    ctx.lineTo(20.5,103.5);
+    ctx.moveTo(20, 98.5);
+    ctx.lineTo(15.5, 95);
+    ctx.lineTo(15.5, 84.5);
+    ctx.lineTo(20.5, 88.5);
     ctx.closePath();
-    ctx.stroke(); 
-    ctx.fill();  
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(29.5, 110.5);
+    ctx.lineTo(25, 105);
+    ctx.lineTo(25.5, 115);
+    ctx.lineTo(29, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(25.5, 115);
+    ctx.lineTo(20, 113.5);
+    ctx.lineTo(20.5, 103.5);
+    ctx.lineTo(25, 105);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.moveTo(20, 113.5);
+    ctx.lineTo(24.5, 119.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 113.5);
+    ctx.lineTo(15.5, 110);
+    ctx.lineTo(15.5, 99.5);
+    ctx.lineTo(20.5, 103.5);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
 }
 
 // Method for checking if all normal students are dead - next level requirement
@@ -873,15 +872,16 @@ function specialStudentAI() {
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
 
 function changeLevel() {
-    frontStudents = [];
+    gameOver = false;
     listOfStudents = [];
+    frontStudents = [];
     deskBits = [];
     window.clearInterval(normalInterval);
     window.clearInterval(specialInterval);
     window.clearInterval(projectileInterval);
     window.clearInterval(teacherProjectileInterval);
     var repetitions = 0;
-    var intervalId = setInterval(function (listOfStudents) {
+    var intervalId = setInterval(function () {
         ctx.fillStyle = '#6d9ce8';
         ctx.fillRect(0, 0, 400, 300);
         ctx.shadowOffsetX = 1;
@@ -900,7 +900,7 @@ function changeLevel() {
             repetitions = 0;
             intervalId = setInterval(function () {
                 justChanged = true;
-                levelAdvance ++;
+                levelAdvance++;
                 if (levelAdvance % 3 == 0) {
                     drawC2();
                 } else if (levelAdvance % 3 == 1) {
@@ -917,69 +917,86 @@ function changeLevel() {
                 teacher.x = 140;
                 teacher.y = 130;
                 teacher.draw();
-                justChanged = false;
                 drawStudents();
+                moveStudents();
                 studentAI();
                 specialStudentAI();
+                justChanged = false;
                 if (++repetitions == 1) {
                     window.clearInterval(intervalId);
                 }
             }, 1500);
         }
     })
-    /*drawC2();
+    /*justChanged = true;
+    levelAdvance++;
+    if (levelAdvance % 3 == 0) {
+        drawC2();
+    } else if (levelAdvance % 3 == 1) {
+        drawC112();
+    } else if (levelAdvance % 3 == 2) {
+        drawC309();
+    }
     livesArea();
     drawLives(teacher.lives);
     scoreArea();
     drawScore(score);
     drawTables();
     drawDesk();
+    teacher.x = 140;
+    teacher.y = 130;
     teacher.draw();
     drawStudents();
+    moveStudents();
     studentAI();
-    specialStudentAI();*/
-
-    //moveStudents();
+    specialStudentAI();
+    justChanged = false;*/
 }
 
 // Method used for checking for losing condition
 
 function checkGameOver() {
-    var cnv = document.getElementById("my-canvas");
-    ctx.clearRect(0, 0, 300, 300);
 
-    // canvas.style.display="none";
+    if (gameOver) {
+        document.getElementById('audio').pause();
+        document.getElementById('audio').currentTime = 0;
 
-    // cnv.style.display = "block";
-    hovered = false;
-    var canvas = document.getElementById("my-canvas");
-    // ctx.clearRect(0, 0, 300, 300);
-    var cnv = document.createElement('canvas'),
-        newContext = canvas.getContext('2d');
-    // Insert the new canvas after the old one
-    canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
-    // Remove old canvas. Now the new canvas has its position.
-    canvas.parentNode.removeChild(canvas);
-    cnv.id = "my-canvas";
-    //canvas.style.display="none";
-    //canvas=null;  
-    cnv.style.display = "none";
-    var cenv = document.getElementById("end-canvas");
-    cenv.style.display = "block";
-    outro();
-    listOfStudents = [];
-    deskBits = [];
-    frontStudents = [];
-    window.clearInterval(normalInterval);
-    window.clearInterval(specialInterval);
-    window.clearInterval(projectileInterval);
-    window.clearInterval(teacherProjectileInterval);
+        var cnv = document.getElementById("my-canvas");
+        ctx.clearRect(0, 0, 300, 300);
 
-    var top;
-    var len = localStorage.length;
-    localStorage.setItem(len, username + " " + score);
-    top = localStorage.getItem(localStorage.key(len));
-    document.getElementById("result").innerHTML += top + "<br />";
+        // canvas.style.display="none";
+
+        // cnv.style.display = "block";
+        hovered = false;
+        var canvas = document.getElementById("my-canvas");
+        // ctx.clearRect(0, 0, 300, 300);
+        var cnv = document.createElement('canvas'),
+            newContext = canvas.getContext('2d');
+        // Insert the new canvas after the old one
+        canvas.parentNode.insertBefore(cnv, canvas.nextSibling);
+        // Remove old canvas. Now the new canvas has its position.
+        canvas.parentNode.removeChild(canvas);
+        cnv.id = "my-canvas";
+        //canvas.style.display="none";
+        //canvas=null;  
+        cnv.style.display = "none";
+        var cenv = document.getElementById("end-canvas");
+        cenv.style.display = "block";
+        outro();
+        listOfStudents = [];
+        deskBits = [];
+        frontStudents = [];
+        window.clearInterval(normalInterval);
+        window.clearInterval(specialInterval);
+        window.clearInterval(projectileInterval);
+        window.clearInterval(teacherProjectileInterval);
+
+        var top;
+        var len = localStorage.length;
+        localStorage.setItem(len, username + " " + score);
+        top = localStorage.getItem(localStorage.key(len));
+        document.getElementById("result").innerHTML += top + "<br />";
+    }
 
     //localStorage.clear();
 }
@@ -1116,7 +1133,7 @@ class Student {
     //After updating position and drawing, we check if student is still alive. If dead, student gets erased.
 
     move() {
-        if (this.type == 'normal') {
+        if (this.type == 'normal' && this.alive) {
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
@@ -1236,6 +1253,9 @@ class Student {
                                                                             // Losing condition - bottom students reach desk
                                                                             console.log('Game over.')
                                                                             gameOver = true;
+                                                                            if (justChanged) {
+                                                                                gameOver = false;
+                                                                            }
                                                                             window.clearInterval(intervalId);
                                                                             checkGameOver();
                                                                         }
@@ -1279,6 +1299,9 @@ class Student {
                                                                                                 // Losing condition - bottom students reach desk
                                                                                                 console.log('Game over.')
                                                                                                 gameOver = true;
+                                                                                                if (justChanged) {
+                                                                                                    gameOver = false;
+                                                                                                }
                                                                                                 window.clearInterval(intervalId);
                                                                                                 checkGameOver();
                                                                                             }
@@ -1322,6 +1345,9 @@ class Student {
                                                                                                                     // Losing condition - bottom students reach desk
                                                                                                                     console.log('Game over.')
                                                                                                                     gameOver = true;
+                                                                                                                    if (justChanged) {
+                                                                                                                        gameOver = false;
+                                                                                                                    }
                                                                                                                     window.clearInterval(intervalId);
                                                                                                                     checkGameOver();
                                                                                                                 }
@@ -1703,7 +1729,7 @@ class Teacher {
         if (!checkIfAllDead()) {
             this.context.fillStyle = backgroundColor;
             this.context.fillRect(this.x, this.y - 1, 20, 20);
-        } 
+        }
     }
     moveRight() {
         if (this.x <= 240) {
@@ -1727,7 +1753,7 @@ class Teacher {
                 window.clearInterval(teacherProjectileInterval);
             }*/
         }, 20)
-        
+
         if (prof_choice == 1) {
             var repetitions = 0;
             var teacher = this;
@@ -1917,6 +1943,8 @@ function initiateCanvas() {
         ctx.fillRect(0, 0, canvasInfo.height, canvasInfo.width);
     }
 
+    document.getElementById('audio').play();
+
     // Initiate gameOver variable with false
     gameOver = false;
 
@@ -1949,7 +1977,7 @@ function initiateCanvas() {
     drawLives(teacher.lives);
     //eraseLives(teacher.lives);
 
-    
+
     // Initiating the score with 0.
     score = 0;
     previousScore = 0;
@@ -1964,7 +1992,5 @@ function initiateCanvas() {
     drawDesk();
 
     studentAI();
-
-    
 
 }
