@@ -3,23 +3,158 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title> Raport </title>
+	<title> FII Invaders </title>
 	<link rel = "stylesheet" type = "text/css" href = "css/css_raport.css">
 </head>
 <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
 	<article id="what" typeof="schema:ScholarlyArticle" resource="#">
 		<h1>Raport Proiect CLIW: FII Invaders</h1>
-		<h3>Arhip Andrei, S&abreve;vescu Sabina, Cojocariu Vl&abreve;du&tcedil;</h3>
-		<h3>Profesor Indrumator: Lect. Dr. Cosmin Varlan</h3>
 		<h1> </h1>
+		<section>
+        <ol>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author"  typeof="schema:Person">
+              <span property="schema:givenName">Vladut-Adrian</span>
+              <span property="schema:familyName">Cojocariu</span>
+            </a>
+            
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+              <a property="schema:email" href="mailto:vladut.cojocariu@info.uaic.ro title="corresponding author">&#9993;</a>
+            </sup>
+          </li>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author"  typeof="schema:Person">
+              <span property="schema:givenName">Andrei Emanoil</span>
+              <span property="schema:familyName">Arhip</span>
+            </a>
+            
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+              <a property="schema:email" href="mailto:andrei.arhip@info.uaic.ro title="corresponding author">&#9993;</a>
+            </sup>
+          </li>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author"  typeof="schema:Person">
+              <span property="schema:givenName">Sabina</span>
+              <span property="schema:familyName">Savescu</span>
+            </a>
+            
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+              <a property="schema:email" href="mailto:sabina.savescu@info.uaic.ro title="corresponding author">&#9993;</a>
+            </sup>
+          </li>        
+          <li id="facultate">
+            <a href="https://www.info.uaic.ro/bin/Main/" typeof="schema:Facultate">
+              <span property="schema:name">www.info.uaic.ro</span>
+            </a>
+          </li>
+        </ol>
+      </section>
+      <section>
 		<h2>Idei si Concepte</h2>
 			<p>Avand un exemplu clar pe care sa-l urmam, nu a fost greu sa venim cu idei pentru design-ul paginii. Am optat pentru o interfata mai rarefiata, care sa-i permita utilizatorului sa se concentreze la joc, fara a-l priva de functionalitatile necesare.</p>
-			<p>In implementare, nava spatiala din jocul clasic va fi inlocuita de un profesor, iar invaderii de studenti furiosi. Acestia vor arunca cu diferite obiecte in profesor, care va trebui sa se fereasca si sa arunce la randul lui cu creta in studenti, obligandu-i sa iasa din amfiteatru.</p>
+			<p>In implementare, nava spatiala din jocul clasic este inlocuita de un profesor, iar invaderii de studenti furiosi. Acestia vor arunca cu diferite obiecte in profesor, care va trebui sa se fereasca si sa arunce la randul lui cu creta in studenti, obligandu-i sa iasa din amfiteatru.</p>
 		<h2>Interactiunea cu Utilizatorul</h2>
-			<p>Aplicatia va interactiona cu utilizatorul prin intermediul UI-ului oferit si a controalelor puse la dispozitie (disponibile in sectiunea "rules" de pe pagina jocului).</p>
+			<p>Primul contact cu aplicatia este pagina de log-in, unde utilizatorul poate sa se conecteze cu contul de Facebook sau sa participe in calitate de vizitator.</p>
+			<p>Dupa ce intra in aplicatie, aceasta va interactiona cu utilizatorul prin intermediul UI-ului oferit si a controalelor puse la dispozitie (disponibile in sectiunea "rules" de pe pagina jocului).</p>
+		<h2>Arhitectura aplicatiei</h2>
+			<p>Aplicatia este realizata integral pe partea de client, fara a avea nicio componenta realizata utilizand un server. Astfel, utilitatile sunt oferite la nivel local, iar toate cererile sunt preluate si prelucrate in browser.</p>
 		<h2>Modelul datelor, API-uri externe, solutii de stocare</h2>
-			<p>Login-ul va folosi API-ul oferit de Facebook pentru preluarea datelor utilizatorului (poza, nume). Datele vor fi stocate intr-o baza de date, care va fi folosita pentru preluarea highscore-urilor (disponibile in sectiunea highscores a paginii jocului).</p>
+			<p>Login-ul va folosi API-ul oferit de Facebook pentru preluarea datelor utilizatorului (poza, nume). Datele sunt stocate in browser, folosind cookies, care sunt folosite pentru preluarea highscore-urilor (disponibile in sectiunea highscores a paginii jocului).</p>
 		<h2>Folosirea sistemului de management a codului-sursa</h2>
-			<p>Pentru implementare am folosit cu precadere HTML5 si CSS3, dar si cateva functii de JavaScript. In continuare, ne vom folosi de un canvas pentru a manipula elementele jocului, intrucat detine unelte suficent de puternice pentru rezultatul cerut.</p>
-	</article>
+			<p>Pentru implementare am folosit cu precadere HTML5 si CSS3 si  JavaScript, lucrand majoritar cu functiile oferite pentru canvas, la nivelul caruia sunt manipulate toate elementele jocului, intrucat detine unelte suficent de puternice pentru rezultatul cerut.</p>
+			<ul><li>HTML - folosit pentru arhitectura aplicatiei</li>
+				<li>CSS - folosit pentru stilizarea aplicatiei</li>
+				<li>JavaScript - folosit pentru functionalitatea aplicatiei si stilizarea jocului</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Paginile jocului</h2>
+			<h4>Pagina de login - login.html</h4>
+			<p>La deschiderea aplicatiei, utilizatorul va fi redirectionat catre aceasta pagina, unde va alege modalitatea de a intra in joc.</p>
+			<figure typeof="sa:Image">
+				<img src="images/login.png" width="600" height="287">
+			</figure>
+			<h4>Pagina de joc - index.html</h4>
+			<p>Aceasta este pagina principala a aplicatiei, de unde poate fi accesat si jocul, precum si o multitudine de optiuni, puse intr-un meniu in partea stanga.</p>
+			<ul>
+			<li>Rules - va afisa regulile jocului sub meniu</li>
+			<li>Controls - va afisa tastele de control ale jocului sub meniu</li>
+			<li>Description - va redirectiona catre pagina de descriere a jocului</li>
+			<li>Highscores - va afisa un pop-up in partea stanga a ecranului, unde sunt afisate cele mai bune scoruri inregistrate</li>
+			</ul>
+			<h5>Canvas-ul</h5>
+			<ul>
+				<li>Intro - pagina de start a jocului, unde se poate selecta un caracter</li>
+				<li>Jocul - prezinta o multitudine de elemente, dintre care mentionam numarul de vieti in partea stanga sus, scorul in partea dreapta sus, harta pe care se joaca, reprezentand background-ul, care in functie de nivel se schimba si jucatorii.</li>
+				<li>Outro - pagina unde jucatorul e redirectionat cand pierde jocul. Acesta are posibilitatea de a relua jocul sau de a schimba caracterul cu care joaca.</li>
+			</ul>
+				<span>Pagina intro a jocului</span>
+				<figure typeof="sa:Image">
+	            <img src="images/index1.png" width="600" height="263">
+	          	</figure>
+	          	<span>Pagina de joc</span>
+	          	<figure typeof="sa:Image">
+	            <img src="images/index2.png" width="600" height="258">
+	          	</figure>
+	          	<span>Pagina de outro a jocului</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/index3.png" width="600" height="253">
+          		</figure>
+          		<span>Regulile si Controloale jocului</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/rules_controls.png">
+          		</figure>
+          		<span>Highscores</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/highscores.png" width="600" height="244">
+          		</figure>
+          	<h4>Pagina de descriere</h4>
+          		<p>Cuprinde 3 sectiuni unde se pot gasi o scurta istorie a jocului, prezentarea aplicatiei noastre si continut extra</p>
+          		<span>History</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/history.png" width="600" height="280">
+          		</figure>
+          		<span>Presentation</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/presentation.png" width="600" height="432">
+          		</figure>
+          		<span>Miscellaneous</span>
+          		<figure typeof="sa:Image">
+          	  	<img src="images/miscellaneous.png" width="600" height="425">
+          		</figure>
+          	</section>
+          	<section>
+          		<h2>Caractere</h2>
+          		<p>Cele 3 personaje principale ale jocului, pe care le poate selecta utilizatorul sunt:
+          			<ul>
+          				<li>Busaco</li>
+          				<li>Varlan</li>
+          				<li>Iftene</li>
+          			</ul>
+          		Ei pot fi gasiti atat pe pagina de intro a jocului, cat si in sectiunea Miscellaneous a paginii de descriere.
+          		Fiecare va lupta cu o sala plina de studenti care vor sa copieze in timpul examenului intr-una din salile C2, C112 sau C309. 
+          		</p>
+          		<h2>Gameplay</h2>
+          		<p>Pe parcurs ce profesorul prinde toti studentii ce au copiat in sala unde supravegheaza, va trece la urmatorul nivel si va supraveghea in alta sala. In timp ce se lupta cu trisorii, exista posibilitatea aparitiei studentului special, care sfideaza regulile examenului si se plimba prin sala pentru a copia de la toti ceilalti.</p>
+          		<p>Scopul profesorului este sa prinda cat mai multi studenti si sa cumuleze astfel un scor cat mai mare. Jocul este pierdut cand nu mai raman vieti sau cand studentii se apropie toti de catedra la finalul examenului, iar profesorul este ocupat sa stranga lucrarile si restul vor copia prea mult.</p>
+          	</section>
+          	<section>
+          		<p> Acest joc este un pamflet si rugam sa fie tratat ca atare. Am dorit sa transpunem jocul clasic Space Invaders in toate particularitatile ce pot fi gasite la FII.</p>
+          		<h2>Va multumim!</h2>
+          	</section>
+          		</article>
+          	<footer>
+          		<p>
+          		<a >@FII Invaders</a>
+		        •••
+		        Vladut-Adrian Cojocariu
+		        •
+		        Sabina Savescu
+		        •
+		       Andrei Arhip
+		       	  •••
+		         <a >@FII Invaders</a>
+		    	  </p>
+		  </footer>	
+
 
