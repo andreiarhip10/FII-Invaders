@@ -841,35 +841,37 @@ function studentAI() {
 
 function specialStudentAI() {
     //window.clearInterval(teacherProjectileInterval);
-    var repetitions = 0;
-    specialInterval = setInterval(function () {
-        // Open door if in C2
-        if (backgroundColor == '#a9c8fc') {
-            ctx.fillStyle = 'black';
-            ctx.fillRect(138, 1, 10, 14);
-        }
-        var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
-        console.log('Created special student.');
-        listOfStudents.push(specialStudent);
-        //console.log(listOfStudents);
-        specialStudent.move();
-        if (++repetitions == 1) {
-            repetitions = 0;
-            var intervalId = setInterval(function () {
-                // Closed door if in C2
-                if (backgroundColor == '#a9c8fc') {
-                    ctx.fillStyle = 'brown';
-                    ctx.fillRect(138, 2, 9, 12);
-                    ctx.fillStyle = 'black';
-                    ctx.fillRect(145, 9, 2, 2);
-                }
-                if (++repetitions % 2 == 1) {
-                    repetitions = 0;
-                    window.clearInterval(intervalId);
-                }
-            }, 8000)
-        }
-    }, 10000);
+    if (oldState < newState) {
+        var repetitions = 0;
+        specialInterval = setInterval(function () {
+            // Open door if in C2
+            if (backgroundColor == '#a9c8fc') {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(138, 1, 10, 14);
+            }
+            var specialStudent = new Student(ctx, 143, 20, null, null, null, true, 'special', 100);
+            console.log('Created special student.');
+            listOfStudents.push(specialStudent);
+            //console.log(listOfStudents);
+            specialStudent.move();
+            if (++repetitions == 1) {
+                repetitions = 0;
+                var intervalId = setInterval(function () {
+                    // Closed door if in C2
+                    if (backgroundColor == '#a9c8fc') {
+                        ctx.fillStyle = 'brown';
+                        ctx.fillRect(138, 2, 9, 12);
+                        ctx.fillStyle = 'black';
+                        ctx.fillRect(145, 9, 2, 2);
+                    }
+                    if (++repetitions % 2 == 1) {
+                        repetitions = 0;
+                        window.clearInterval(intervalId);
+                    }
+                }, 8000)
+            }
+        }, 10000);
+    }
 }
 
 // Method for changing level - TO IMPLEMENT - redrawing, randomly choosing background
@@ -934,29 +936,6 @@ function changeLevel() {
             }, 1500);
         }
     })
-    /*justChanged = true;
-    levelAdvance++;
-    if (levelAdvance % 3 == 0) {
-        drawC2();
-    } else if (levelAdvance % 3 == 1) {
-        drawC112();
-    } else if (levelAdvance % 3 == 2) {
-        drawC309();
-    }
-    livesArea();
-    drawLives(teacher.lives);
-    scoreArea();
-    drawScore(score);
-    drawTables();
-    drawDesk();
-    teacher.x = 140;
-    teacher.y = 130;
-    teacher.draw();
-    drawStudents();
-    moveStudents();
-    studentAI();
-    specialStudentAI();
-    justChanged = false;*/
 }
 
 // Method used for checking for losing condition
@@ -1008,6 +987,7 @@ function checkGameOver() {
 
     //localStorage.clear();
 }
+
 
 //Student class
 class Student {
@@ -1416,7 +1396,7 @@ class Student {
             var repetitions = 0;
             var student = this;
             var intervalId = setInterval(function () {
-                if (student.x <= 260) {
+                if (student.x <= 260 && oldState == newState && !justChanged) {
                     student.erase();
                     student.x = student.x + 1;
                     document.getElementById("specialStudent").play();
@@ -1437,7 +1417,7 @@ class Student {
                     window.clearInterval(intervalId);
                     repetitions = 0;
                     intervalId = setInterval(function () {
-                        if (student.x >= 32) {
+                        if (student.x >= 32 && oldState == newState && !justChanged) {
                             student.erase();
                             student.x = student.x - 1;
                             document.getElementById("specialStudent").play();
@@ -1451,14 +1431,14 @@ class Student {
                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                         }
-                        if (!student.alive && student.x <= 260) {
+                        if (!student.alive && student.x <= 260 && oldState == newState && !justChanged) {
                             student.erase();
                         }
                         if (++repetitions == 200 && student.alive) {
                             window.clearInterval(intervalId);
                             repetitions = 0;
                             intervalId = setInterval(function () {
-                                if (student.x <= 260) {
+                                if (student.x <= 260 && oldState == newState && !justChanged) {
                                     student.erase();
                                     student.x = student.x + 1;
                                     document.getElementById("specialStudent").play();
@@ -1472,14 +1452,14 @@ class Student {
                                     student.context.fillRect(student.x + 1, student.y, 1, 3);
                                     student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                 }
-                                if (!student.alive && student.x >= 32) {
+                                if (!student.alive && student.x >= 32 && oldState == newState && !justChanged) {
                                     student.erase();
                                 }
                                 if (++repetitions == 200 && student.alive) {
                                     window.clearInterval(intervalId);
                                     repetitions = 0;
                                     intervalId = setInterval(function () {
-                                        if (student.x >= 32) {
+                                        if (student.x >= 32 && oldState == newState && !justChanged) {
                                             student.erase();
                                             student.x = student.x - 1;
                                             document.getElementById("specialStudent").play();
@@ -1493,10 +1473,10 @@ class Student {
                                             student.context.fillRect(student.x + 1, student.y, 1, 3);
                                             student.context.fillRect(student.x + 8, student.y - 4, 1, 3);
                                         }
-                                        if (!student.alive) {
+                                        if (!student.alive && oldState == newState && !justChanged) {
                                             student.erase();
                                         }
-                                        if (++repetitions == 100 && student.alive) {
+                                        if (++repetitions == 100 && student.alive && oldState == newState && !justChanged) {
                                             window.clearInterval(intervalId);
                                             student.erase();
                                             student.alive = false;
@@ -1897,6 +1877,14 @@ class Teacher {
                                 teacher.context.fillStyle = backgroundColor;
                                 teacher.context.fillRect(explosionX - 10, explosionY - 2, 80, 7);
                                 teacher.draw();
+                                if (backgroundColor == "#a9c8fc") {
+                                    redrawC2sides();
+                                } else if (backgroundColor == "#9A7B47") {
+                                    redrawC112sides();
+                                } else if (backgroundColor == "#d8d09f") {
+                                    redrawC309sides();
+                                }
+
                             }
                         }, 250);
                     }
